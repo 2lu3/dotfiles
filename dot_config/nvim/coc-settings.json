@@ -1,0 +1,11 @@
+{
+    "languageserver": {},
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "python.formatting.provider": "black",
+    "clangd.arguments": [
+        "--limit-references=0",
+        "--limit-results=0",
+        "--enable-config"
+    ],
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/13.0.0/clangd_13.0.0/bin/clangd"
+}

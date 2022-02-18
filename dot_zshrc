@@ -21,11 +21,11 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # General
 # -----------------------------
 
+setopt IGNOREEOF # Ctrl+Dでログアウトしてしまうことを防ぐ
 autoload -Uz colors; colors # 色を使用
 export EDITOR=nvim # デフォルトのエディター
 setopt auto_pushd # cdしたときのディレクトリをディレクトリスタック(補完)に自動追加
 setopt pushd_ignore_dups # ディレクトリスタックへの追加時に重複させない
-setopt auto_pushd # 自動でpushdを実行
 setopt no_beep # ビープ音を鳴らさないように
 bindkey -v # viキーバインド
 setopt no_flow_control # フローコントロールを無効に

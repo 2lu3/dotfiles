@@ -1,0 +1,48 @@
+[core]
+	email = hi2lu3@gmail.com
+	quotepath = false
+[user]
+	name = 2lu3
+	email = hi2lu3@gmail.com
+
+[alias]
+	diff = diff --color-words
+	status = status --short --branch
+	logline = log --oneline --graph --decorate
+
+
+[credential]
+	credentialStore = secretservice
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
+
+[core]
+	excludefile = ~/.config/git/gitignore_global
+	quotepath = false
+
+[color]
+	ui = auto
+
+[commit]
+	verbose = true
+
+[diff]
+	renames = true
+
+[fetch]
+	prune = true
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+	default = simple
+
+[status]
+	showUntrackedFiles = all
+
+
+

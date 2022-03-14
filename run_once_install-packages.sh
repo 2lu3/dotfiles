@@ -1,5 +1,14 @@
 #!/bin/bash
 
+function brew_install() {
+    for N in "${@}";
+    do
+        if ! type $N > /dev/null 2>&1; then
+            brew install $N
+        fi
+    done
+}
+
 is_all_install="false"
 while [ $# -gt 0 ]; do
     case ${1} in
@@ -53,30 +62,27 @@ if ! type npm >/dev/null 2>&1; then
 fi
 
 # git
-sudo apt-get remove -y --purge git
-brew install git
 
-# # direnv
-brew install direnv
+sudo apt-get remove -y --purge git
+brew_install git
+
+brew_install direnv
+brew_install starship exa bat
 
 # neovim環境構築
 if ! type nvim >/dev/null 2>&1; then
-    brew install neovim
+    brew_install neovim, deno, fzf, xclip
 
     sudo npm install -g neovim
     mkdir -p ~/python_envs/nvim/
     cd ~/python_envs/nvim/
     pipenv install pynvim
 
-    brew install deno fzf xclip
-
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
     sh ~/installer.sh ~/.cache/dein
     rm ~/installer.sh
 fi
 
-# starship
-brew install starship exa bat
 
 # openMPI
 if [[ "$is_all_install" = true ]]; then
@@ -90,4 +96,11 @@ if [[ "$is_all_install" = true ]]; then
     ./configure --prefix=/opt/openMPI CC=gcc CXX=g++ F77=gfortran FC=gfortran
     make -j
     sudo make install
+fi
+
+# Cuda Toolkit
+if [[ "$is_all_install" = true ]]; then
+    wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda_11.2.2_460.32.03_linux.runsudo ~/cuda.run
+    sh ~/cuda.run
+    rm  ~/cuda.run
 fi

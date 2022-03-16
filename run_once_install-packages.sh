@@ -98,6 +98,13 @@ if [[ "$is_all_install" = true ]]; then
     sudo make install
 fi
 
+# Git Credential Manager for Linux
+if ! type git-credential-manager-core >/dev/null 2>&1; then
+    curl -LO https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh &&
+    sh ./install-from-source.sh &&
+    git-credential-manager-core configure
+fi
+
 # Cuda Toolkit
 #if [[ "$is_all_install" = true ]]; then
 #    wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda_11.2.2_460.32.03_linux.runsudo ~/cuda.run

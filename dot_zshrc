@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Set up the prompt
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -121,6 +123,16 @@ fi
 alias 'git diff'='git diff --color-words'
 alias git status=status --short --branch
 alias git logline=log --oneline --graph --decorate
+
+
+if [ -e '/opt/relion3.0/' ]; then
+  alias relion3 /opt/relion3.0/bin/relion
+fi
+
+if [ -e '/opt/relion4.0/' ]; then
+  alias relion4 /opt/relion3.0/bin/relion4
+fi
+
 # -----------------------------
 # PATHなど
 # -----------------------------

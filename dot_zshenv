@@ -60,7 +60,5 @@ if [ -e '/opt/relion3.0/' ]; then
     append_path /opt/relion3.0/bin/
 fi
 
-
-
 # for wsl, secret service will not work without this command
 eval `dbus-launch --sh-syntax`

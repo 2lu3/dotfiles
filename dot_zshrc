@@ -126,11 +126,11 @@ alias git logline=log --oneline --graph --decorate
 
 
 if [ -e '/opt/relion3.0/' ]; then
-  alias relion3 /opt/relion3.0/bin/relion
+  alias relion3=/opt/relion3.0/bin/relion
 fi
 
 if [ -e '/opt/relion4.0/' ]; then
-  alias relion4 /opt/relion3.0/bin/relion4
+  alias relion4=/opt/relion4.0/bin/relion
 fi
 
 # -----------------------------

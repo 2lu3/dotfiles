@@ -13,13 +13,8 @@ function brew_install() {
 
 function apt_install() {
     local N
-    for N in "${@}";
-    do
-        if ! type $N > /dev/null 2>&1; then
-            apt_install_log $N
-            sudo apt-get install -y $N
-        fi
-    done
+    apt_install_log ${@}
+    sudo apt-get install -y ${@}
 }
 
 function print_colored() {
@@ -33,11 +28,12 @@ function print_colored() {
 
 function apt_install_log() {
     local N
+    print_colored "[apt install] "
     for N in "${@}";
     do
-        print_colored "[apt install] $N"
-        echo;
+        print_colored $N
     done
+    echo;
 }
 function brew_install_log() {
     local N

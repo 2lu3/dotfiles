@@ -82,6 +82,9 @@ fi
 
 brew update
 
+# chezmoi
+brew_install chezmoi
+
 # zsh
 apt_install zsh
 if [ "$SHELL" != "/bin/zsh" ] ; then

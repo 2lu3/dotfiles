@@ -92,7 +92,7 @@ fi
 if ! type pyenv >/dev/null 2>&1; then
     apt_install make build-essential libssl-dev zlib1g-dev \
         libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
+        libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev python3-distutils
     brew install pyenv
     pyenv install -f 3.8.10
     pyenv global 3.8.10

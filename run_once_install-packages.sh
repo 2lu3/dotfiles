@@ -73,6 +73,7 @@ sudo apt-get -y autoremove
 # linuxbrew
 if ! type brew >/dev/null 2>&1; then
     install_log linuxbrew
+    sudo apt-get install -y build-essential procps curl file git
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
     test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

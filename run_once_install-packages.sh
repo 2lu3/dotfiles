@@ -12,9 +12,8 @@ function brew_install() {
 }
 
 function apt_install() {
-    local N
-    apt_install_log ${@}
-    sudo apt-get install -y ${@}
+    apt_install_log "${@}"
+    sudo apt-get install -y "${@}"
 }
 
 function print_colored() {

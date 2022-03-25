@@ -96,15 +96,10 @@ if ! type pyenv >/dev/null 2>&1; then
     apt_install make build-essential libssl-dev zlib1g-dev \
         libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
         libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev python3-distutils
-    brew install pyenv
+    brew install pyenv pipenv
     pyenv install -f 3.8.10
     pyenv global 3.8.10
 fi
-
-if ! type pipenv >/dev/null 2>&1; then
-    brew install pipenv
-fi
-
 
 # nodejs
 if ! type npm >/dev/null 2>&1; then
@@ -123,7 +118,13 @@ brew_install git
 brew_install direnv
 brew_install starship exa bat
 
-# neovim環境構築
+# neovim
+if ! type nvim >/dev/null 2>&1; then
+    brew_install neovim deno fzf xclip
+    sudo npm install -g neovim
+fi
+
+# pynvim
 if [[ ! -e "$HOME/python_envs/nvim" ]]; then
     install_log " pynvim"
     mkdir -p ~/python_envs/nvim/
@@ -131,12 +132,9 @@ if [[ ! -e "$HOME/python_envs/nvim" ]]; then
     pipenv install pynvim
 fi
 
-if ! type nvim >/dev/null 2>&1; then
-    brew_install neovim deno fzf xclip
-    sudo npm install -g neovim
-fi
-
+# dein
 if [[ ! -e "$HOME/.cache/dein/" ]]; then
+    install_log dein
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
     sh ~/installer.sh ~/.cache/dein
     rm ~/installer.sh
@@ -159,16 +157,8 @@ fi
 
 # Git Credential Manager for Linux
 if ! type git-credential-manager-core >/dev/null 2>&1; then
-    apt_install libsecret-1-dev gnupg2 pass
     install_log "git credential manager for linux"
     curl -LO https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh > ~/install-from-source.sh
     sh ~/install-from-source.sh
     git-credential-manager-core configure
 fi
-
-# Cuda Toolkit
-#if [[ "$is_all_install" = true ]]; then
-#    wget https://developer.download.nvidia.com/compute/cuda/11.2.2/local_installers/cuda_11.2.2_460.32.03_linux.runsudo ~/cuda.run
-#    sh ~/cuda.run
-#    rm  ~/cuda.run
-#fi

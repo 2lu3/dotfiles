@@ -86,8 +86,8 @@ brew update
 brew_install chezmoi
 
 # zsh
-apt_install zsh
 if [ "$SHELL" != "/bin/zsh" ] ; then
+    apt_install zsh
     chsh -s $(which zsh)
 fi
 
@@ -159,6 +159,7 @@ fi
 
 # Git Credential Manager for Linux
 if ! type git-credential-manager-core >/dev/null 2>&1; then
+    apt_install libsecret-1-dev gnupg2 pass
     install_log "git credential manager for linux"
     curl -LO https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh ~/install-from-source.sh
     sh ~/install-from-source.sh

@@ -86,7 +86,7 @@ brew update
 brew_install chezmoi
 
 # zsh
-if [ "$SHELL" != "/bin/zsh" ] ; then
+if [ -n "$ZSH_VERSION" ]; then
     apt_install zsh
     chsh -s $(which zsh)
 fi
@@ -138,6 +138,11 @@ if [[ ! -e "$HOME/.cache/dein/" ]]; then
     curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
     sh ~/installer.sh ~/.cache/dein
     rm ~/installer.sh
+fi
+
+# ninja
+if ! type ninja >/dev/null 2>&1; then
+    apt_install ninja-build
 fi
 
 # openMPI

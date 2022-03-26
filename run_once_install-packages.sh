@@ -162,3 +162,5 @@ if ! type git-credential-manager-core >/dev/null 2>&1; then
     sh ~/install-from-source.sh
     git-credential-manager-core configure
 fi
+
+sudo ubuntu-drivers autoinstall

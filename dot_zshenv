@@ -25,7 +25,8 @@ fi
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-export LANG=ja_JP.UTF-8 # 日本語を使用
+#export LANG=ja_JP.UTF-8 # 日本語を使用
+export LANG=en_US.UTF-8 # ↑gpgでpushするときにエラーが出た
 export LESSCHARSET=utf-8
 #eval $(/usr/bin/locale-check C.UTF-8) # ""の中に日本語を入力すると文字化けする問題対策
 
@@ -62,3 +63,5 @@ fi
 
 # for wsl, secret service will not work without this command
 eval `dbus-launch --sh-syntax`
+
+export GPG_TTY=$(tty)

@@ -169,4 +169,11 @@ if ! type git-credential-manager-core >/dev/null 2>&1; then
     git-credential-manager-core configure
 fi
 
+# typora
+if ! type typora > /dev/null 2>&1; then
+    wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
+    sudo add-apt-repository 'deb https://typora.io/linux ./'
+    sudo apt-get install typora
+fi
+
 sudo ubuntu-drivers autoinstall

@@ -33,6 +33,9 @@ export LESSCHARSET=utf-8
 append_path /usr/local/go/bin
 append_path $HOME/bin
 append_path $HOME/.robotech/bin
+export CC=/usr/bin/clang-14
+export CXX=/usr/bin/clang++-14
+
 
 
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/:/usr/share/pkgconfig
@@ -62,6 +65,9 @@ if [ -e '/opt/relion3.0/' ]; then
 fi
 
 # for wsl, secret service will not work without this command
-eval `dbus-launch --sh-syntax`
+#eval `dbus-launch --sh-syntax`
 
 export GPG_TTY=$(tty)
+
+
+eval "$(direnv hook zsh)"

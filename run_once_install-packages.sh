@@ -42,7 +42,6 @@ function brew_install_log() {
         echo;
     done
 }
-
 function install_log() {
     local N
     for N in "${@}";

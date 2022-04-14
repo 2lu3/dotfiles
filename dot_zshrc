@@ -140,4 +140,4 @@ eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+alias robo=`docker exec -u luna -w "/home/luna" -it RoboTech /bin/zsh`

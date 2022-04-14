@@ -44,5 +44,5 @@
 [status]
 	showUntrackedFiles = all
 
-
-
+[credential "https://git.robotech.t.u-tokyo.ac.jp"]
+	provider = generic

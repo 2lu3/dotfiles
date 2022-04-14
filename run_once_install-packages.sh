@@ -85,7 +85,7 @@ brew update
 brew_install chezmoi
 
 # zsh
-if [ -n "$ZSH_VERSION" ]; then
+if [ ! -n "$ZSH_VERSION" ]; then
     apt_install zsh
     chsh -s $(which zsh)
 fi

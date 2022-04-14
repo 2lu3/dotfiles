@@ -29,7 +29,7 @@ export EDITOR=nvim # デフォルトのエディター
 setopt auto_pushd # cdしたときのディレクトリをディレクトリスタック(補完)に自動追加
 setopt pushd_ignore_dups # ディレクトリスタックへの追加時に重複させない
 setopt no_beep # ビープ音を鳴らさないように
-bindkey -v # viキーバインド
+bindkey -e # viキーバインド
 setopt no_flow_control # フローコントロールを無効に
 setopt extended_glob # ワイルドカード展開を使用する
 setopt auto_cd # cdコマンドを省略して、ディレクトリ名のみの入力で移動
@@ -137,5 +137,7 @@ fi
 # PATHなど
 # -----------------------------
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

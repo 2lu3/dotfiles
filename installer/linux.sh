@@ -126,6 +126,7 @@ fi
 # pynvim
 if [[ ! -e "$HOME/python_envs/nvim" ]]; then
     install_log " pynvim"
+    export PIPENV_VENV_IN_PROJECT=true
     mkdir -p ~/python_envs/nvim/
     cd ~/python_envs/nvim/
     pipenv install pynvim
@@ -160,13 +161,13 @@ if [[ "$is_all_install" = true ]]; then
 fi
 
 # Git Credential Manager for Linux
-if ! type git-credential-manager-core >/dev/null 2>&1; then
-    install_log "git credential manager for linux"
-    apt_install pass
-    curl -LO https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh > ~/install-from-source.sh
-    sh ~/install-from-source.sh
-    git-credential-manager-core configure
-fi
+#if ! type git-credential-manager-core >/dev/null 2>&1; then
+#    install_log "git credential manager for linux"
+#    apt_install pass
+#    curl -LO https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh > ~/install-from-source.sh
+#    sh ~/install-from-source.sh
+#    git-credential-manager-core configure
+#fi
 
 # typora
 if ! type typora > /dev/null 2>&1; then

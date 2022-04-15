@@ -120,7 +120,7 @@ brew_install starship exa bat
 # neovim
 if ! type nvim >/dev/null 2>&1; then
     brew_install neovim deno fzf xclip ripgrep
-    sudo npm install -g neovim
+    npm install -g neovim
 fi
 
 # pynvim

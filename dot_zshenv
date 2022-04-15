@@ -69,4 +69,7 @@ fi
 
 export GPG_TTY=$(tty)
 
+eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

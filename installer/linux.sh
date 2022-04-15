@@ -174,5 +174,3 @@ if ! type typora > /dev/null 2>&1; then
     sudo add-apt-repository 'deb https://typora.io/linux ./'
     sudo apt-get install typora
 fi
-
-sudo ubuntu-drivers autoinstall

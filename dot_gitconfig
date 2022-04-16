@@ -39,7 +39,7 @@
 	rebase = true
 
 [push]
-	default = simple
+	default = current
 
 [status]
 	showUntrackedFiles = all

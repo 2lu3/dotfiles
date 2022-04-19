@@ -23,7 +23,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+append_path /home/linuxbrew/.linuxbrew/bin/
 
 #export LANG=ja_JP.UTF-8 # 日本語を使用
 export LANG=en_US.UTF-8 # ↑gpgでpushするときにエラーが出た
@@ -38,7 +38,7 @@ export CXX=/usr/bin/clang++-14
 
 
 
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/:/usr/share/pkgconfig
+#export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/:/usr/share/pkgconfig
 
 export PIPENV_VENV_IN_PROJECT=true
 export PYENV_ROOT="$HOME/.pyenv"

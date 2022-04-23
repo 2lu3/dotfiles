@@ -28,6 +28,7 @@
 
 [diff]
 	renames = true
+	indentHeuristic = true
 
 [fetch]
 	prune = true

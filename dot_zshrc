@@ -137,4 +137,4 @@ fi
 # PATHなど
 # -----------------------------
 
-#alias robo=`docker exec -u luna -w "/home/luna" -it RoboTech /bin/zsh`
+alias robo='docker exec -it extended /bin/zsh'

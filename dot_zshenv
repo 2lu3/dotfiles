@@ -23,7 +23,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-append_path /home/linuxbrew/.linuxbrew/bin/
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 #export LANG=ja_JP.UTF-8 # 日本語を使用
 export LANG=en_US.UTF-8 # ↑gpgでpushするときにエラーが出た
@@ -33,12 +33,12 @@ export LESSCHARSET=utf-8
 append_path /usr/local/go/bin
 append_path $HOME/bin
 append_path $HOME/.robotech/bin
-export CC=/usr/bin/clang-14
-export CXX=/usr/bin/clang++-14
+#export CC=/usr/bin/clang-14
+#export CXX=/usr/bin/clang++-14
 
 
 
-#export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/:/usr/share/pkgconfig
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/:/usr/share/pkgconfig
 
 export PIPENV_VENV_IN_PROJECT=true
 export PYENV_ROOT="$HOME/.pyenv"
@@ -73,3 +73,8 @@ eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#eval "docker start extended"
+
+export GOPATH=$HOME/go
+append_path $GOPATH/bin

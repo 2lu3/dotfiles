@@ -116,14 +116,10 @@ alias du='du -h -d 1'
 alias df='df -h'
 alias su='su -l'
 
-if [[ $(command -v bat) ]]; then
-    alias cat=bat
-fi
-
-alias 'git diff'='git diff --color-words'
-alias git status=status --short --branch
-alias git logline=log --oneline --graph --decorate
-
+# catを使いたいときもある
+#if [[ $(command -v bat) ]]; then
+#    alias cat=bat
+#fi
 
 if [ -e '/opt/relion3.0/' ]; then
   alias relion3=/opt/relion3.0/bin/relion

@@ -116,7 +116,7 @@ alias du='du -h -d 1'
 alias df='df -h'
 alias su='su -l'
 
-# catを使いたいときもある
+# catを使いたいときもあるのでコメントアウト
 #if [[ $(command -v bat) ]]; then
 #    alias cat=bat
 #fi

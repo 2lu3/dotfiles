@@ -33,22 +33,16 @@ export LESSCHARSET=utf-8
 append_path /usr/local/go/bin
 append_path $HOME/bin
 append_path $HOME/.robotech/bin
-#export CC=/usr/bin/clang-14
-#export CXX=/usr/bin/clang++-14
 
 
+#export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/:/usr/share/pkgconfig
 
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig/:/usr/share/pkgconfig
-
-export PIPENV_VENV_IN_PROJECT=true
 export PYENV_ROOT="$HOME/.pyenv"
 insert_path $PYENV_ROOT/bin
 eval "$(pyenv init --path)"
 
-append_path usr/local/cuda/bin
-export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
-append_path $HOME/.nodebrew/current/bin
-append_path /home/linuxbrew/.linuxbrew/opt/clang-format/bin
+#append_path usr/local/cuda/bin
+#export LD_LIBRARY_PATH="/usr/local/cuda/lib64:$LD_LIBRARY_PATH"
 
 if [ -e '/opt/openMPI/' ]; then
     append_path /opt/openMPI/bin

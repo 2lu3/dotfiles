@@ -55,7 +55,7 @@ fi
 
 # ninja
 if ! type ninja >/dev/null 2>&1; then
-    apt-get install -y ninja-build
+    sudo apt-get install -y ninja-build
 fi
 
 # typora

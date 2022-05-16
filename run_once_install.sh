@@ -26,6 +26,8 @@ sudo apt-get -y autoremove
 sudo apt-get install -y zsh
 sudo chsh -s $(which zsh) ${SUDO_USER}
 
+sudo apt-get install -y git
+
 # pyenv
 sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \

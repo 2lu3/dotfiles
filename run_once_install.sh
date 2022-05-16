@@ -26,7 +26,7 @@ sudo apt-get -y autoremove
 sudo apt-get install -y zsh
 sudo chsh -s $(which zsh) ${SUDO_USER}
 
-sudo apt-get install -y git
+sudo apt-get install -y git software-properties-common
 
 # pyenv
 sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \

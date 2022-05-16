@@ -37,6 +37,9 @@ if [[ ! -e "$HOME/.pyenv" ]]; then
     pushd ~/.pyenv
     git checkout v2.3.0
     popd
+    
+    export PATH=$PATH:$HOME/.pyenv/bin
+    eval "$(pyenv init --path)"
 
     pyenv install -f 3.9.11
     pyenv global 3.9.11

@@ -87,7 +87,7 @@ sudo npm install -g neovim
 if [[ ! -e "$HOME/python_envs/nvim" ]]; then
     mkdir -p ~/app/pynvim
     python3 -m venv ~/app/pynvim/
-    ~/app/pynvim/bin/pip3 -U pip
+    ~/app/pynvim/bin/pip3 install -U pip
     ~/app/pynvim/bin/pip3 install pynvim
 fi
 # dein

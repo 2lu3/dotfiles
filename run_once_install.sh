@@ -84,7 +84,7 @@ brew install go
 brew install neovim deno fzf xclip ripgrep
 sudo npm install -g neovim
 # pynvim
-if [[ ! -e "$HOME/python_envs/nvim" ]]; then
+if [[ ! -e "$HOME/app/pynvim" ]]; then
     mkdir -p ~/app/pynvim
     python3 -m venv ~/app/pynvim/
     ~/app/pynvim/bin/pip3 install -U pip

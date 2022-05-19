@@ -96,6 +96,8 @@ if [[ ! -e "$HOME/.cache/dein/" ]]; then
     sh ~/installer.sh ~/.cache/dein
     rm ~/installer.sh
 fi
+# japanese font
+sudo apt-get install -y fontconfig fonts-ipaexfont
 
 brew install direnv starship exa bat
 

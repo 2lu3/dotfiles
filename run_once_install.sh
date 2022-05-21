@@ -3,6 +3,7 @@ set -xe
 
 is_all_install=false
 is_docker=false
+is_gui=false
 while [ $# -gt 0 ]; do
     case ${1} in
         --all)
@@ -10,8 +11,12 @@ while [ $# -gt 0 ]; do
             echo "set mode: all install"
         ;;
         --docker)
-        is_docker=true
-        echo  "set mode: docker"
+            is_docker=true
+            echo  "set mode: docker"
+        ;;
+        --gui)
+            is_gui=true
+            echo "set mode: gui"
         ;;
         *) ;;
     esac
@@ -37,7 +42,7 @@ if [[ ! -e "$HOME/.pyenv" ]]; then
     pushd ~/.pyenv
     git checkout v2.3.0
     popd
-    
+
     export PATH=$PATH:$HOME/.pyenv/bin
     eval "$(pyenv init --path)"
 
@@ -109,6 +114,18 @@ if ! type germanium > /dev/null 2>&1; then
     popd
 fi
 
+
+if [[ "$is_gui"  = true ]]; then
+    ./scripts/chrome.sh
+    ./scripts/code.sh
+    ./scripts/discord.sh
+    ./scripts/discord.sh
+    ./scripts/dropbox.sh
+    ./scripts/firefox.sh
+    ./scripts/spotify.sh
+fi
+
+echo "finish"
 
 ## openMPI
 #if [[ "$is_all_install" = true ]]; then

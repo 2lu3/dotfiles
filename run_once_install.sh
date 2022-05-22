@@ -143,12 +143,13 @@ echo "finish"
 #fi
 
 # Git Credential Manager for Linux
-#if ! type git-credential-manager-core >/dev/null 2>&1; then
-#    install_log "git credential manager for linux"
-#    apt_install pass
-#    curl -LO https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh > ~/install-from-source.sh
-#    sh ~/install-from-source.sh
-#    git-credential-manager-core configure
-#fi
+if ! type git-credential-manager-core >/dev/null 2>&1; then
+    #install_log "git credential manager for linux"
+    sudo apt-get install -y pass
+    curl -L https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh -o /tmp/install-from-source.sh
+    cat /tmp/install-from-source.sh
+    sh /tmp/install-from-source.sh
+    git-credential-manager-core configure
+fi
 
 

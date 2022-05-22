@@ -12,7 +12,7 @@ if has('win64')
     let g:python3_dir = 'C:\Users\tlaloc\python_envs\nvim\.venv\Scripts\'
     let g:python3_host_prog=g:python3_dir . 'python.exe'
 elseif has("unix")
-    let g:python3_dir = '~/python_envs/nvim/.venv/bin/'
+    let g:python3_dir = '~/app/pynvim/bin/'
     let g:python3_host_prog= g:python3_dir . 'python'
 endif
 

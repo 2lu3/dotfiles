@@ -11,8 +11,8 @@ let g:lightline = {
 \}
 
 " Diagnosisの、左横のアイコン色設定
-highlight CocErrorSign ctermfg=0 ctermbg=196
-highlight CocWarningSign ctermfg=20 ctermbg=172
+highlight CocErrorSign ctermfg=15 ctermbg=196
+highlight CocWarningSign ctermfg=0 ctermbg=172
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')

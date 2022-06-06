@@ -27,105 +27,62 @@ sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y autoremove
 
+# common
+sudo apt-get install -y git software-properties-common
+
 # zsh
 sudo apt-get install -y zsh
 sudo chsh -s $(which zsh) ${USER}
 
-sudo apt-get install -y git software-properties-common
+# go
+./scripts/go.sh
+
+# ghq
+go install github.com/x-motemen/ghq@latest
+
+# peco
+./scripts/peco.sh
 
 # pyenv
-sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
-libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-if [[ ! -e "$HOME/.pyenv" ]]; then
-    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-    pushd ~/.pyenv
-    git checkout v2.3.0
-    popd
-
-    export PATH=$PATH:$HOME/.pyenv/bin
-    eval "$(pyenv init --path)"
-
-    pyenv install -f 3.9.11
-    pyenv global 3.9.11
-fi
+./scripts/pyenv.sh
 
 # nodejs
-if ! type n >/dev/null 2>&1; then
-    sudo apt-get install -y nodejs npm
-    sudo npm install -g n
-    sudo n stable
-    sudo apt-get purge --auto-remove -y nodejs npm
-fi
+# v16がLTSのため
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
 
 # ninja
-if ! type ninja >/dev/null 2>&1; then
-    sudo apt-get install -y ninja-build
-fi
-
-# typora
-if ! type typora > /dev/null 2>&1; then
-    wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
-    sudo add-apt-repository 'deb https://typora.io/linux ./'
-    sudo apt-get install -y typora
-fi
-
-# linuxbrew
-sudo apt-get install -y build-essential procps curl file git
-if ! type brew >/dev/null 2>&1; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
-brew update
+sudo apt-get install -y ninja-build
 
 # chezmoi
-brew install chezmoi
-
-# go
-brew install go
+./scripts/chezmoi.sh
 
 # neovim
-brew install neovim deno fzf xclip ripgrep
-sudo npm install -g neovim
-# pynvim
-if [[ ! -e "$HOME/app/pynvim" ]]; then
-    mkdir -p ~/app/pynvim
-    python3 -m venv ~/app/pynvim/
-    ~/app/pynvim/bin/pip3 install -U pip
-    ~/app/pynvim/bin/pip3 install pynvim
-fi
-# dein
-if [[ ! -e "$HOME/.cache/dein/" ]]; then
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ~/installer.sh
-    sh ~/installer.sh ~/.cache/dein
-    rm ~/installer.sh
-fi
+./scripts/neovim.sh
+./scripts/deno.sh
+./scripts/fzf.sh
+./scripts/ripgrep.sh
+sudo apt-get install -y xclip
+
 # japanese font
 sudo apt-get install -y fontconfig fonts-ipaexfont
 
-brew install direnv starship exa bat
+./scripts/direnv.sh
+sudo apt-get install -y exa bat
 
 # germanium
-if ! type germanium > /dev/null 2>&1; then
-    git clone https://github.com/matsuyoshi30/germanium /tmp/germanium
-    pushd /tmp/germanium/cmd/germanium 
-    go install
-    popd
-fi
-
+./scripts germanium
 
 if [[ "$is_gui"  = true ]]; then
     ./scripts/chrome.sh
     ./scripts/code.sh
     ./scripts/discord.sh
-    ./scripts/discord.sh
     ./scripts/dropbox.sh
     ./scripts/firefox.sh
     ./scripts/spotify.sh
+    ./scripts/typora.sh
 fi
 
-echo "finish"
 
 ## openMPI
 #if [[ "$is_all_install" = true ]]; then
@@ -133,7 +90,7 @@ echo "finish"
 #    sudo mkdir /opt/openMPI
 #    sudo rm /opt/openMPI/* -rf
 #    sudo apt-get install build-essential gfortran
-#    curl https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.2.tar.gz --output ~/openmpi.tar.gz 
+#    curl https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.2.tar.gz --output ~/openmpi.tar.gz
 #    tar -xvf ~/openmpi.tar.gz -C ~
 #    rm ~/openmpi.tar.gz
 #    cd ~/openmpi-4.1.2/
@@ -143,13 +100,9 @@ echo "finish"
 #fi
 
 # Git Credential Manager for Linux
-if ! type git-credential-manager-core >/dev/null 2>&1; then
-    #install_log "git credential manager for linux"
-    sudo apt-get install -y pass
-    curl -L https://raw.githubusercontent.com/GitCredentialManager/git-credential-manager/main/src/linux/Packaging.Linux/install-from-source.sh -o /tmp/install-from-source.sh
-    cat /tmp/install-from-source.sh
-    sh /tmp/install-from-source.sh
-    git-credential-manager-core configure
-fi
+./scripts/gcm.sh
 
+# wslでwindowsのpathを引き継がない
+sudo sh -c "(echo \"[interop]\"; echo \"appendWindowsPath = false\") > /etc/wsl.conf"
 
+echo "finish"

@@ -36,6 +36,7 @@ sudo chsh -s $(which zsh) ${USER}
 
 # go
 ./scripts/go.sh
+export PATH=$PATH:/usr/local/go/bin
 
 # ghq
 go install github.com/x-motemen/ghq@latest

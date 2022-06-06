@@ -37,17 +37,17 @@ sudo apt-get install -y zsh
 sudo chsh -s $(which zsh) ${USER}
 
 # go
-./scripts/go.sh
+./lib/go.sh
 export PATH=$PATH:/usr/local/go/bin
 
 # ghq
 go install github.com/x-motemen/ghq@latest
 
 # peco
-./scripts/peco.sh
+./lib/peco.sh
 
 # pyenv
-./scripts/pyenv.sh
+./lib/pyenv.sh
 
 # nodejs
 # v16がLTSのため
@@ -58,32 +58,32 @@ sudo apt-get install -y nodejs
 sudo apt-get install -y ninja-build
 
 # chezmoi
-./scripts/chezmoi.sh
+./lib/chezmoi.sh
 
 # neovim
-./scripts/neovim.sh
-./scripts/deno.sh
-./scripts/fzf.sh
-./scripts/ripgrep.sh
+./lib/neovim.sh
+./lib/deno.sh
+./lib/fzf.sh
+./lib/ripgrep.sh
 sudo apt-get install -y xclip
 
 # japanese font
 sudo apt-get install -y fontconfig fonts-ipaexfont
 
-./scripts/direnv.sh
+./lib/direnv.sh
 sudo apt-get install -y exa bat
 
 # germanium
-./scripts germanium
+./lib germanium
 
 if [[ "$is_gui"  = true ]]; then
-    ./scripts/chrome.sh
-    ./scripts/code.sh
-    ./scripts/discord.sh
-    ./scripts/dropbox.sh
-    ./scripts/firefox.sh
-    ./scripts/spotify.sh
-    ./scripts/typora.sh
+    ./lib/chrome.sh
+    ./lib/code.sh
+    ./lib/discord.sh
+    ./lib/dropbox.sh
+    ./lib/firefox.sh
+    ./lib/spotify.sh
+    ./lib/typora.sh
 fi
 
 
@@ -103,7 +103,7 @@ fi
 #fi
 
 # Git Credential Manager for Linux
-./scripts/gcm.sh
+./lib/gcm.sh
 
 # wslでwindowsのpathを引き継がない
 sudo sh -c "(echo \"[interop]\"; echo \"appendWindowsPath = false\") > /etc/wsl.conf"

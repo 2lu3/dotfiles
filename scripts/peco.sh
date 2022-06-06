@@ -5,8 +5,6 @@ set -xe
 
 # 最新バージョンをインストールしている
 
-wget https://github.com/peco/peco/releases/download/v0.5.10/peco_linux_amd64.tar.gz
-tar -xvf peco_linux_amd64.tar.gz
-mv ./peco_linux_amd64/peco ~/.local/bin/
-rm peco_linux_amd64.tar.gz
-rm peco_linux_amd64 -r
+wget https://github.com/peco/peco/releases/download/v0.5.10/peco_linux_amd64.tar.gz -O /tmp/peco.tar.gz
+tar -xvf /tmp/peco.tar.gz -C /tmp/
+mv /tmp/peco_linux_amd64/peco ~/.local/bin/

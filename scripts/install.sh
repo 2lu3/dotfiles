@@ -26,6 +26,7 @@ done
 cd $(dirname $0)
 
 mkdir -p ~/.local/bin
+export PATH=$PATH:${HOME}/.local/bin
 
 sudo apt-get update
 sudo apt-get -y upgrade
@@ -73,8 +74,11 @@ sudo apt-get install -y xclip
 # direnv
 ./lib/direnv.sh
 
-# exa bat
-sudo apt-get install -y exa bat
+# bat
+sudo apt-get install -y bat
+
+# exa
+./lib/exa.sh
 
 # Git Credential Manager for Linux
 ./lib/gcm.sh

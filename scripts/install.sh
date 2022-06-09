@@ -25,6 +25,18 @@ done
 
 cd $(dirname $0)
 
+mkdir -p ~/.local/bin
+
+sudo apt-get update
+sudo apt-get -y upgrade
+sudo apt-get -y autoremove
+
+# common
+sudo apt-get install -y git software-properties-common
+
+# japanese font
+sudo apt-get install -y fontconfig fonts-ipaexfont
+
 # zsh
 sudo apt-get install -y zsh
 sudo chsh -s $(which zsh) ${USER}

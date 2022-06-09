@@ -16,7 +16,7 @@ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh >
 sh /tmp/installer.sh ~/.cache/dein
 
 # nodejs
-npm install -g neovim
+sudo npm install -g neovim
 
 # python
 python3 -m venv ~/.pynvim

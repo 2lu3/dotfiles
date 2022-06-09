@@ -23,14 +23,7 @@ while [ $# -gt 0 ]; do
     shift
 done
 
-mkdir -p ~/.local/bin
-
-sudo apt-get update
-sudo apt-get -y upgrade
-sudo apt-get -y autoremove
-
-# common
-sudo apt-get install -y git software-properties-common
+cd $(dirname $0)
 
 # zsh
 sudo apt-get install -y zsh
@@ -54,9 +47,6 @@ go install github.com/x-motemen/ghq@latest
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
-# ninja
-sudo apt-get install -y ninja-build
-
 # chezmoi
 ./lib/chezmoi.sh
 
@@ -67,14 +57,21 @@ sudo apt-get install -y ninja-build
 ./lib/ripgrep.sh
 sudo apt-get install -y xclip
 
-# japanese font
-sudo apt-get install -y fontconfig fonts-ipaexfont
-
-./lib/direnv.sh
-sudo apt-get install -y exa bat
 
 # germanium
 ./lib germanium
+
+# direnv
+./lib/direnv.sh
+
+# exa bat
+sudo apt-get install -y exa bat
+
+# Git Credential Manager for Linux
+./lib/gcm.sh
+
+# wslでwindowsのpathを引き継がない
+sudo sh -c "(echo \"[interop]\"; echo \"appendWindowsPath = false\") > /etc/wsl.conf"
 
 if [[ "$is_gui"  = true ]]; then
     ./lib/chrome.sh
@@ -85,27 +82,5 @@ if [[ "$is_gui"  = true ]]; then
     ./lib/spotify.sh
     ./lib/typora.sh
 fi
-
-
-## openMPI
-#if [[ "$is_all_install" = true ]]; then
-#    install_log openMPI
-#    sudo mkdir /opt/openMPI
-#    sudo rm /opt/openMPI/* -rf
-#    sudo apt-get install build-essential gfortran
-#    curl https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.2.tar.gz --output ~/openmpi.tar.gz
-#    tar -xvf ~/openmpi.tar.gz -C ~
-#    rm ~/openmpi.tar.gz
-#    cd ~/openmpi-4.1.2/
-#    ./configure --prefix=/opt/openMPI CC=gcc CXX=g++ F77=gfortran FC=gfortran
-#    make -j
-#    sudo make install
-#fi
-
-# Git Credential Manager for Linux
-./lib/gcm.sh
-
-# wslでwindowsのpathを引き継がない
-sudo sh -c "(echo \"[interop]\"; echo \"appendWindowsPath = false\") > /etc/wsl.conf"
 
 echo "finish"

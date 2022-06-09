@@ -53,6 +53,8 @@ go install github.com/x-motemen/ghq@latest
 
 # pyenv
 ./lib/pyenv.sh
+export PATH=$PATH:$HOME/.pyenv/bin
+eval "$(pyenv init --path)"
 
 # nodejs
 # v16がLTSのため

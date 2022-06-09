@@ -30,17 +30,17 @@ sudo apt-get install -y zsh
 sudo chsh -s $(which zsh) ${USER}
 
 # go
-go.sh
+./lib/go.sh
 export PATH=$PATH:/usr/local/go/bin
 
 # ghq
 go install github.com/x-motemen/ghq@latest
 
 # peco
-peco.sh
+./lib/peco.sh
 
 # pyenv
-pyenv.sh
+./lib/pyenv.sh
 
 # nodejs
 # v16がLTSのため
@@ -48,39 +48,39 @@ curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # chezmoi
-chezmoi.sh
+./lib/chezmoi.sh
 
 # neovim
-neovim.sh
-deno.sh
-fzf.sh
-ripgrep.sh
+./lib/neovim.sh
+./lib/deno.sh
+./lib/fzf.sh
+./lib/ripgrep.sh
 sudo apt-get install -y xclip
 
 
 # germanium
-germanium.sh
+./lib/germanium.sh
 
 # direnv
-direnv.sh
+./lib/direnv.sh
 
 # exa bat
 sudo apt-get install -y exa bat
 
 # Git Credential Manager for Linux
-gcm.sh
+./lib/gcm.sh
 
 # wslでwindowsのpathを引き継がない
 sudo sh -c "(echo \"[interop]\"; echo \"appendWindowsPath = false\") > /etc/wsl.conf"
 
 if [[ "$is_gui"  = true ]]; then
-    chrome.sh
-    code.sh
-    discord.sh
-    dropbox.sh
-    firefox.sh
-    spotify.sh
-    typora.sh
+    ./lib/chrome.sh
+    ./lib/code.sh
+    ./lib/discord.sh
+    ./lib/dropbox.sh
+    ./lib/firefox.sh
+    ./lib/spotify.sh
+    ./lib/typora.sh
 fi
 
 echo "finish"

@@ -1,4 +1,4 @@
 #!/bin/bash
 set -xe
 
-~/.local/share/chezmoi/install.sh
+bash ~/.local/share/chezmoi/install.sh

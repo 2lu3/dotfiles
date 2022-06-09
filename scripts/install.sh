@@ -42,8 +42,7 @@ sudo apt-get install -y zsh
 sudo chsh -s $(which zsh) ${USER}
 
 # go
-./lib/go.sh
-export PATH=$PATH:/usr/local/go/bin
+source ./lib/go.sh
 
 # ghq
 go install github.com/x-motemen/ghq@latest
@@ -52,9 +51,7 @@ go install github.com/x-motemen/ghq@latest
 ./lib/peco.sh
 
 # pyenv
-./lib/pyenv.sh
-export PATH=$PATH:$HOME/.pyenv/bin
-eval "$(pyenv init --path)"
+source ./lib/pyenv.sh
 
 # nodejs
 # v16がLTSのため

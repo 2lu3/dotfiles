@@ -33,7 +33,7 @@ sudo apt-get -y upgrade
 sudo apt-get -y autoremove
 
 # common
-sudo apt-get install -y git software-properties-common
+sudo apt-get install -y git software-properties-common unzip
 
 # japanese font
 sudo apt-get install -y fontconfig fonts-ipaexfont

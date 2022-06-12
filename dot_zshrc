@@ -141,3 +141,7 @@ fi
 alias robo='docker exec -it extended /bin/zsh'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# load zgen
+source "${HOME}/.zgen/zgen.zsh"

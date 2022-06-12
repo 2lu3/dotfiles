@@ -1,4 +1,4 @@
 #!/bin/bash
 set -xe
 
-./lib/install.sh
+./scripts/install.sh

@@ -144,4 +144,14 @@ alias robo='docker exec -it extended /bin/zsh'
 
 
 # load zgen
-source "${HOME}/.zgen/zgen.zsh"
+source ~/ghq/github.com/tarjoilija/zgen/zgen.zsh
+
+# if the init script doesn't exist
+if ! zgen saved; then
+
+  # specify plugins here
+  zgen oh-my-zsh
+
+  # generate the init script from plugins above
+  zgen save
+fi

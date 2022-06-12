@@ -1,18 +1,13 @@
 #!/bin/bash
 set -xe
 
-is_all_install=false
-is_docker=false
-is_gui=false
+all=false
+gui=false
 while [ $# -gt 0 ]; do
     case ${1} in
         --all)
             is_all_install=true
             echo "set mode: all install"
-        ;;
-        --docker)
-            is_docker=true
-            echo  "set mode: docker"
         ;;
         --gui)
             is_gui=true
@@ -26,6 +21,7 @@ done
 cd ~/.local/share/chezmoi/
 
 mkdir -p ~/.local/bin
+# 初回インストール時はここにpathが通されていないため
 export PATH=$PATH:${HOME}/.local/bin
 
 sudo apt-get update
@@ -51,10 +47,7 @@ sudo apt-get install -y fontconfig fonts-ipaexfont
 source ./scripts/pyenv.sh
 
 # nodejs
-# v16がLTSのため
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodejs
-
+./scripts/nodejs.sh
 
 # neovim
 ./scripts/neovim.sh
@@ -72,6 +65,7 @@ sudo apt-get install -y xclip
 
 # bat
 sudo apt-get install -y bat
+ln -s /usr/bin/batcat ~/.local/bin/bat
 
 # exa
 ./scripts/exa.sh

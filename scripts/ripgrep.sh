@@ -1,5 +1,7 @@
 #!/bin/bash
 set -xe
 
-curl -L https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb -o /tmp/ripgrep.deb
-sudo dpkg -i /tmp/ripgrep.deb
+if ! type rg > /dev/null 2>&1; then
+    curl -L https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb -o /tmp/ripgrep.deb
+    sudo dpkg -i /tmp/ripgrep.deb
+fi

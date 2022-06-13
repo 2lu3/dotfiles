@@ -8,7 +8,7 @@ if [ "`echo $PATH | grep '/mnt/c/'`" ]; then
     sudo sh -c "(echo \"[interop]\"; echo \"appendWindowsPath = false\") > /etc/wsl.conf"
     echo "using windows path from wsl is disabled now"
     echo "please run 'wsl --shutdown' in your command prompt and run this code again"
-    exit()
+    exit
 fi
 
 rm ~/.local/share/chezmoi -rf

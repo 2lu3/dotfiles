@@ -1,8 +1,42 @@
-#!/bin/zsh
+# シェルスクリプトでもインタラクティブシェルでも必要な設定を書く
 
-# set PATH so it includes user's private bin if it exists
+
+#--------------------------------------------------------------
+#               Linux Configurations
+#--------------------------------------------------------------
+
+
+# -をつけると、左側の環境変数が指定されていた場合はそちらを優先する
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+
+export PAGER=less
+
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-export ZRCDIR=$HOME/.config/zsh
+#--------------------------------------------------------------
+#               Zsh Configurations
+#--------------------------------------------------------------
+
+export Z_DOT_DIR=$HOME
+export Z_HOME_DIR=$Z_DOT_DIR/.config/zsh
+export Z_RC_DIR=$Z_HOME_DIR/rc
+
+# /etc/zprofile を読み込まない
+setopt no_global_rcs
+
+if [ -f "$Z_DOT_DIR/.zshenv.local" ]; then
+    source "$Z_DOT_DIR/.zshenv.local"
+fi
+
+#--------------------------------------------------------------
+#               Third-party Software Configurations
+#--------------------------------------------------------------
+
+export PATH=$PATH:$HOME/.pyenv/bin
+eval "$(pyenv init --path)"
+
+eval "$(direnv hook zsh)"

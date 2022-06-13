@@ -76,7 +76,7 @@ ln -s /usr/bin/batcat ~/.local/bin/bat
 ./scripts/gcm.sh
 
 
-if [[ "$is_gui"  = true ]]; then
+if [[ "$gui"  = true ]]; then
     ./scripts/chrome.sh
     ./scripts/code.sh
     ./scripts/discord.sh

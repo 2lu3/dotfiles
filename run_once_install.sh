@@ -74,7 +74,6 @@ sudo apt-get install -y xclip
 # Git Credential Manager for Linux
 ./scripts/gcm.sh
 
-
 if [[ "$gui"  = true ]]; then
     ./scripts/chrome.sh
     ./scripts/code.sh

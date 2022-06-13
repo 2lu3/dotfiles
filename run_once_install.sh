@@ -18,6 +18,8 @@ while [ $# -gt 0 ]; do
     shift
 done
 
+
+
 cd ~/.local/share/chezmoi/
 
 mkdir -p ~/.local/bin
@@ -73,8 +75,6 @@ ln -s /usr/bin/batcat ~/.local/bin/bat
 # Git Credential Manager for Linux
 ./scripts/gcm.sh
 
-# wslでwindowsのpathを引き継がない
-sudo sh -c "(echo \"[interop]\"; echo \"appendWindowsPath = false\") > /etc/wsl.conf"
 
 if [[ "$is_gui"  = true ]]; then
     ./scripts/chrome.sh

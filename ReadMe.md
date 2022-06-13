@@ -21,4 +21,3 @@ chezmoi update
 
 - dockerのセットアップ
 - chezmoi自体のインストールスクリプト
-  

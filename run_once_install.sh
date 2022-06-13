@@ -66,7 +66,7 @@ sudo apt-get install -y xclip
 ./scripts/direnv.sh
 
 # bat
-./scripts/bat.sh
+./.chezmoiscripts/bat.sh
 
 # exa
 ./scripts/exa.sh

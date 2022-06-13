@@ -15,5 +15,7 @@ rm ~/.local/share/chezmoi -rf
 mkdir -p ~/.local/
 
 pushd ~/.local/
-sh -c "$(curl -fsLS chezmoi.io/get)" -- init --apply 2lu3
+wget https://chezmoi.io/get -O /tmp/chezmoi.sh
+chmod +x /tmp/chezmoi.sh
+/tmp/chezmoi.sh init --apply 2lu3
 popd

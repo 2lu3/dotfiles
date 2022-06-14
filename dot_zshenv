@@ -1,8 +1,8 @@
+#!/bin/zsh
 # シェルスクリプトでもインタラクティブシェルでも必要な設定を書く
 
-
 #--------------------------------------------------------------
-#               Linux Configurations
+#               Linux Configuration
 #--------------------------------------------------------------
 
 
@@ -18,12 +18,13 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 #--------------------------------------------------------------
-#               Zsh Configurations
+#               Zsh Configuration
 #--------------------------------------------------------------
 
 export Z_DOT_DIR=$HOME
-export Z_HOME_DIR=$Z_DOT_DIR/.config/zsh
+export Z_HOME_DIR=${XDG_CONFIG_HOME}/zsh
 export Z_RC_DIR=$Z_HOME_DIR/rc
+export Z_DATA_DIR=${Z_HOME_DIR}/
 
 # /etc/zprofile を読み込まない
 setopt no_global_rcs
@@ -33,7 +34,7 @@ if [ -f "$Z_DOT_DIR/.zshenv.local" ]; then
 fi
 
 #--------------------------------------------------------------
-#               Third-party Software Configurations
+#               Third-party Software Configuration
 #--------------------------------------------------------------
 
 export PATH=$PATH:$HOME/.pyenv/bin

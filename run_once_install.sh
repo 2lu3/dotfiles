@@ -1,33 +1,22 @@
 #!/bin/bash
 set -xe
 
-all=false
-gui=false
-while [ $# -gt 0 ]; do
-    case ${1} in
-        --all)
-            is_all_install=true
-            echo "set mode: all install"
-        ;;
-        --gui)
-            is_gui=true
-            echo "set mode: gui"
-        ;;
-        *) ;;
-    esac
-    shift
-done
+# is_init が定義されていない場合は is_init = falseとする
+export is_init=${is_init:-false}
 
+echo "is_init: ${is_init}"
 
-if [ -z "$CONFIG_USER_NAME" ]; then
-    echo "CONFIG_USER_NAME is not set"
-    echo "use export CONFIG_USER_NAME=your name"
-    exit
-fi
-if [ -z "$CONFIG_USER_EMAIL" ]; then
-    echo "CONFIG_USER_EMAIL is not set"
-    echo "use export CONFIG_USER_EMAIL=your name"
-    exit
+if [[ "$is_init" = true ]]; then
+    if [ -z "$CONFIG_USER_NAME" ]; then
+        echo "CONFIG_USER_NAME is not set"
+        echo "use export CONFIG_USER_NAME=your name"
+        exit
+    fi
+    if [ -z "$CONFIG_USER_EMAIL" ]; then
+        echo "CONFIG_USER_EMAIL is not set"
+        echo "use export CONFIG_USER_EMAIL=your name"
+        exit
+    fi
 fi
 
 cd ~/.local/share/chezmoi/
@@ -83,6 +72,23 @@ sudo apt-get install -y xclip
 
 # Git Credential Manager for Linux
 ./scripts/gcm.sh
+
+all=false
+gui=false
+while [ $# -gt 0 ]; do
+    case ${1} in
+        --all)
+            is_all_install=true
+            echo "set mode: all install"
+        ;;
+        --gui)
+            is_gui=true
+            echo "set mode: gui"
+        ;;
+        *) ;;
+    esac
+    shift
+done
 
 if [[ "$gui"  = true ]]; then
     ./scripts/chrome.sh

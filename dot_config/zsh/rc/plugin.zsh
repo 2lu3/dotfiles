@@ -4,10 +4,13 @@ source ~/.zgen/zgen.zsh
 # if the init script doesn't exist
 if ! zgen saved; then
 
-  # specify plugins here
-  zgen load romkatv/powerlevel10k powerlevel10k
+  # ターミナルの見た目を変更
+  zgen load romkatv/powerlevel10k powerlevel10k 
+  # コマンドにコマンドにハイライト
   zgen load zdharma-continuum/fast-syntax-highlighting
+  # 入力中のコマンドと一致するコマンドを履歴から探してsuggestしてくれる
   zgen load zsh-users/zsh-autosuggestions
+  # 補完を強力にする
   zgen load zsh-users/zsh-completions
 
   # generate the init script from plugins above

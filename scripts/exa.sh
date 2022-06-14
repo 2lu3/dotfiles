@@ -2,7 +2,7 @@
 set -xe
 
 if [[ "$is_init" = true ]]; then
-    rm ~/.local/bin/exa
+    rm ~/.local/bin/exa -f
 fi
 
 if ! type exa > /dev/null 2>&1; then

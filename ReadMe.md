@@ -14,7 +14,6 @@ bash -c "$(curl -fsLS https://raw.githubusercontent.com/2lu3/dotfiles/main/init.
 chezmoi update
 ```
 
-
 ## フォルダ構成
 
 ## ファイル構成
@@ -22,4 +21,3 @@ chezmoi update
 ## TODO
 
 - dockerのセットアップ
-- chezmoi自体のインストールスクリプト

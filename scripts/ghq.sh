@@ -2,7 +2,7 @@
 set -xe
 
 if [[ "$is_init" = true ]]; then
-    rm ~/.local/bin/ghq
+    rm ~/.local/bin/ghq -f
 fi
 
 if ! type ghq > /dev/null 2>&1; then

@@ -2,7 +2,7 @@
 set -xe
 
 if [[ "$is_init" = true ]]; then
-    rm ~/.local/bin/germanium
+    rm ~/.local/bin/germanium -f
 fi
 
 if ! type germanium > /dev/null 2>&1; then

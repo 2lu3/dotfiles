@@ -5,7 +5,7 @@ set -xe
 # https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package
 
 if [[ "$is_init" = true ]]; then
-    rm ~/.local/bin/nvim
+    rm ~/.local/bin/nvim -f
 fi
 
 if ! type nvim > /dev/null 2>&1; then

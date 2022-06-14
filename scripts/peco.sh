@@ -4,7 +4,7 @@ set -xe
 # https://github.com/peco/peco
 
 if [[ "$is_init" = true ]]; then
-    rm ~/.local/bin/peco
+    rm ~/.local/bin/peco -f
 fi
 
 if ! type peco > /dev/null 2>&1; then

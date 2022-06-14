@@ -21,10 +21,13 @@ rm ~/.local/share/chezmoi -rf
 
 mkdir -p ~/.local/
 
+# 初回インストール時はここにpathが通されていないため
+export PATH=$PATH:${HOME}/.local/bin
+
 pushd ~/.local/
+
 wget https://chezmoi.io/get -O /tmp/chezmoi.sh
 chmod +x /tmp/chezmoi.sh
-
 /tmp/chezmoi.sh init --apply 2lu3
 
 popd

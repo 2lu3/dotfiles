@@ -2,8 +2,10 @@
 set -xe
 
 
-if [[ "$is_init" = true ]]; then
-    sudo apt-get remove -y git-credential-manager-core
+if type git-credential-manager-core 2>&1; thenn
+    if [[ "$is_init" = true ]]; then
+        sudo apt-get remove -y gcmcore
+    fi
 fi
 
 if ! type git-credential-manager-core 2>&1; then

@@ -1,3 +1,9 @@
+" デフォルトでインストールするもの
+let g:coc_global_extensions = [
+    \'coc-clangd',
+    \'coc-pyright'
+    \]
+
 " lightlineにcocのステータスを載せる
 let g:lightline = {
     \'active': {
@@ -20,18 +26,20 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 "ノーマルモードで
 "Leader2回でCocList
-nnoremap  <Leader><Leader> :<C-u>CocList<cr>
+nnoremap  <Leader><Leader> :<C-u>CocList<CR>
 "スペースinfoでHover
-noremap <silent> <Leader>info :<C-u>call CocAction('doHover')<cr>
+nnoremap <silent> <Leader>info :<C-u>call CocAction('doHover')<CR>
 "スペースdfでDefinition
-nnoremap <Leader>df :call CocAction('jumpDefinition')<CR>
+nnoremap <silent> <Leader>df :call CocAction('jumpDefinition')<CR>
 "スペースdcでDeclaration
-nnoremap <space>dc :call CocAction('jumpDeclaration')<CR>
+nnoremap <silent> <Leader>dc :call CocAction('jumpDeclaration')<CR>
+"スペースdcでType Declaration
+nnoremap <silent> <Leader>dt :call CocAction('jumpTypeDeclaration')<CR>
 "スペースrfでReferences
-nnoremap <silent> <space>rf <Plug>(coc-references)<CR>
+nnoremap <silent> <Leader>rf :call CocAction('jumpReferences')<CR>
 "スペースrnでRename
-nmap <silent> <space>rn <Plug>(coc-rename)
+nnoremap <Leader>rn :call CocAction('rename')<CR>
 "スペースfmtでFormat
-nnoremap <space>fmt :call CocAction('format')<CR>
+nnoremap <Leader>fmt :call CocAction('format')<CR>
 " Coc-quick-fix
-nnoremap <space>fx :CocAction quickfix<CR>
+nnoremap <Leader>fx :call CocAction('doQuickfix')<CR>

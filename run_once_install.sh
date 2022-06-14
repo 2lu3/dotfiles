@@ -22,8 +22,6 @@ fi
 cd ~/.local/share/chezmoi/
 
 mkdir -p ~/.local/bin
-# 初回インストール時はここにpathが通されていないため
-export PATH=$PATH:${HOME}/.local/bin
 
 sudo apt-get update
 sudo apt-get -y upgrade
@@ -72,6 +70,9 @@ sudo apt-get install -y xclip
 
 # Git Credential Manager for Linux
 ./scripts/gcm.sh
+
+# gnupg
+./scripts/gnupg.sh
 
 all=false
 gui=false

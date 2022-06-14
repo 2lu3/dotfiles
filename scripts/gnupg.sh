@@ -4,6 +4,10 @@ set -xe
 # https://gist.github.com/woods/8970150
 # https://www.gnupg.org/documentation/manuals/gnupg-devel/Unattended-GPG-key-generation.html
 
+if [[ "$is_init" = true ]]; then
+    rm ~/.gnupg -rf
+fi
+
 if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
     cp $(dirname $0)/data/gnupg /tmp/gnupg.data
 

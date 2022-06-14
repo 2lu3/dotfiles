@@ -11,7 +11,9 @@ if [ "`echo $PATH | grep '/mnt/c/'`" ]; then
     exit
 fi
 
+# chezmoi のリセット
 rm ~/.local/share/chezmoi -rf
+
 mkdir -p ~/.local/
 
 pushd ~/.local/

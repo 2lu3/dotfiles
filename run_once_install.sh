@@ -19,6 +19,16 @@ while [ $# -gt 0 ]; do
 done
 
 
+if [ -z "$CONFIG_USER_NAME" ]; then
+    echo "CONFIG_USER_NAME is not set"
+    echo "use export CONFIG_USER_NAME=your name"
+    exit
+fi
+if [ -z "$CONFIG_USER_EMAIL" ]; then
+    echo "CONFIG_USER_EMAIL is not set"
+    echo "use export CONFIG_USER_EMAIL=your name"
+    exit
+fi
 
 cd ~/.local/share/chezmoi/
 

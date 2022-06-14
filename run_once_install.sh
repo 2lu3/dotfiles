@@ -72,6 +72,7 @@ sudo apt-get install -y xclip
 ./scripts/gcm.sh
 
 # gnupg
+# 最後が良さそう
 ./scripts/gnupg.sh
 
 all=false

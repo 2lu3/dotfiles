@@ -9,6 +9,18 @@ if [[ "$is_init" = true ]]; then
 fi
 
 if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
+    if [[ "$is_init" = true ]]; then
+        if [ -z "$CONFIG_USER_NAME" ]; then
+            echo "CONFIG_USER_NAME is not set"
+            echo "use export CONFIG_USER_NAME=your name"
+            exit
+        fi
+        if [ -z "$CONFIG_USER_EMAIL" ]; then
+            echo "CONFIG_USER_EMAIL is not set"
+            echo "use export CONFIG_USER_EMAIL=your name"
+            exit
+        fi
+    fi
     cp $(dirname $0)/data/gnupg /tmp/gnupg.data
 
     echo "Name-Real: ${CONFIG_USER_NAME}" >> /tmp/gnupg.data
@@ -18,5 +30,9 @@ if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
 
     gpg --batch --gen-key  /tmp/gnupg.data
 
-    pass init ${CONFIG_USER_NAME}
+    pass init ${CONFIG_USER_EMAIL}
+
+    gpg --export -a ${CONFIG_USER_EMAIL}
+
+    echo "register the key to github and gitlab"
 fi

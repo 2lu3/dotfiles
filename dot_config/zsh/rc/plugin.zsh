@@ -13,3 +13,6 @@ if ! zgen saved; then
   # generate the init script from plugins above
   zgen save
 fi
+
+# To customize prompt, run `p10k configure` or edit p10k.zsh.
+source $Z_RC_DIR/plugins/p10k.zsh

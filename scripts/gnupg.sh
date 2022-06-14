@@ -35,7 +35,7 @@ if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
 
     pass init ${CONFIG_USER_EMAIL}
 
-    gpg --export -a ${CONFIG_USER_EMAIL}
+    #gpg --export -a ${CONFIG_USER_EMAIL}
 
-    echo "register the key to github and gitlab"
+    #echo "register the key to github and gitlab"
 fi

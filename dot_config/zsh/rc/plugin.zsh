@@ -15,4 +15,4 @@ if ! zgen saved; then
 fi
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
-source $Z_RC_DIR/plugins/p10k.zsh
+source $Z_RC_DIR/plugin/p10k.zsh

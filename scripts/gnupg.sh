@@ -4,6 +4,8 @@ set -xe
 # https://gist.github.com/woods/8970150
 # https://www.gnupg.org/documentation/manuals/gnupg-devel/Unattended-GPG-key-generation.html
 
+sudo apt-get install -y pass
+
 if [[ "$is_init" = true ]]; then
     rm ~/.gnupg -rf
 fi
@@ -21,6 +23,7 @@ if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
             exit
         fi
     fi
+
     cp $(dirname $0)/data/gnupg /tmp/gnupg.data
 
     echo "Name-Real: ${CONFIG_USER_NAME}" >> /tmp/gnupg.data

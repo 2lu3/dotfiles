@@ -2,7 +2,7 @@
 set -xe
 
 
-if type git-credential-manager-core 2>&1; thenn
+if type git-credential-manager-core 2>&1; then
     if [[ "$is_init" = true ]]; then
         sudo apt-get remove -y gcmcore
     fi

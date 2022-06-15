@@ -19,3 +19,15 @@ fi
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
 source $Z_RC_DIR/plugin/p10k.zsh
+
+# peco
+function peco-src () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-src
+bindkey '^]' peco-src

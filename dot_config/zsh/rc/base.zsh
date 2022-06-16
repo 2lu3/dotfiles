@@ -10,9 +10,15 @@ SAVEHIST=100000                         # 保存される履歴の数
 HISTORY_IGNORE="(ls|l|s|la|ll|cd|pwd|zsh|exit|cd *)"
 
 #--------------------------------------------------------------
-#               Uncategorized
+#               Environment Variables
 #--------------------------------------------------------------
 
 export EDITOR=nvim # デフォルトのエディター
+export LANG=ja_JP.UTF-8
+
+#--------------------------------------------------------------
+#               Uncategorized
+#--------------------------------------------------------------
 
 autoload -Uz compinit; compinit # モダンな補完を使う
+

@@ -13,5 +13,6 @@ HISTORY_IGNORE="(ls|l|s|la|ll|cd|pwd|zsh|exit|cd *)"
 #               Uncategorized
 #--------------------------------------------------------------
 
+export EDITOR=nvim # デフォルトのエディター
 
-autoload -Uz compinit; compinit
+autoload -Uz compinit; compinit # モダンな補完を使う

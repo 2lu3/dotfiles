@@ -2,7 +2,6 @@
 
 # setopt や unsetopt でzshのオプションを設定している
 
-
 setopt share_history        # 履歴を他のzshシェルとリアルタイム共有する
 
 setopt no_flow_control      # C-s/C-q によるフロー制御を使わない
@@ -22,3 +21,4 @@ setopt list_packed          # コンパクトに補完リストを表示
 setopt auto_cd              # ディレクトリのみで移動
 setopt auto_pushd           # 普通に cd するときにもディレクトリスタックにそのディレクトリを入れる
 setopt pushd_ignore_dups    # ディレクトリスタックに重複する物は古い方を削除
+

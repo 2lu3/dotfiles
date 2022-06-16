@@ -1,6 +1,6 @@
 #!/bin/zsh
 
 
-# vim like
-bindkey -v
+# vim like or emacs like
+bindkey -e
 

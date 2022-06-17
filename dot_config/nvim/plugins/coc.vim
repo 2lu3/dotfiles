@@ -28,7 +28,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 "Leader2回でCocList
 nnoremap  <Leader><Leader> :<C-u>CocList<CR>
 "スペースinfoでHover
-nnoremap <silent> <Leader>info :<C-u>call CocAction('doHover')<CR>
+nnoremap <silent> <Leader>if :<C-u>call CocAction('doHover')<CR>
 "スペースdfでDefinition
 nnoremap <silent> <Leader>df :call CocAction('jumpDefinition')<CR>
 "スペースdcでDeclaration

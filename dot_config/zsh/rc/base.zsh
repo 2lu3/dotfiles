@@ -14,7 +14,7 @@ HISTORY_IGNORE="(ls|l|s|la|ll|cd|pwd|zsh|exit|cd *)"
 #--------------------------------------------------------------
 
 export EDITOR=nvim # デフォルトのエディター
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 
 #--------------------------------------------------------------
 #               Uncategorized

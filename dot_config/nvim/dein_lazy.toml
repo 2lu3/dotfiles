@@ -17,6 +17,7 @@
 # ファイルツリーを表示
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
+on_event = 'Fern'
 hook_add='''
 nnoremap <silent> <Leader>e :Fern . -drawer -toggle<CR>
 '''

@@ -19,6 +19,7 @@
 [core]
 	excludefile = ~/.config/git/gitignore_global
 	quotepath = false
+	pager = LESSCHARSET=utf-8 less
 
 [color]
 	ui = auto

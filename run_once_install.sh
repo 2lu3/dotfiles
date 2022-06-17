@@ -28,7 +28,10 @@ sudo apt-get -y upgrade
 sudo apt-get -y autoremove
 
 # common
-sudo apt-get install -y git software-properties-common unzip
+sudo apt-get install -y software-properties-common unzip
+
+# git
+./scripts/git.sh
 
 # japanese font
 sudo apt-get install -y fontconfig fonts-ipaexfont

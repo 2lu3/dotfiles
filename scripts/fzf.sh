@@ -10,5 +10,5 @@ fi
 
 if [[ ! -e "$HOME/.fzf" ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install --no-completion --key-bindings --no-update-rc
+    ~/.fzf/install --no-completion --no-key-bindings --no-update-rc
 fi

@@ -17,6 +17,9 @@ fi
 export is_init=true
 
 # chezmoi のリセット
+if type chezmoi > /dev/null 2>&1; then
+    chezmoi state reset
+fi
 rm ~/.local/share/chezmoi -rf
 
 mkdir -p ~/.local/

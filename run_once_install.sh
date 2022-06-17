@@ -42,6 +42,9 @@ sudo apt-get install -y fontconfig fonts-ipaexfont
 # peco
 ./scripts/peco.sh
 
+# llvm
+./scripts/llvm.sh
+
 # pyenv
 source ./scripts/pyenv.sh
 

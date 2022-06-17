@@ -14,6 +14,14 @@ bash -c "$(curl -fsLS https://raw.githubusercontent.com/2lu3/dotfiles/main/init.
 chezmoi update
 ```
 
+## 使い方
+
+### zsh
+
+### neovim
+
+#### ファイルツリー
+
 ## フォルダ構成
 
 ## ファイル構成

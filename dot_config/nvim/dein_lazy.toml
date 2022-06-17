@@ -16,18 +16,10 @@
 
 # ファイルツリーを表示
 [[plugins]]
-repo = 'scrooloose/nerdtree'
-depends = ['ryanoasis/vim-devicons']
-on_event='NERDTreeToggle'
+repo = 'lambdalisue/fern.vim'
 hook_add='''
-nnoremap <silent> <Leader>e :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>e :Fern . -drawer -toggle<CR>
 '''
-
-# file icon for filetree
-[[plugins]]
-repo = 'ryanoasis/vim-devicons'
-on_source='nerdtree'
-
 
 #################### 画面サイズ変更 #################### 
 

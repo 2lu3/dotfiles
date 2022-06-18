@@ -9,9 +9,8 @@ if [[ "$is_init" = true ]]; then
 fi
 
 if ! type nvim > /dev/null 2>&1; then
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-    sudo chmod u+x nvim.appimage
-    mv nvim.appimage ~/.local/bin/nvim
+    wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O /tmp/neovim.deb
+    sudo dpkg -i /tmp/neovim.deb
 fi
 
 

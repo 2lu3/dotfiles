@@ -1,0 +1,4 @@
+#!/bin/bash
+set -xe
+
+wget https://github.com/agata/dl.biscuit/releases/latest -O ~/.local/bin/biscuit

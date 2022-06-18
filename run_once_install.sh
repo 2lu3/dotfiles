@@ -89,11 +89,11 @@ gui=false
 while [ $# -gt 0 ]; do
     case ${1} in
         --all)
-            is_all_install=true
+            all=true
             echo "set mode: all install"
         ;;
         --gui)
-            is_gui=true
+            gui=true
             echo "set mode: gui"
         ;;
         *) ;;
@@ -109,6 +109,7 @@ if [[ "$gui"  = true ]]; then
     ./scripts/firefox.sh
     ./scripts/spotify.sh
     ./scripts/typora.sh
+    ./scripts/biscuit.sh
 fi
 
 echo "finish"

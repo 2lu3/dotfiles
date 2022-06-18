@@ -28,7 +28,9 @@ if [[ ! -e "$HOME/.cache/dein" ]]; then
 fi
 
 # nodejs
-sudo npm install -g neovim
+if ! npm ls --location=global | grep neovim >/dev/null; then
+    sudo npm install --location=global neovim
+fi
 
 # python
 if [[ "$is_init" = true ]]; then

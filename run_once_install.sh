@@ -102,6 +102,7 @@ while [ $# -gt 0 ]; do
 done
 
 if [[ "$gui"  = true ]]; then
+    ./scripts/appimagelauncher.sh
     ./scripts/chrome.sh
     ./scripts/code.sh
     ./scripts/discord.sh

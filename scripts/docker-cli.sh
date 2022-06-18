@@ -1,6 +1,8 @@
 #!/bin/bash
 set -xe
 
+
+
 if ! type docker > /dev/null 2>&1; then
 
   sudo apt-get install \
@@ -19,8 +21,8 @@ if ! type docker > /dev/null 2>&1; then
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu\
     focal stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   else
-    echo "OS: ubuntu"
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
     $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   fi
   

@@ -77,6 +77,9 @@ sudo apt-get install -y xclip
 # Git Credential Manager for Linux
 ./scripts/gcm.sh
 
+# docker-cli
+./scripts/docker-cli.sh
+
 # gnupg
 # 最後が良さそう
 ./scripts/gnupg.sh

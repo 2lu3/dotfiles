@@ -31,4 +31,7 @@ if ! type docker > /dev/null 2>&1; then
   
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+  # dockerをsudoなしで実行できるようにする
+  sudo gpasswd -a ${USER} docker
+  sudo systemctl restart docker
 fi

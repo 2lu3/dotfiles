@@ -39,5 +39,4 @@ fi
 
 export PATH=$PATH:$HOME/.pyenv/bin
 eval "$(pyenv init --path)"
-
 eval "$(direnv hook zsh)"

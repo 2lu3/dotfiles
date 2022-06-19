@@ -20,7 +20,6 @@ if [[ "$is_init" = true ]]; then
 fi
 
 cd ~/.local/share/chezmoi/
-
 mkdir -p ~/.local/bin
 
 sudo apt-get update

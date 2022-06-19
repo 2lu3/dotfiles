@@ -30,3 +30,7 @@ function peco-src () {
   zle clear-screen
 }
 zle -N peco-src
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+

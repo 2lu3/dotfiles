@@ -8,7 +8,7 @@ if [ "`echo $PATH | grep '/mnt/c/'`" ]; then
     sudo sh -c "(echo \"[interop]\"; echo \"appendWindowsPath = false\") > /etc/wsl.conf"
     echo "using windows path from wsl is disabled now"
     echo "please run 'wsl --shutdown' in your command prompt and run this code again"
-    exit
+    exit 1
 fi
 
 # true=初期化、以下の条件を満たすようにシェルスクリプトを書く
@@ -21,16 +21,14 @@ if type chezmoi > /dev/null 2>&1; then
     chezmoi state reset
 fi
 rm ~/.local/share/chezmoi -rf
-
 mkdir -p ~/.local/
+
 
 # 初回インストール時はここにpathが通されていないため
 export PATH=$PATH:${HOME}/.local/bin
 
+
 pushd ~/.local/
-
 wget https://chezmoi.io/get -O /tmp/chezmoi.sh
-chmod +x /tmp/chezmoi.sh
-/tmp/chezmoi.sh init --apply 2lu3
-
+/bin/bash /tmp/chezmoi.sh init --apply 2lu3
 popd

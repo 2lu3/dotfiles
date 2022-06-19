@@ -77,7 +77,7 @@ sudo apt-get install -y xclip
 ./scripts/gcm.sh
 
 # docker-cli
-./scripts/docker-cli.sh
+#./scripts/docker-cli.sh
 
 # gnupg
 # 最後が良さそう

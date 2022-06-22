@@ -40,5 +40,5 @@ fi
 if [[ ! -e "$HOME/.pynvim" ]]; then
     python3 -m venv ~/.pynvim
     ~/.pynvim/bin/pip3 install -U pip
-    ~/.pynvim/bin/pip3 install pynvim
+    ~/.pynvim/bin/pip3 install pynvim doq
 fi

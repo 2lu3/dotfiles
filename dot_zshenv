@@ -40,4 +40,6 @@ fi
 export PATH=$PATH:$HOME/.pyenv/bin
 eval "$(pyenv init --path)"
 eval "$(direnv hook zsh)"
-
+export CC=/usr/bin/clang-14
+export CXX=/usr/bin/clang++-14
+export PATH=$HOME/.robotech/bin:$PATH

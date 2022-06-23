@@ -41,7 +41,3 @@ export PATH=$PATH:$HOME/.pyenv/bin
 eval "$(pyenv init --path)"
 eval "$(direnv hook zsh)"
 
-# マウスの感度設定
-if [ ${HOST} = "RD" ]; then
-    xinput --set-prop 13 158 2.5 0 0 0 2.5 0 0 0 1
-fi

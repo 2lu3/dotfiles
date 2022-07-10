@@ -6,6 +6,28 @@ export is_init=${is_init:-false}
 
 echo "is_init: ${is_init}"
 
+all=false
+gui=false
+while [ $# -gt 0 ]; do
+    case ${1} in
+        --all)
+            all=true
+            echo "set mode: all install"
+        ;;
+        --gui)
+            gui=true
+            echo "set mode: gui"
+        ;;
+        --help)
+            echo "there is no help. read run_once_install.sh"
+            exit
+        ;;
+        *) ;;
+    esac
+    shift
+done
+
+
 if [[ "$is_init" = true ]]; then
     if [ -z "$CONFIG_USER_NAME" ]; then
         echo "CONFIG_USER_NAME is not set"
@@ -87,14 +109,6 @@ all=false
 gui=false
 while [ $# -gt 0 ]; do
     case ${1} in
-        --all)
-            all=true
-            echo "set mode: all install"
-        ;;
-        --gui)
-            gui=true
-            echo "set mode: gui"
-        ;;
         --imod)
             echo "extra install: imod"
             ./scripts/imod.sh
@@ -102,6 +116,7 @@ while [ $# -gt 0 ]; do
         --docker)
             echo "extra install: docker"
             ./scripts/docker-cli.sh
+        ;;
         *) ;;
     esac
     shift

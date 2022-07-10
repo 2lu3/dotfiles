@@ -95,6 +95,13 @@ while [ $# -gt 0 ]; do
             gui=true
             echo "set mode: gui"
         ;;
+        --imod)
+            echo "extra install: imod"
+            ./scripts/imod.sh
+        ;;
+        --docker)
+            echo "extra install: docker"
+            ./scripts/docker-cli.sh
         *) ;;
     esac
     shift

@@ -8,6 +8,8 @@ echo "is_init: ${is_init}"
 
 all=false
 gui=false
+imod=false
+docker=false
 while [ $# -gt 0 ]; do
     case ${1} in
         --all)
@@ -21,6 +23,14 @@ while [ $# -gt 0 ]; do
         --help)
             echo "there is no help. read run_once_install.sh"
             exit
+        ;;
+        --imod)
+            echo "extra install: imod"
+            imod=true
+        ;;
+        --docker)
+            echo "extra install: docker"
+            docker=true
         ;;
         *) ;;
     esac
@@ -99,28 +109,18 @@ sudo apt-get install -y xclip
 ./scripts/gcm.sh
 
 # docker-cli
-#./scripts/docker-cli.sh
+if [[ "$docker" = true ]]; then
+    ./scripts/docker-cli.sh
+fi
+
+# imod
+if [[ "$imod" = true ]]; then
+    ./scripts/imod.sh
+fi
 
 # gnupg
 # 最後が良さそう
 ./scripts/gnupg.sh
-
-all=false
-gui=false
-while [ $# -gt 0 ]; do
-    case ${1} in
-        --imod)
-            echo "extra install: imod"
-            ./scripts/imod.sh
-        ;;
-        --docker)
-            echo "extra install: docker"
-            ./scripts/docker-cli.sh
-        ;;
-        *) ;;
-    esac
-    shift
-done
 
 if [[ "$gui"  = true ]]; then
     ./scripts/appimagelauncher.sh

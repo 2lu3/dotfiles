@@ -27,6 +27,9 @@ repo = 'Yggdroot/indentLine'
 # シンタックスハイライト
 [[plugins]]
 repo='sheerun/vim-polyglot'
+hook_add= '''
+let g:polyglot_disabled = ['markdown']
+'''
 
 # ---------- Vim Airline ---------- 
 [[plugins]]

@@ -132,6 +132,7 @@ if [[ "$gui"  = true ]]; then
     ./scripts/spotify.sh
     ./scripts/typora.sh
     ./scripts/biscuit.sh
+    ./scripts/run_scaled.sh
 fi
 
 echo "finish"

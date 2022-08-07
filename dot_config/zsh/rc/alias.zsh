@@ -13,4 +13,4 @@ if [[ $(command -v exa) ]]; then
     alias lc='clear && ls'
 fi
 
-alias pycreate='python3 -m venv .venv && echo "source .venv/bin/activate" > .envrc && direnv allow'
+alias pycreate='python3 -m venv .venv && echo "source .venv/bin/activate" > .envrc && direnv allow && pip install -U pip'

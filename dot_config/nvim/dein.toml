@@ -87,8 +87,8 @@ source ~/.config/nvim/plugins/vim-closetag.vim
 repo = 'skanehira/denops-germanium.vim'
 depends = ['denops.vim']
 hook_add = '''
-nnoremap <Leader>pic :Germanium<CR>
-vnoremap <Leader>pic :Germanium<CR>
+nnoremap <Leader>pic :Germanium -f=ipaexg<CR>
+vnoremap <Leader>pic :Germanium -f=ipaexg<CR>
 '''
 
 [[plugins]]

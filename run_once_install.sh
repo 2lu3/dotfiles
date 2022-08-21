@@ -65,7 +65,7 @@ sudo apt-get install -y software-properties-common unzip
 ./scripts/git.sh
 
 # japanese font
-sudo apt-get install -y fontconfig fonts-ipaexfont
+./scripts/font.sh
 
 # zsh
 ./scripts/zsh.sh

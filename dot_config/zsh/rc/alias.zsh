@@ -1,11 +1,11 @@
 #!/bin/zsh
 
-if [[$(command -v nvim)]]; then
+if type nvim > /dev/null 2>&1; then
     alias v='nvim'
     alias vi='nvim'
 fi
 
-if [[$(command -v exa)]]; then
+if type exa > /dev/null 2>&1; then
     alias l='exa --icons --git --group-directories-first --color=auto'
     alias ls=l
     alias la='ls -a'

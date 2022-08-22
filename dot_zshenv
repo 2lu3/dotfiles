@@ -37,8 +37,10 @@ fi
 #               Third-party Software Configuration
 #--------------------------------------------------------------
 
-export PATH=$PATH:$HOME/.pyenv/bin
-eval "$(pyenv init --path)"
+if [[ -e "$HOME/.pyenv" ]]; then
+    export PATH=$PATH:$HOME/.pyenv/bin
+    eval "$(pyenv init --path)"
+fi
 eval "$(direnv hook zsh)"
 export CC=/usr/bin/clang-14
 export CXX=/usr/bin/clang++-14

@@ -1,6 +1,11 @@
 #!/bin/bash
 set -xe
 
+
+if [[ -e "$HOME/.chezmoi_norun" ]]; then
+    exit
+fi
+
 # is_init が定義されていない場合は is_init = falseとする
 export is_init=${is_init:-false}
 

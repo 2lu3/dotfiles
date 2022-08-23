@@ -23,7 +23,7 @@ source "$Z_RC_DIR/completion.zsh"
 #               Prompt Configuration
 #--------------------------------------------------------------
 
-#source "$Z_RC_DIR/prompt.zsh"
+source "$Z_RC_DIR/prompt.zsh"
 
 #--------------------------------------------------------------
 #               Alias

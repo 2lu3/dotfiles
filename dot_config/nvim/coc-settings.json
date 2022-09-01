@@ -11,5 +11,7 @@
         "-std=c++20"
     ],
     "yaml.enable": true,
-    "yaml.format.enable": true
+    "yaml.format.enable": true,
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
 }

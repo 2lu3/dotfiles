@@ -22,3 +22,5 @@ setopt auto_cd              # ディレクトリのみで移動
 setopt auto_pushd           # 普通に cd するときにもディレクトリスタックにそのディレクトリを入れる
 setopt pushd_ignore_dups    # ディレクトリスタックに重複する物は古い方を削除
 
+
+export REPORTTIME=5

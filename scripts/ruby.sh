@@ -16,6 +16,9 @@ if ! type rbenv > /dev/null 2>&1; then
 
     git clone --depth 1 https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init - zsh)"
+
     rbenv install 3.1.2
     rbenv global 3.1.2
 fi

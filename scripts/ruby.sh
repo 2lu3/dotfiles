@@ -9,6 +9,8 @@ fi
 
 
 if ! type rbenv > /dev/null 2>&1; then
+    sudo apt-get install -y gcc make
+    sudo apt-get install -y libssl-dev zlib1g-dev
     git clone --depth 1 https://github.com/rbenv/rbenv.git ~/.rbenv 
     cd ~/.rbenv && src/configure && make -C src
 

@@ -41,7 +41,13 @@ if [[ -e "$HOME/.pyenv" ]]; then
     export PATH=$PATH:$HOME/.pyenv/bin
     eval "$(pyenv init --path)"
 fi
+
 eval "$(direnv hook zsh)"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
 export CC=/usr/bin/clang-14
 export CXX=/usr/bin/clang++-14
 export PATH=$HOME/.robotech/bin:$PATH

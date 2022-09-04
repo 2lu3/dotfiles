@@ -113,6 +113,9 @@ sudo apt-get install -y xclip
 # Git Credential Manager for Linux
 ./scripts/gcm.sh
 
+# ruby
+./scripts/ruby.sh
+
 # docker-cli
 if [[ "$docker" = true ]]; then
     ./scripts/docker-cli.sh

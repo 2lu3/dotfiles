@@ -19,3 +19,5 @@ endif
 runtime! dein.vim
 
 syntax enable
+
+colorscheme badwolf

@@ -59,12 +59,8 @@ fi
 cd ~/.local/share/chezmoi/
 mkdir -p ~/.local/bin
 
-sudo apt-get update
-sudo apt-get -y upgrade
-sudo apt-get -y autoremove
-
-# common
-sudo apt-get install -y software-properties-common unzip
+# linuxbrew
+./scripts/linuxbrew.sh
 
 # git
 ./scripts/git.sh
@@ -76,16 +72,16 @@ sudo apt-get install -y software-properties-common unzip
 ./scripts/zsh.sh
 
 # ghq
-./scripts/ghq.sh
+brew install ghq
 
 # peco
-./scripts/peco.sh
+brew install peco.sh
 
 # llvm
-./scripts/llvm.sh
+brew install llvm
 
 # pyenv
-source ./scripts/pyenv.sh
+brew install pyenv
 
 # nodejs
 ./scripts/nodejs.sh

@@ -9,6 +9,8 @@ set list "不可視文字の可視化
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲ " デフォルト不可視文字は美しくないのでUnicodeできれいに
 set matchtime=3 " 対応括弧のハイライト表示を3sにする
 
+colorscheme badwolf
+
 " ######################## 検索・置換 ########################
 
 set ignorecase " 大文字小文字の区別なく検索する

@@ -42,6 +42,19 @@ source ~/.config/nvim/plugins/vim-airline.vim
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
+# ---------- ColorScheme ---------- 
+# https://vimcolorschemes.com/
+[[plugins]]
+repo = 'jdkanani/vim-material-theme'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
+repo = 'sjl/badwolf'
+
+[[plugins]]
+repo = 'NLKNguyen/papercolor-theme'
 
 #################### Git #################### 
 # Gitコマンドを使用する

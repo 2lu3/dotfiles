@@ -57,7 +57,7 @@ if [[ "$is_init" = true ]]; then
 fi
 
 cd ~/.local/share/chezmoi/
-mkdir -p ~/.local/bin
+#mkdir -p ~/.local/bin
 
 # linuxbrew
 ./scripts/linuxbrew.sh
@@ -75,42 +75,51 @@ mkdir -p ~/.local/bin
 brew install ghq
 
 # peco
-brew install peco.sh
+brew install peco
 
 # llvm
 brew install llvm
 
 # pyenv
-brew install pyenv
+./scripts/pyenv.sh
 
 # nodejs
 ./scripts/nodejs.sh
 
 # neovim
 ./scripts/neovim.sh
-./scripts/deno.sh
+brew install deno
+#./scripts/deno.sh
 ./scripts/fzf.sh
-./scripts/ripgrep.sh
-sudo apt-get install -y xclip
+brew install ripgrep
+#./scripts/ripgrep.sh
+#sudo apt-get install -y xclip
+brew install xclip
 
 
 # germanium
-./scripts/germanium.sh
+#./scripts/germanium.sh
+brew install germanium
 
 # direnv
-./scripts/direnv.sh
+#./scripts/direnv.sh
+brew install direnv
 
 # bat
-./scripts/bat.sh
+#./scripts/bat.sh
+brew install bat
 
 # exa
-./scripts/exa.sh
+#./scripts/exa.sh
+brew install exa
 
 # Git Credential Manager for Linux
-./scripts/gcm.sh
+#./scripts/gcm.sh
+brew install gcm
 
 # ruby
-./scripts/ruby.sh
+#./scripts/ruby.sh
+brew install ruby
 
 # docker-cli
 if [[ "$docker" = true ]]; then

@@ -4,14 +4,8 @@ set -xe
 # ========== neovim ==========
 # https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package
 
-if [[ "$is_init" = true ]]; then
-    sudo apt-get remove -y neovim
-fi
 
-if ! type nvim > /dev/null 2>&1; then
-    wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O /tmp/neovim.deb
-    sudo dpkg -i /tmp/neovim.deb
-fi
+brew install neovim
 
 
 # ========== dependencies ==========

@@ -1,69 +1,13 @@
 #!/bin/bash
 set -xe
 
-
-if [[ -e "$HOME/.chezmoi_norun" ]]; then
-    exit
-fi
-
-# is_init が定義されていない場合は is_init = falseとする
-export is_init=${is_init:-false}
-
-echo "is_init: ${is_init}"
-
-all=false
-gui=false
-imod=false
-docker=false
-while [ $# -gt 0 ]; do
-    case ${1} in
-        --all)
-            all=true
-            echo "set mode: all install"
-        ;;
-        --gui)
-            gui=true
-            echo "set mode: gui"
-        ;;
-        --help)
-            echo "there is no help. read run_once_install.sh"
-            exit
-        ;;
-        --imod)
-            echo "extra install: imod"
-            imod=true
-        ;;
-        --docker)
-            echo "extra install: docker"
-            docker=true
-        ;;
-        *) ;;
-    esac
-    shift
-done
-
-
-if [[ "$is_init" = true ]]; then
-    if [ -z "$CONFIG_USER_NAME" ]; then
-        echo "CONFIG_USER_NAME is not set"
-        echo "use export CONFIG_USER_NAME=your name"
-        exit
-    fi
-    if [ -z "$CONFIG_USER_EMAIL" ]; then
-        echo "CONFIG_USER_EMAIL is not set"
-        echo "use export CONFIG_USER_EMAIL=your name"
-        exit
-    fi
-fi
-
 cd ~/.local/share/chezmoi/
-#mkdir -p ~/.local/bin
 
 # linuxbrew
 ./scripts/linuxbrew.sh
 
 # git
-./scripts/git.sh
+j./scripts/git.sh
 
 # japanese font
 ./scripts/font.sh
@@ -81,7 +25,8 @@ brew install peco
 brew install llvm
 
 # pyenv
-./scripts/pyenv.sh
+./scripts/conda.sh
+#./scripts/pyenv.sh
 
 # nodejs
 ./scripts/nodejs.sh

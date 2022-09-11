@@ -51,3 +51,7 @@ eval "$(rbenv init - zsh)"
 export CC=/usr/bin/clang-14
 export CXX=/usr/bin/clang++-14
 export PATH=$HOME/.robotech/bin:$PATH
+
+
+# conda
+source ${HOME}/anaconda3/etc/profile.d/conda.sh

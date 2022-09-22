@@ -7,7 +7,6 @@ set -xe
 if [[ "$is_init" = true ]]; then
     sudo apt-get remove -y neovim
 fi
-
 if ! type nvim > /dev/null 2>&1; then
     wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -O /tmp/neovim.deb
     sudo dpkg -i /tmp/neovim.deb
@@ -42,3 +41,6 @@ if [[ ! -e "$HOME/.pynvim" ]]; then
     ~/.pynvim/bin/pip3 install -U pip
     ~/.pynvim/bin/pip3 install pynvim doq
 fi
+
+# trash-cli for fern.vim
+sudo apt-get install -y trash-cli

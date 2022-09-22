@@ -36,3 +36,5 @@ if [[ ! -e "$HOME/.pynvim" ]]; then
     ~/.pynvim/bin/pip3 install -U pip
     ~/.pynvim/bin/pip3 install pynvim doq
 fi
+
+brew install trash-cli

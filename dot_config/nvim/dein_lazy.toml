@@ -59,7 +59,7 @@ nmap <leader>dox :Dox<CR>
 repo = 'heavenshell/vim-pydocstring'
 build='make install'
 on_ft = ['python']
-hook_add= '''
+hook_source= '''
 source ~/.config/nvim/plugins/vim-pydocstring.vim
 '''
 
@@ -68,5 +68,11 @@ source ~/.config/nvim/plugins/vim-pydocstring.vim
 repo = 'cespare/vim-toml'
 on_ft = ['toml']
 
-
-
+# ---------- javascript ---------- 
+[[plugins]]
+repo= 'heavenshell/vim-jsdoc'
+build='make install'
+on_ft = ['javascript', 'typescript', 'javascript.jsx', 'javascriptreact', 'typescriptreact']
+hook_source= '''
+nmap <Leader>doc :JsDoc<CR>
+'''

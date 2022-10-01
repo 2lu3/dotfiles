@@ -60,8 +60,7 @@ brew install bat
 brew install exa
 
 # Git Credential Manager for Linux
-#./scripts/gcm.sh
-brew install gcm
+./scripts/gcm.sh
 
 # ruby
 #./scripts/ruby.sh

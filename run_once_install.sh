@@ -4,7 +4,7 @@ set -xe
 cd ~/.local/share/chezmoi/
 
 # linuxbrew
-./scripts/linuxbrew.sh
+source ./scripts/linuxbrew.sh
 
 # git
 ./scripts/git.sh

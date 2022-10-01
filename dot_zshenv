@@ -53,5 +53,12 @@ export CXX=/usr/bin/clang++-14
 export PATH=$HOME/.robotech/bin:$PATH
 
 
+# linuxbrew
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PATH="/home/linuxbrew/.linuxbrew/opt/node@16/bin:$PATH"
+export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/node@16/lib"
+export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/node@16/include"
+
 # conda
 source ${HOME}/anaconda3/etc/profile.d/conda.sh

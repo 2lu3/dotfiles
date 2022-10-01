@@ -29,7 +29,8 @@ brew install llvm
 #./scripts/pyenv.sh
 
 # nodejs
-brew install node@16
+source ./scripts/nodejs.sh
+
 
 # neovim
 ./scripts/neovim.sh

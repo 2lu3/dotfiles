@@ -44,8 +44,8 @@ brew install xclip
 
 
 # germanium
-#./scripts/germanium.sh
-brew install germanium
+./scripts/germanium.sh
+#brew install germanium
 
 # direnv
 #./scripts/direnv.sh

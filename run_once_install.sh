@@ -7,7 +7,7 @@ cd ~/.local/share/chezmoi/
 ./scripts/linuxbrew.sh
 
 # git
-j./scripts/git.sh
+./scripts/git.sh
 
 # japanese font
 ./scripts/font.sh
@@ -67,14 +67,14 @@ brew install gcm
 brew install ruby
 
 # docker-cli
-if [[ "$docker" = true ]]; then
-    ./scripts/docker-cli.sh
-fi
+#if [[ "$docker" = true ]]; then
+#    ./scripts/docker-cli.sh
+#fi
 
 # imod
-if [[ "$imod" = true ]]; then
-    ./scripts/imod.sh
-fi
+#if [[ "$imod" = true ]]; then
+#    ./scripts/imod.sh
+#fi
 
 # gnupg
 # 最後が良さそう

@@ -4,7 +4,7 @@ set -xe
 # https://gist.github.com/woods/8970150
 # https://www.gnupg.org/documentation/manuals/gnupg-devel/Unattended-GPG-key-generation.html
 
-sudo apt-get install -y pass
+brew install gpg pass
 
 if [[ "$is_init" = true ]]; then
     rm ~/.gnupg -rf

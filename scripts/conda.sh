@@ -10,8 +10,8 @@ if [[ ! -e "$HOME/anaconda3" ]]; then
     sh /tmp/conda.sh -b
     source ${HOME}/anaconda3/etc/profile.d/conda.sh
 
-    conda update conda
-    conda install anaconda
+    conda update -y conda
+    conda install -y anaconda
 fi
 
 

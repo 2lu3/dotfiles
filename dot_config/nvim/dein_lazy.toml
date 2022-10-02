@@ -19,9 +19,7 @@
 repo = 'lambdalisue/fern.vim'
 on_event = 'Fern'
 hook_add='''
-nnoremap <silent> <Leader>e :Fern . -drawer -toggle<CR>
-'''
-
+nnoremap <silent> <Leader>e :Fern . -drawer -toggle<CR> '''
 #################### 画面サイズ変更 #################### 
 
 # ウィンドウの分割サイズを変更
@@ -31,6 +29,11 @@ on_event='WinResizerStartResize'
 hook_add='''
 nnoremap <Leader>r :WinResizerStartResize<CR>
 '''
+
+#################### colorscheme #################### 
+[[plugins]]
+repo='morhetz/gruvbox'
+
 #################### Quick Run #################### 
 
 # vimを閉じずに編集中のファイルを素早く実行する

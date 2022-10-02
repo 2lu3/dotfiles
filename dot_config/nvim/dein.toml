@@ -42,6 +42,9 @@ source ~/.config/nvim/plugins/vim-airline.vim
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
+#################### colorscheme #################### 
+[[plugins]]
+repo='morhetz/gruvbox'
 
 #################### Git #################### 
 # Gitコマンドを使用する

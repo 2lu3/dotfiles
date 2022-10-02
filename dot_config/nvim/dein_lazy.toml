@@ -30,9 +30,6 @@ hook_add='''
 nnoremap <Leader>r :WinResizerStartResize<CR>
 '''
 
-#################### colorscheme #################### 
-[[plugins]]
-repo='morhetz/gruvbox'
 
 #################### Quick Run #################### 
 

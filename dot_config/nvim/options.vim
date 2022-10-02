@@ -1,5 +1,7 @@
 " ######################## 見た目 ########################
 set termguicolors " True Color対応
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum" " 文字色
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum" " 背景色
 set title " ターミナルのタブ名に現在編集中のファイル名を設定
 set number " 行番号を表示する
 set relativenumber
@@ -8,6 +10,7 @@ set showmatch " 括弧入力時の対応する括弧を表示
 set list "不可視文字の可視化
 set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%,eol:↲ " デフォルト不可視文字は美しくないのでUnicodeできれいに
 set matchtime=3 " 対応括弧のハイライト表示を3sにする
+colorscheme elflord
 
 " ######################## 検索・置換 ########################
 

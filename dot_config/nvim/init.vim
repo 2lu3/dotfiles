@@ -2,6 +2,9 @@ if &compatible
   set nocompatible
 endif
 
+runtime! keymap.vim
+runtime! options.vim
+
 " neovim用pythonの設定
 " pip install pynvim
 if has('win64')
@@ -13,7 +16,7 @@ elseif has("unix")
 endif
 
 runtime! dein.vim
-runtime! options.vim
-runtime! keymap.vim
+
+colorscheme gruvbox
 
 syntax enable

@@ -2,10 +2,6 @@ if &compatible
   set nocompatible
 endif
 
-" 外部設定ファイルの読み込み
-runtime! options.vim
-runtime! keymap.vim
-
 " neovim用pythonの設定
 " pip install pynvim
 if has('win64')
@@ -17,5 +13,7 @@ elseif has("unix")
 endif
 
 runtime! dein.vim
+runtime! options.vim
+runtime! keymap.vim
 
 syntax enable

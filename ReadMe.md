@@ -173,3 +173,16 @@ neovimの中からc++やpythonなどを実行できる
 ## TODO
 
 - dockerのセットアップ
+
+- tmux
+
+```
+UNATTACHED_LIST=$(tmux ls | grep -v attached | head -n 1)
+UNATTACHED_ID=${UNATTACHED_LIST%%:*}
+
+if [ -n $UNATTACHED_ID ]; then
+    tmux a -t $UNATTACHED_ID
+else
+    tmux
+fi
+```

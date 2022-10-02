@@ -1,7 +1,9 @@
 " デフォルトでインストールするもの
 let g:coc_global_extensions = [
     \'coc-clangd',
-    \'coc-pyright'
+    \'coc-pyright',
+    \'coc-json',
+    \'coc-tsserver',
     \]
 
 " lightlineにcocのステータスを載せる

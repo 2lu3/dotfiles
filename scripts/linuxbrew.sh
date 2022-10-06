@@ -2,20 +2,14 @@
 set -xe
 
 if [[ "$is_init" = true ]]; then
-    if [[ -e "$HOME/.linuxbrew" ]]; then
-        rm -rf "${HOME}/.linuxbrew"
-    fi
-
-    if [[ -e "/home/linuxbrew" ]]; then
-        sudo rm -rf "/home/linuxbrew"
-    fi
+    rm -rf "${HOME}/.linuxbrew"
 fi
 
 if [[ ! -e "$HOME/.linuxbrew" ]]; then
-    if [[ ! -e "/home/linuxbrew" ]]; then
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    fi
+    git clone https://github.com/Homebrew/brew ${HOME}/.linuxbrew
+    eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
+    brew update --force --quiet
+    chmod -R go-w "$(brew --prefix)/share/zsh"
 fi
 
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"

@@ -3,6 +3,10 @@
 ## インストール方法
 
 ```bash
+sudo apt install -y curl git wget build-essential
+```
+
+```bash
 export CONFIG_USER_NAME=2lu3
 export CONFIG_USER_EMAIL=hi2lu3@gmail.com
 bash -c "$(curl -fsLS https://raw.githubusercontent.com/2lu3/dotfiles/main/init.sh)"

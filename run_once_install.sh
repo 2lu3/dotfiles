@@ -4,7 +4,9 @@ set -xe
 cd ~/.local/share/chezmoi/
 
 # bash
-echo "source ~/.config/bash/bashrc" >> ~/.bashrc
+EXTERNAL_BASHRC_LOAD_COMMAND="source ~/.config/bash/bashrc"
+sed '/${EXTERNAL_BASHRC_LOAD_COMMAND}/d' ~/.bashrc
+echo ${EXTERNAL_BASHRC_LOAD_COMMAND} >> ~/.bashrc
 
 # linuxbrew
 source ./scripts/linuxbrew.sh

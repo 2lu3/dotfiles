@@ -4,8 +4,6 @@ set -xe
 # https://gist.github.com/woods/8970150
 # https://www.gnupg.org/documentation/manuals/gnupg-devel/Unattended-GPG-key-generation.html
 
-brew install gpg pass
-
 if [[ "$is_init" = true ]]; then
     rm ~/.gnupg -rf
 fi
@@ -14,12 +12,12 @@ if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
     if [ -z "$CONFIG_USER_NAME" ]; then
         echo "CONFIG_USER_NAME is not set"
         echo "use export CONFIG_USER_NAME=your name"
-        exit
+        exit 1
     fi
     if [ -z "$CONFIG_USER_EMAIL" ]; then
         echo "CONFIG_USER_EMAIL is not set"
         echo "use export CONFIG_USER_EMAIL=your name"
-        exit
+        exit 1
     fi
 
     cp $(dirname $0)/data/gnupg /tmp/gnupg.data

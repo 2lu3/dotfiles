@@ -76,6 +76,9 @@ brew install ruby
 #    ./scripts/imod.sh
 #fi
 
+# tmux
+./scripts/tmux.sh
+
 # gnupg
 # 最後が良さそう
 ./scripts/gnupg.sh

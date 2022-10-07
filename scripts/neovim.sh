@@ -21,7 +21,7 @@ fi
 
 # nodejs
 if [[ "$is_init" = true ]]; then
-    sudo npm uninstall --location=global neovim
+    npm uninstall --location=global neovim
 fi
 if ! npm ls --location=global | grep neovim >/dev/null; then
     npm install --location=global neovim

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xe
 
-brew install zsh
+# sudo apt-get install -y zsh
 
 # zgen
 if [[ "$is_init" = true ]]; then

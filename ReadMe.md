@@ -3,7 +3,7 @@
 ## インストール方法
 
 ```bash
-sudo apt install -y curl git wget build-essential pass
+sudo apt install -y curl git wget build-essential pass zsh
 sudo apt install -y tmux ncurses-term
 ```
 

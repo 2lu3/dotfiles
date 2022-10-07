@@ -54,6 +54,6 @@ source ${HOME}/anaconda3/etc/profile.d/conda.sh
 eval "$(direnv hook zsh)"
 
 # nodejs
-export PATH="/home/linuxbrew/.linuxbrew/opt/node@16/bin:$PATH"
-export LDFLAGS="-L/home/linuxbrew/.linuxbrew/opt/node@16/lib"
-export CPPFLAGS="-I/home/linuxbrew/.linuxbrew/opt/node@16/include"
+export PATH="$(brew --prefix)/opt/node@16/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix)/opt/node@16/lib"
+export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"

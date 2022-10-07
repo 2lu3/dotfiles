@@ -1,3 +1,7 @@
 eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
 
-tmux
+if [ -n "$UNATTACHED_ID" ]; then
+    tmux a -t $UNATTACHED_ID
+else
+    tmux
+fi

@@ -19,18 +19,11 @@ source ./scripts/linuxbrew.sh
 # zsh
 ./scripts/zsh.sh
 
-# ghq
-brew install ghq
-
-# peco
-brew install peco
-
 # llvm
 brew install llvm
 
 # pyenv
 ./scripts/conda.sh
-#./scripts/pyenv.sh
 
 # nodejs
 source ./scripts/nodejs.sh
@@ -39,35 +32,17 @@ source ./scripts/nodejs.sh
 # neovim
 ./scripts/neovim.sh
 brew install deno
-#./scripts/deno.sh
 ./scripts/fzf.sh
 brew install ripgrep
-#./scripts/ripgrep.sh
-#sudo apt-get install -y xclip
 brew install xclip
-
-
-# germanium
 ./scripts/germanium.sh
-#brew install germanium
 
-# direnv
-#./scripts/direnv.sh
-brew install direnv
+# 便利ツール
+brew install bat exa direnv peco ghq
 
-# bat
-#./scripts/bat.sh
-brew install bat
-
-# exa
-#./scripts/exa.sh
-brew install exa
-
-# Git Credential Manager for Linux
 ./scripts/gcm.sh
 
 # ruby
-#./scripts/ruby.sh
 brew install ruby
 
 # docker-cli
@@ -79,9 +54,6 @@ brew install ruby
 #if [[ "$imod" = true ]]; then
 #    ./scripts/imod.sh
 #fi
-
-# tmux
-#./scripts/tmux.sh
 
 # gnupg
 # 最後が良さそう

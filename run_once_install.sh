@@ -3,6 +3,9 @@ set -xe
 
 cd ~/.local/share/chezmoi/
 
+# bash
+echo "source ~/.config/bash/bashrc" >> ~/.bashrc
+
 # linuxbrew
 source ./scripts/linuxbrew.sh
 
@@ -77,7 +80,7 @@ brew install ruby
 #fi
 
 # tmux
-./scripts/tmux.sh
+#./scripts/tmux.sh
 
 # gnupg
 # 最後が良さそう

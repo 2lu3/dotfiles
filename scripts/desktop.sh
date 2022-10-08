@@ -37,4 +37,7 @@ pushd $(dirname $0)
 # run_scaled
 #./lib/run_scaled.sh
 
+# slack
+snap install slack
+
 popd

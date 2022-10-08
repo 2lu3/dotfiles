@@ -20,7 +20,7 @@ if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
         exit 1
     fi
 
-    cp $(dirname $0)/data/gnupg /tmp/gnupg.data
+    cp $(dirname $0)/../data/gnupg /tmp/gnupg.data
 
     echo "Name-Real: ${CONFIG_USER_NAME}" >> /tmp/gnupg.data
     echo "Name-Email: ${CONFIG_USER_EMAIL}" >> /tmp/gnupg.data

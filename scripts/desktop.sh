@@ -3,6 +3,9 @@ set -xe
 
 pushd $(dirname $0)
 
+# gnome
+./lib/gnome.sh
+
 # docker-cli
 ./lib/docker-cli.sh
 

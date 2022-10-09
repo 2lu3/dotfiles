@@ -18,6 +18,9 @@ source ./lib/linuxbrew.sh
 # zsh
 ./lib/zsh.sh
 
+# tmux
+./lib/tmux.sh
+
 # llvm
 brew install llvm
 

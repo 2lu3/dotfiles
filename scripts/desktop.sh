@@ -12,6 +12,8 @@ pushd $(dirname $0)
 # appimagelauncher
 #./lib/appimagelauncher.sh
 
+# openssh server
+./lib/server.sh
 
 # chrome 
 ./lib/chrome.sh

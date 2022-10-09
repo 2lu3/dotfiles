@@ -1,0 +1,11 @@
+[Unit]
+Description="外部からssh"
+
+[Service]
+EnvironmentFile=/home/alice/.remotessh
+ExecStart=ssh -NR ${SSH_VPS_PORT}:localhost:${SSH_HOME_PORT} ${SSH_VPS_NAME}
+ExecStop=/bin/kill ${MAINPID}
+
+
+[Install]
+WantedBy=defalt.target

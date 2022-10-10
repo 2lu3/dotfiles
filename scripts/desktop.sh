@@ -57,4 +57,7 @@ sudo apt-get update
 sudo apt-get install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
+# macos
+sudo apt-get install -y dbus-x11
+
 popd

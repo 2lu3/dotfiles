@@ -28,7 +28,7 @@ pushd $(dirname $0)
 #./lib/dropbox.sh
 
 # firefox
-#./lib/firefox.sh
+./lib/firefox.sh
 
 # spotify
 ./lib/spotify.sh
@@ -42,7 +42,19 @@ pushd $(dirname $0)
 # run_scaled
 #./lib/run_scaled.sh
 
+# genome extension manager
+sudo apt-get install -y gnome-shell-extension-manager
+
+# tweaks
+sudo apt-get install -y gnome-tweaks
+
 # slack
 snap install slack
+
+# flatpak
+sudo add-apt-repository -y ppa:flatpak/stable
+sudo apt-get update
+sudo apt-get install -y flatpak gnome-software-plugin-flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 popd

@@ -17,6 +17,7 @@ endif
 
 runtime! dein.vim
 
-colorscheme gruvbox
+"colorscheme gruvbox
+colorscheme tokyonight-night
 
 syntax enable

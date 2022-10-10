@@ -72,6 +72,9 @@ repo = 'vim-airline/vim-airline-themes'
 [[plugins]]
 repo='morhetz/gruvbox'
 
+[[plugins]]
+repo='folke/tokyonight.nvim'
+
 #################### Git #################### 
 # Gitコマンドを使用する
 [[plugins]]

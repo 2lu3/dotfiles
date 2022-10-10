@@ -2,22 +2,48 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+
+#############################
+# 自動補完
+#############################
+#[[plugins]]
+#repo = 'https://github.com/Shougo/ddc.vim'
+#hook_source = '''
+#source ~/.config/nvim/plugins/ddc.vim
+#'''
+#
+#[[plugins]]
+#repo = 'https://github.com/Shougo/pum.vim'
+#hook_source = '''
+#source ~/.config/nvim/plugins/pum.vim
+#'''
+
 #################### ファイル検索 #################### 
 
-# fzf-preview
-# ripgrepをインストールするべし
 [[plugins]]
-repo = 'yuki-yano/fzf-preview.vim'
-rev = 'release/rpc'
-depends=['junegunn/fzf']
-hook_add= '''
-source ~/.config/nvim/plugins/fzf-preview.vim
-'''
+repo = 'nvim-lua/plenary.nvim'
 
 [[plugins]]
-repo = 'junegunn/fzf'
-build = './install --all'
-merged = 0
+repo = 'https://github.com/nvim-telescope/telescope.nvim'
+rev = '0.1.x'
+hook_add = '''
+source ~/.config/nvim/plugins/telescope.vim
+'''
+
+## fzf-preview
+## ripgrepをインストールするべし
+#[[plugins]]
+#repo = 'yuki-yano/fzf-preview.vim'
+#rev = 'release/rpc'
+#depends=['junegunn/fzf']
+#hook_add= '''
+#source ~/.config/nvim/plugins/fzf-preview.vim
+#'''
+#
+#[[plugins]]
+#repo = 'junegunn/fzf'
+#build = './install --all'
+#merged = 0
 
 #################### 見た目 #################### 
 # インデントに線を表示する

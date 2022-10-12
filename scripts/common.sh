@@ -48,4 +48,7 @@ brew install ruby
 # gnupg
 ./lib/gnupg.sh
 
+# update to japanese names
+LANG=C xdg-user-dirs-gtk-update
+
 popd

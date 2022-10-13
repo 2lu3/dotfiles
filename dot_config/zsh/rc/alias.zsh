@@ -15,6 +15,6 @@ fi
 
 alias pycreate='python3 -m venv .venv && echo "source .venv/bin/activate" >> .envrc && direnv allow && .venv/bin/pip install -U pip'
 
-if type docker compose > /dev/null 2>&1; then
+if type docker > /dev/null 2>&1; then
     alias dc='docker compose'
 fi

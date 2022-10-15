@@ -57,3 +57,5 @@ eval "$(direnv hook zsh)"
 export PATH="$(brew --prefix)/opt/node@16/bin:$PATH"
 export LDFLAGS="-L$(brew --prefix)/opt/node@16/lib"
 export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"
+
+echo "~/.zshenv done"

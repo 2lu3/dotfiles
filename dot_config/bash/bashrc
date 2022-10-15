@@ -1,4 +1,4 @@
-eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
+#eval "$(${HOME}/.linuxbrew/bin/brew shellenv)"
 
 UNATTACHED_LIST=$(tmux ls | grep -v attached | head -n 1)
 UNATTACHED_ID=${UNATTACHED_LIST%%:*}

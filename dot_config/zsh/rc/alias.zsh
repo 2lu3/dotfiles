@@ -18,3 +18,7 @@ alias pycreate='python3 -m venv .venv && echo "source .venv/bin/activate" >> .en
 if type docker > /dev/null 2>&1; then
     alias dc='docker compose'
 fi
+
+
+alias remoup='systemctl --user start remotessh.service'
+alias remodown='systemctl --user stop remotessh.service'

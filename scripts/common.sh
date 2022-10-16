@@ -12,8 +12,6 @@ source ./lib/linuxbrew.sh
 # git
 ./lib/git.sh
 
-# japanese font
-./lib/font.sh
 
 # zsh
 ./lib/zsh.sh

@@ -3,6 +3,9 @@ set -xe
 
 pushd $(dirname $0)
 
+# japanese font
+./lib/font.sh
+
 # gnome
 ./lib/gnome.sh
 

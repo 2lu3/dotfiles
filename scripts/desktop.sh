@@ -43,7 +43,8 @@ pushd $(dirname $0)
 #./lib/run_scaled.sh
 
 # zoom
-snap isntall zoom
+wget https://zoom.us/client/5.12.2.4816/zoom_amd64.deb -O /tmp/zoom.deb
+sudo apt-get install -y /tmp/zoom.deb
 
 # genome extension manager
 sudo apt-get install -y gnome-shell-extension-manager

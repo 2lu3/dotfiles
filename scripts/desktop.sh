@@ -42,6 +42,9 @@ pushd $(dirname $0)
 # run_scaled
 #./lib/run_scaled.sh
 
+# zoom
+snap isntall zoom
+
 # genome extension manager
 sudo apt-get install -y gnome-shell-extension-manager
 

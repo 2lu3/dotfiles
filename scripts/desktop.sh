@@ -67,5 +67,8 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 # macos
 sudo apt-get install -y dbus-x11
 
+# gitcraken
+./lib/gitkraken.sh
+
 
 popd

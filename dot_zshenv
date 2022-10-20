@@ -58,4 +58,8 @@ export PATH="$(brew --prefix)/opt/node@16/bin:$PATH"
 export LDFLAGS="-L$(brew --prefix)/opt/node@16/lib"
 export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"
 
+# gcm core
+export GPG_TTY=$(tty)
+
 echo "~/.zshenv done"
+

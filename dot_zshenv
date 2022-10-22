@@ -60,6 +60,3 @@ export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"
 
 # gcm core
 export GPG_TTY=$(tty)
-
-echo "~/.zshenv done"
-

@@ -70,5 +70,8 @@ sudo apt-get install -y dbus-x11
 # gitcraken
 ./lib/gitkraken.sh
 
+# obs studio
+./lib/obsstadio.sh
+
 
 popd

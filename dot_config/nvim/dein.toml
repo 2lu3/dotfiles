@@ -112,6 +112,13 @@ hook_add = '''
 source ~/.config/nvim/plugins/vim-closetag.vim
 '''
 
+# importをいい感じに
+[[plugins]]
+repo = 'https://github.com/wookayin/vim-autoimport'
+hook_add = '''
+nnoremap <Leader>im :ImportSymbol<CR>
+'''
+
 #################### 画像生成 #################### 
 
 # ソースコードをいい感じの画像にしてくれる

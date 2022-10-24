@@ -44,6 +44,8 @@ source ~/.config/nvim/plugins/vim-quickrun.vim
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 
+#################### Uncategorized #################### 
+
 #################### 言語ごとの設定 #################### 
 
 # ---------- c++ ---------- 
@@ -62,6 +64,8 @@ on_ft = ['python']
 hook_add= '''
 source ~/.config/nvim/plugins/vim-pydocstring.vim
 '''
+
+
 
 # ---------- TOML ---------- 
 [[plugins]]

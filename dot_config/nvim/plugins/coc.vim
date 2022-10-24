@@ -59,4 +59,4 @@ nnoremap <Leader>rn <Plug>(coc-rename)
 "スペースfmtでFormat
 nnoremap <Leader>fmt :call CocAction('format')<CR>
 " Coc-quick-fix
-nnoremap <Leader>fx :call CocAction('quickfixes')<CR>
+nnoremap <Leader>fx <Plug>(coc-fix-current)

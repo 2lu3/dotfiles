@@ -22,3 +22,4 @@ fi
 
 alias remoup='systemctl --user start remotessh.service'
 alias remodown='systemctl --user stop remotessh.service'
+alias size='sudo du -m / | sort -n | tail -10'

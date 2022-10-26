@@ -57,6 +57,6 @@ nnoremap <silent> <Leader>rf :call CocAction('jumpReferences')<CR>
 "スペースrnでRename
 nnoremap <Leader>rn <Plug>(coc-rename)
 "スペースfmtでFormat
-nnoremap <Leader>fmt :call CocAction('format')<CR>
+nnoremap <Leader>fmt :call CocActionAsync('format')<CR>
 " Coc-quick-fix
 nnoremap <Leader>fx <Plug>(coc-fix-current)

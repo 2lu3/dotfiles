@@ -73,5 +73,8 @@ sudo apt-get install -y dbus-x11
 # obs studio
 ./lib/obsstadio.sh
 
+# zotero
+./lib/zotero.sh
+
 
 popd

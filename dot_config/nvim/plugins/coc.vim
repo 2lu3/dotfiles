@@ -12,7 +12,8 @@ let g:lightline = {
         \'right':[
             \['coc']
         \]
-    \}, \'component_function': {
+    \},
+    \'component_function': {
         \'coc': 'coc#status'
     \}
 \}

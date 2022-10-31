@@ -60,3 +60,5 @@ nnoremap <Leader>rn <Plug>(coc-rename)
 nnoremap <Leader>fmt :call CocActionAsync('format')<CR>
 " Coc-quick-fix
 nnoremap <Leader>fx <Plug>(coc-fix-current)
+
+nnoremap <silent> <Leader>rst :call CocRestart<CR>

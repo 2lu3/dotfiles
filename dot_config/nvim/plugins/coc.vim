@@ -12,8 +12,7 @@ let g:lightline = {
         \'right':[
             \['coc']
         \]
-    \},
-    \'component_function': {
+    \}, \'component_function': {
         \'coc': 'coc#status'
     \}
 \}
@@ -61,4 +60,4 @@ nnoremap <Leader>fmt :call CocActionAsync('format')<CR>
 " Coc-quick-fix
 nnoremap <Leader>fx <Plug>(coc-fix-current)
 
-nnoremap <silent> <Leader>rst :call CocRestart<CR>
+nnoremap <silent> <Leader>rst :CocRestart<CR>

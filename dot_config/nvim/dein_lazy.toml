@@ -19,7 +19,9 @@
 repo = 'lambdalisue/fern.vim'
 on_event = 'Fern'
 hook_add='''
-nnoremap <silent> <Leader>e :Fern . -drawer -toggle<CR> '''
+nnoremap <silent> <Leader>e :Fern . -drawer -toggle<CR>
+let g:fern#default_hidden=1
+'''
 #################### 画面サイズ変更 #################### 
 
 # ウィンドウの分割サイズを変更

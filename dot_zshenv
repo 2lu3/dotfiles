@@ -60,3 +60,7 @@ export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"
 
 # gcm core
 export GPG_TTY=$(tty)
+
+if type vmd > /dev/null 2>&1; then
+    export PATH=$PATH:"/usr/local/lib/vmd/plugins/LINUXAMD64/bin/catdcd5.2"
+fi

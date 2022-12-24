@@ -46,6 +46,10 @@ brew install ruby
 # gnupg
 ./lib/gnupg.sh
 
+
+# devbox
+./lib/devbox.sh
+
 # update to japanese names
 #LANG=C xdg-user-dirs-gtk-update
 

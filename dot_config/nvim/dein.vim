@@ -1,4 +1,5 @@
-# install dein
+" install dein
+
 let $CACHE = expand('~/.cache')
 if !isdirectory($CACHE)
   call mkdir($CACHE, 'p')
@@ -15,8 +16,7 @@ if &runtimepath !~# '/dein.vim'
         \ fnamemodify(s:dein_dir, ':p') , '[/\\]$', '', '')
 endif
 
-# dein config
-
+" dein config
 let g:dein#auto_recache=1
 
 set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim

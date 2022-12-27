@@ -8,12 +8,9 @@ fi
 
 
 if ! type docker > /dev/null 2>&1; then
-
   sudo apt-get install gnome-terminal
-  sudo apt-get purge docker-desktop
   rm -fr "${HOME}/.docker/desktop"
   sudo rm -f /usr/local/bin/com.docker.cli
-  sudo apt-get purge docker-desktop
 
   sudo apt-get update
   sudo apt-get install -y \
@@ -33,7 +30,7 @@ if ! type docker > /dev/null 2>&1; then
   sudo apt-get update
 
   wget https://desktop.docker.com/linux/main/amd64/docker-desktop-4.15.0-amd64.deb -O /tmp/docker-dekstop.deb
-  sudo apt-get install /tmp/docker-desktop.deb
+  sudo apt install -y /tmp/docker-desktop.deb
 
-  sudo systemctl --user start docker-desktop
+  systemctl --user start docker-desktop
 fi

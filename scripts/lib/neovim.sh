@@ -10,15 +10,6 @@ brew install neovim
 
 # ========== dependencies ==========
 
-# dein
-if [[ "$is_init" = true ]]; then
-    rm ~/.cache/dein -rf
-fi
-if [[ ! -e "$HOME/.cache/dein" ]]; then
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > /tmp/installer.sh
-    sh /tmp/installer.sh ~/.cache/dein
-fi
-
 # nodejs
 if [[ "$is_init" = true ]]; then
     npm uninstall --location=global neovim

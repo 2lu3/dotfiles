@@ -23,7 +23,7 @@ source ./lib/linuxbrew.sh
 brew install llvm
 
 # python
-./lib/conda.sh
+#./lib/conda.sh
 
 # nodejs
 source ./lib/nodejs.sh

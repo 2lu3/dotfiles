@@ -2,4 +2,3 @@
 set -xe
 
 brew install xsel
-

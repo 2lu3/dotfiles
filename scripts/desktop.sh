@@ -9,8 +9,8 @@ pushd $(dirname $0)
 # gnome
 ./lib/gnome.sh
 
-# docker
-./lib/docker.sh
+# docker-cli
+./lib/docker-cli.sh
 
 # appimagelauncher
 #./lib/appimagelauncher.sh

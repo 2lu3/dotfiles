@@ -43,9 +43,6 @@ fi
 export PATH=$HOME/.robotech/bin:$PATH
 
 
-# linuxbrew
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 # conda
 source ${HOME}/anaconda3/etc/profile.d/conda.sh
@@ -53,10 +50,7 @@ source ${HOME}/anaconda3/etc/profile.d/conda.sh
 # direnv
 eval "$(direnv hook zsh)"
 
-# nodejs
-export PATH="$(brew --prefix)/opt/node@16/bin:$PATH"
-export LDFLAGS="-L$(brew --prefix)/opt/node@16/lib"
-export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"
+
 
 # gcm core
 export GPG_TTY=$(tty)

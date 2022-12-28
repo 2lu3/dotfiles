@@ -15,11 +15,6 @@ fi
 
 alias pycreate='python3 -m venv .venv && echo "source .venv/bin/activate" >> .envrc && direnv allow && .venv/bin/pip install -U pip'
 
-if type docker > /dev/null 2>&1; then
-    alias dc='docker compose'
-fi
-
-
 alias remoup='systemctl --user start remotessh.service'
 alias remodown='systemctl --user stop remotessh.service'
 alias rds='sudo du -m / | sort -n | tail -10'

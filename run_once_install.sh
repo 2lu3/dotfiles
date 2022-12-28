@@ -3,6 +3,6 @@ set -xe
 
 cd ~/.local/share/chezmoi/
 
-./scripts/common.sh
+./scripts/minimum.sh
 
 echo "finish"

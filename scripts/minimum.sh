@@ -40,6 +40,6 @@ sudo apt-get upgrade -y
 ./lib/gcm.sh
 
 # gnupg
-./lib/gnome.sh
+./lib/gnupg.shi
 
 popd

@@ -18,6 +18,8 @@ sudo apt-get upgrade -y
 # zsh
 ./lib/zsh.sh
 
+# tmux
+
 # nodejs
 ./lib/nodejs.sh
 
@@ -40,6 +42,6 @@ sudo apt-get upgrade -y
 ./lib/gcm.sh
 
 # gnupg
-./lib/gnupg.shi
+./lib/gnupg.sh
 
 popd

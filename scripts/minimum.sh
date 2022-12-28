@@ -23,7 +23,7 @@ sudo apt-get upgrade -y
 
 # neovim
 ./lib/neovim.sh
-./lib/deno
+./lib/deno.sh
 ./lib/ripgrep.sh
 ./lib/xclip.sh
 ./lib/fzf.sh

@@ -5,18 +5,6 @@
 #               Third-party Software Configuration
 #--------------------------------------------------------------
 
-# linuxbrew
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# nodejs
-export PATH="$(brew --prefix)/opt/node@16/bin:$PATH"
-export LDFLAGS="-L$(brew --prefix)/opt/node@16/lib"
-export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"
-
-# direnv
-eval "$(direnv hook zsh)"
-
 #--------------------------------------------------------------
 #               Local Configuration
 #--------------------------------------------------------------

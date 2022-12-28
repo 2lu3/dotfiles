@@ -3,7 +3,7 @@ set -xe
 
 
 if [[ "$is_init" = true ]]; then
-  sudo apt-get remove docker docker-engine docker.io containerd runc
+  sudo apt-get remove docker docker.io containerd runc
 fi
 
 

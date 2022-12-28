@@ -42,16 +42,14 @@ fi
 #export CXX=/usr/bin/clang++-14
 export PATH=$HOME/.robotech/bin:$PATH
 
-
-
-# conda
-source ${HOME}/anaconda3/etc/profile.d/conda.sh
-
 # gcm core
 export GPG_TTY=$(tty)
 
 if type vmd > /dev/null 2>&1; then
     export PATH=$PATH:"/usr/local/lib/vmd/plugins/LINUXAMD64/bin/catdcd5.2"
 fi
+
+# direnv
+eval "$(direnv hook zsh)"
 
 echo "zshenv done"

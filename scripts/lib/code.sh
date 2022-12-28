@@ -2,10 +2,6 @@
 set -xe
 
 
-if [[ "$is_init" = true ]]; then
-    sudo apt-get remove -y code
-fi
-
 if ! type code > /dev/null 2>&1; then
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
     sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/

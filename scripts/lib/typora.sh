@@ -1,9 +1,6 @@
 #!/bin/bash
 set -xe
 
-if [[ "$is_init" = true ]]; then
-    sudo apt-get remove typora
-fi
 if ! type typora > /dev/null 2>&1; then
     wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
     sudo add-apt-repository -y 'deb https://typora.io/linux ./'

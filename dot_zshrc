@@ -2,6 +2,31 @@
 # インタラクティブシェルでのみ必要な設定を書く
 
 #--------------------------------------------------------------
+#               Third-party Software Configuration
+#--------------------------------------------------------------
+
+# linuxbrew
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# nodejs
+export PATH="$(brew --prefix)/opt/node@16/bin:$PATH"
+export LDFLAGS="-L$(brew --prefix)/opt/node@16/lib"
+export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"
+
+# direnv
+eval "$(direnv hook zsh)"
+
+#--------------------------------------------------------------
+#               Local Configuration
+#--------------------------------------------------------------
+
+if [ -f "$Z_DOT_DIR/.zshrc.local" ]; then
+    source "$Z_DOT_DIR/.zshrc.local"
+fi
+
+
+#--------------------------------------------------------------
 #               Base Configuration
 #--------------------------------------------------------------
 
@@ -44,23 +69,5 @@ source "$Z_RC_DIR/plugin.zsh"
 
 source "$Z_RC_DIR/bind_key.zsh"
 
-#--------------------------------------------------------------
-#               Third-party Software Configuration
-#--------------------------------------------------------------
 
-# linuxbrew
-test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# nodejs
-export PATH="$(brew --prefix)/opt/node@16/bin:$PATH"
-export LDFLAGS="-L$(brew --prefix)/opt/node@16/lib"
-export CPPFLAGS="-I$(brew --prefix)/opt/node@16/include"
-
-#--------------------------------------------------------------
-#               Local Configuration
-#--------------------------------------------------------------
-
-if [ -f "$Z_DOT_DIR/.zshrc.local" ]; then
-    source "$Z_DOT_DIR/.zshrc.local"
-fi
+echo "zshrc done"

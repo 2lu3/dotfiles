@@ -11,9 +11,6 @@ if [ "`echo $PATH | grep '/mnt/c/'`" ]; then
     exit 1
 fi
 
-# true=初期化、以下の条件を満たすようにシェルスクリプトを書く
-# 1. 以前のインストール処理が途中で異常終了されてもOK
-# 2. 古いバージョンをインストールしている場合は、アップデートすること
 export is_init=true
 
 # chezmoi のリセット
@@ -23,10 +20,8 @@ fi
 rm ~/.local/share/chezmoi -rf
 mkdir -p ~/.local/
 
-
 # 初回インストール時はここにpathが通されていないため
 export PATH=$PATH:${HOME}/.local/bin
-
 
 pushd ~/.local/
 wget https://chezmoi.io/get -O /tmp/chezmoi.sh

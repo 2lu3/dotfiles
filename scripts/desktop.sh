@@ -31,7 +31,7 @@ pushd $(dirname $0)
 #./lib/dropbox.sh
 
 # firefox
-./lib/firefox.sh
+#./lib/firefox.sh
 
 # spotify
 ./lib/spotify.sh
@@ -65,7 +65,7 @@ sudo apt-get install -y flatpak gnome-software-plugin-flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # macos
-sudo apt-get install -y dbus-x11
+#sudo apt-get install -y dbus-x11
 
 # gitcraken
 ./lib/gitkraken.sh

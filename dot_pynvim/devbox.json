@@ -1,0 +1,12 @@
+{
+  "packages": [
+    "python311",
+    "poetry"
+  ],
+  "shell": {
+    "init_hook": "poetry shell",
+    "scripts": {
+      "install": "poetry run install"
+    }
+  }
+}

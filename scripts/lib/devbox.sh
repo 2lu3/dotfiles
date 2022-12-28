@@ -1,6 +1,10 @@
 #!/bin/bash
 set -xe
 
-curl -fsSL https://get.jetpack.io/devbox -o /tmp/devbox.sh
+# nix
+curl -L https://nixos.org/nix/install -o /tmp/nix.sh
+sh /tmp/nix.sh
 
-sudo bash /tmp/devbox.sh -f
+# devbox
+curl -fsSL https://get.jetpack.io/devbox -o /tmp/devbox.sh
+bash /tmp/devbox.sh -f

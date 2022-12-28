@@ -52,3 +52,5 @@ fi
 # direnv
 eval "$(direnv hook zsh)"
 
+# nix
+if [ -e /home/glands/.nix-profile/etc/profile.d/nix.sh ]; then . /home/glands/.nix-profile/etc/profile.d/nix.sh; fi

@@ -9,6 +9,12 @@ pushd $(dirname $0)
 # gnome
 ./lib/gnome.sh
 
+# brave
+./lib/brave.sh
+
+# 1password
+./lib/1password.sh
+
 # docker-cli
 ./lib/docker-cli.sh
 

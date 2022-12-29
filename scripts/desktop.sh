@@ -86,4 +86,10 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 # vlc
 ./lib/vlc.sh
 
+# virtualbox
+./lib/virtualbox.sh
+
+# vagrant
+./lib/vagrant.sh
+
 popd

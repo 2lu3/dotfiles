@@ -1,12 +1,12 @@
 {
   "packages": [
     "python311",
-    "poetry"
+    "python311Packages.pip"
   ],
   "shell": {
-    "init_hook": "poetry shell",
+    "init_hook": null,
     "scripts": {
-      "install": "poetry run install"
+      "install": "python -m venv . && bin/pip3 install pynvim"
     }
   }
 }

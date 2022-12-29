@@ -13,7 +13,6 @@ if ! type git-credential-manager-core 2>&1; then
     mkdir -p /tmp/gcm
     tar -xvf /tmp/gcm.tar.gz -C /tmp/gcm/ 
     mv /tmp/gcm/git-credential-manager-core ${HOME}/.local/bin/
-    echo $PATH
 
     git-credential-manager-core configure
 fi

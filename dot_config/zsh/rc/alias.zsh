@@ -13,6 +13,10 @@ if type exa > /dev/null 2>&1; then
     alias lc='clear && ls'
 fi
 
+if type docker > /dev/null 2>&1; then
+    alias dc='docker compose'
+fi
+
 alias pycreate='python3 -m venv .venv && echo "source .venv/bin/activate" >> .envrc && direnv allow && .venv/bin/pip install -U pip'
 
 alias remoup='systemctl --user start remotessh.service'

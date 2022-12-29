@@ -1,8 +1,28 @@
+[com/mattjakeman/ExtensionManager]
+last-used-version='0.3.0'
+
+[org/gnome/deja-dup]
+backend='local'
+exclude-list=['$TRASH', '$DOWNLOAD', '/home/glands/backup']
+periodic=true
+
+[org/gnome/deja-dup/local]
+folder='backup'
+
+
 [org/gnome/desktop/input-sources]
 mru-sources=[('ibus', 'mozc-jp'), ('xkb', 'us')]
 per-window=false
 sources=[('ibus', 'mozc-jp'), ('xkb', 'us')]
 xkb-options=@as []
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+gtk-theme='Yaru-dark'
+icon-theme='Yaru'
+
+[org/gnome/desktop/privacy]
+report-technical-problems=true
 
 [org/gnome/desktop/session]
 idle-delay=uint32 0
@@ -16,18 +36,90 @@ move-to-workspace-right=['<Primary><Super>Right']
 switch-to-workspace-left=['<Alt><Super>Left']
 switch-to-workspace-right=['<Alt><Super>Right']
 
+[org/gnome/mutter]
+experimental-features=['x11-randr-fractional-scaling']
+
+[org/gnome/nautilus/preferences]
+default-folder-viewer='icon-view'
+search-filter-time-type='last_modified'
+
+[org/gnome/settings-daemon/plugins/color]
+night-light-enabled=true
+
 [org/gnome/settings-daemon/plugins/power]
 sleep-inactive-ac-timeout=3600
 sleep-inactive-ac-type='nothing'
 
 [org/gnome/shell]
-disable-user-extensions=true
-favorite-apps=['firefox_firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'gnome-system-monitor.desktop', 'discord.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Evince.desktop', 'slack_slack.desktop']
+disable-user-extensions=false
+disabled-extensions=['floatingDock@sun.wxg@gmail.com']
+enabled-extensions=['extension-list@tu.berry', 'dash-to-panel@jderose9.github.com', 'gsconnect@andyholmes.github.io', 'clipboard-indicator@tudmotu.com', 'Vitals@CoreCoding.com', 'CoverflowAltTab@palatis.blogspot.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'sound-output-device-chooser@kgshank.net', 'gTile@vibou']
+favorite-apps=['brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'gnome-system-monitor.desktop', 'discord.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Evince.desktop', 'slack_slack.desktop']
 had-bluetooth-devices-setup=true
+welcome-dialog-last-shown-version='42.0'
+
+[org/gnome/shell/extensions/clipboard-indicator]
+toggle-menu=['<Super>v']
+
+[org/gnome/shell/extensions/coverflowalttab]
+offset=-3
+overlay-icon-size=224
+preview-to-monitor-ratio=57
+
+[org/gnome/shell/extensions/dash-to-panel]
+animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
+appicon-margin=4
+appicon-padding=0
+available-monitors=[2, 0, 1]
+hotkeys-overlay-combo='TEMPORARILY'
+intellihide=false
+leftbox-padding=-1
+multi-monitors=false
+panel-anchors='{"0":"MIDDLE","1":"MIDDLE","2":"MIDDLE"}'
+panel-element-positions='{"0":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"1":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}],"2":[{"element":"showAppsButton","visible":true,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"stackedTL"},{"element":"centerBox","visible":true,"position":"stackedBR"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"dateMenu","visible":true,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":true,"position":"stackedBR"}]}'
+panel-element-positions-monitors-sync=true
+panel-lengths='{"0":100,"1":100,"2":100}'
+panel-positions='{"0":"BOTTOM","1":"BOTTOM","2":"BOTTOM"}'
+panel-sizes='{"0":24,"1":24,"2":24}'
+primary-monitor=2
+status-icon-padding=-1
+tray-padding=-1
+window-preview-title-position='TOP'
+
+[org/gnome/shell/extensions/extension-list]
+button-icon=uint32 0
+
+[org/gnome/shell/extensions/floatingDock]
+floating-dock-direction='up'
+floating-dock-indicator=['dot', 'left']
+floating-dock-position=[30, 30]
+
+[org/gnome/shell/extensions/gsconnect]
+id='69576932-2f43-48bb-b789-e66381e0bb62'
+name='GALLERIA'
+
+[org/gnome/shell/extensions/gsconnect/preferences]
+window-maximized=false
+window-size=(640, 440)
+
+[org/gnome/shell/extensions/gtile]
+global-auto-tiling=false
+grid-sizes='4x4'
+show-grid-lines=true
+show-icon=false
+theme='Default'
+
+[org/gnome/shell/extensions/vitals]
+use-higher-precision=false
 
 [org/gnome/shell/keybindings]
 show-screen-recording-ui=['<Primary><Shift><Super>s']
 show-screenshot-ui=['<Shift><Super>s']
+toggle-application-view=@as []
+toggle-message-tray=['<Super>a']
+
+[org/gnome/system/location]
+enabled=false
 
 [org/gnome/terminal/legacy/keybindings]
 move-tab-left='disabled'
@@ -38,7 +130,21 @@ prev-tab='<Primary><Shift>Left'
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 background-color='rgb(0,0,0)'
 cell-width-scale=1.05
-font='FiraCode Nerd Font Mono 12'
+font='FiraCode Nerd Font Mono 10'
 foreground-color='rgb(255,255,255)'
 use-system-font=false
 use-theme-colors=false
+
+[org/gtk/settings/file-chooser]
+date-format='regular'
+location-mode='path-bar'
+show-hidden=false
+show-size-column=true
+show-type-column=true
+sidebar-width=161
+sort-column='name'
+sort-directories-first=true
+sort-order='ascending'
+type-format='category'
+window-position=(26, 23)
+window-size=(1203, 902)

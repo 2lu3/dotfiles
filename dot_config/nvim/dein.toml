@@ -93,6 +93,10 @@ repo = 'airblade/vim-gitgutter'
 # git blame
 [[plugins]]
 repo = 'APZelos/blamer.nvim'
+hook_add = '''
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
+'''
 
 # #################### Uncategorized ###################
 

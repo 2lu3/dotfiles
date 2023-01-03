@@ -90,6 +90,10 @@ nnoremap <silent> gc :Git commit<CR>
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
+# git blame
+[[plugins]]
+repo = 'APZelos/blamer.nvim'
+
 # #################### Uncategorized ###################
 
 # 対となる括弧を追加/削除する

@@ -1,6 +1,19 @@
+lua << EOF
+require("telescope").setup{
+    extensions = {
+        frequency = {
+        }
+    }
+}
+EOF
+
 " Find files using Telescope command-line sugar.
 " ファイル一覧を探す
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+" 隠されたファイルもすべて開く
+nnoremap <leader>fa <cmd>Telescope find_files hidden=true<cr>
+" よく開く別ディレクトリのファイルも開く
+nnoremap <leader>fo <cmd>Telescope frequency<cr>
 " grepする
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 " 開いているバッファの中から探す

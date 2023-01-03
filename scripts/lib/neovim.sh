@@ -21,14 +21,12 @@ fi
 
 # python
 if [[ "$is_init" = true ]]; then
-    rm ~/.pynvim/.devbox -rf
+    rm ~/.pynvim/
 fi
 if [[ ! -e "$HOME/.pynvim" ]]; then
-    pushd ~/.pynvim
-    devbox init
-    devbox run install
-    exit
-    popd
+    python3 -m venv ~/.pynvim
+    ~/.pynvim/bin/pip install -U pip
+    ~/.pynvim/bin/pip install pynvim doq
 fi
 
 # trach-cli

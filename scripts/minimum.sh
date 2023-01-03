@@ -18,6 +18,11 @@ sudo apt-get upgrade -y
 # zsh
 ./lib/zsh.sh
 
+
+# python
+./lib/pyenv.sh
+
+
 # tmux
 
 # nodejs

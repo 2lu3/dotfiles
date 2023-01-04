@@ -20,6 +20,10 @@ if [[ ! -e "$HOME/.pyenv" ]]; then
     make -C src
     popd
 
+    export PYENV_ROOT="$HOME/.pyenv"
+    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+
     pyenv install 3.10.9
     pyenv global 3.10.9
 fi

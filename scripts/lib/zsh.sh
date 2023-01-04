@@ -5,9 +5,7 @@ sudo apt-get install -y zsh
 
 # zgen
 if [[ "$is_init" = true ]]; then
-    if [[ -e "$HOME/.zgen" ]]; then
-        rm ~/.zgen -rf
-    fi
+    rm ~/.zgen -rf
 fi
 
 if [[ ! -e "$HOME/.zgen" ]]; then

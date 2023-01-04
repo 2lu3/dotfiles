@@ -9,9 +9,7 @@ libbz2-dev libreadline-dev libsqlite3-dev curl llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
 if [[ "$is_init" = true ]]; then
-    if [[ -e "$HOME/.pyenv" ]]; then
-        rm ~/.pyenv -rf
-    fi
+    rm ~/.pyenv -rf
 fi
 
 if [[ ! -e "$HOME/.pyenv" ]]; then

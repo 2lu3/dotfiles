@@ -21,7 +21,7 @@ fi
 
 # python
 if [[ "$is_init" = true ]]; then
-    rm ~/.pynvim/
+    rm ~/.pynvim/ -rf
 fi
 if [[ ! -e "$HOME/.pynvim" ]]; then
     python3 -m venv ~/.pynvim

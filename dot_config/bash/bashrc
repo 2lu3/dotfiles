@@ -2,8 +2,10 @@
 
 UNATTACHED_LIST=$(tmux ls | grep -v attached | head -n 1)
 UNATTACHED_ID=${UNATTACHED_LIST%%:*}
-if [ -n "$UNATTACHED_ID" ]; then
-    tmux a -t $UNATTACHED_ID
-else
-    tmux
+if [ -z "$TMUX" ]; then
+    if [ -n "$UNATTACHED_ID" ]; then
+        tmux a -t $UNATTACHED_ID
+    else
+        tmux
+    fi
 fi

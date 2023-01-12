@@ -92,4 +92,7 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 # vagrant
 ./lib/vagrant.sh
 
+# xsel
+sudo apt-get install -y xsel
+
 popd

@@ -22,3 +22,7 @@ alias pycreate='python3 -m venv .venv && echo "source .venv/bin/activate" >> .en
 alias remoup='systemctl --user start remotessh.service'
 alias remodown='systemctl --user stop remotessh.service'
 alias rds='sudo du -m / | sort -n | tail -10'
+
+if type xsel > /dev/null 2>&1; then
+    alias pbcopy='xsel --clipboard --input'
+fi

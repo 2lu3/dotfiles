@@ -52,6 +52,11 @@ fi
 # direnv
 eval "$(direnv hook zsh)"
 
+# conda
+if [[ -e "$HOME/anaconda3" ]]; then
+    source ${HOME}/anaconda3/etc/profile.d/conda.sh
+fi
+
 # nix
 if [ -e /home/glands/.nix-profile/etc/profile.d/nix.sh ]; then
     . /home/glands/.nix-profile/etc/profile.d/nix.sh

@@ -11,6 +11,9 @@ sudo apt-get install -y neovim
 
 # ========== dependencies ==========
 
+# required for telescope
+sudo apt-get install -y fd-find
+
 # nodejs
 if [[ "$is_init" = true ]]; then
     sudo npm uninstall --location=global neovim

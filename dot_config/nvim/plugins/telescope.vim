@@ -11,7 +11,7 @@ EOF
 " ファイル一覧を探す
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 " 隠されたファイルもすべて開く
-nnoremap <leader>fa <cmd>Telescope find_files hidden=true<cr>
+nnoremap <leader>fa <cmd>Telescope find_files hidden=true no_ignore=true no_ignore_parent=true<cr>
 " よく開く別ディレクトリのファイルも開く
 nnoremap <leader>fo <cmd>Telescope frequency<cr>
 " grepする

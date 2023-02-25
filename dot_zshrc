@@ -58,3 +58,17 @@ source "$Z_RC_DIR/plugin.zsh"
 source "$Z_RC_DIR/bind_key.zsh"
 
 
+
+#--------------------------------------------------------------
+#               Uncategorized
+#--------------------------------------------------------------
+
+# direnv
+#show_virtual_env() {
+#  if [[ -n "$VIRTUAL_ENV" && -n "$DIRENV_DIR" ]]; then
+#    echo "($(basename $VIRTUAL_ENV))"
+#  fi
+#}
+#export -f show_virtual_env
+#PS1='$(show_virtual_env)'$PS1
+

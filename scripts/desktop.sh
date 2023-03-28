@@ -40,7 +40,7 @@ pushd $(dirname $0)
 #./lib/firefox.sh
 
 # spotify
-./lib/spotify.sh
+#./lib/spotify.sh
 
 # typora
 ./lib/typora.sh

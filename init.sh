@@ -23,6 +23,9 @@ mkdir -p ~/.local/
 # 初回インストール時はここにpathが通されていないため
 export PATH=$PATH:${HOME}/.local/bin
 
+
+sudo apt install -y git wget build-essential
+
 pushd ~/.local/
 wget https://chezmoi.io/get -O /tmp/chezmoi.sh
 /bin/bash /tmp/chezmoi.sh init --apply 2lu3

@@ -3,7 +3,7 @@
 ## インストール方法
 
 ```bash
-sudo apt install -y curl git wget build-essential
+sudo apt install -y curl
 ```
 
 ```bash

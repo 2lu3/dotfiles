@@ -7,6 +7,16 @@ sudo apt install -y curl git wget build-essential
 ```
 
 ```bash
+cat <<'EOF' >> ~/.config/chezmoi/chezmoi.toml
+[data]
+    cui = true
+    gui = true
+    programming = true
+    research = true
+EOF
+```
+
+```bash
 export CONFIG_USER_NAME=2lu3
 export CONFIG_USER_EMAIL=hi2lu3@gmail.com
 bash -c "$(curl -fsLS https://raw.githubusercontent.com/2lu3/dotfiles/main/init.sh)"

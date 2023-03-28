@@ -7,7 +7,7 @@ set -xe
 pushd /tmp/
 curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
 tar -xvf nvim-linux64.tar.gz
-cp -T -r nvim-linux64 ~/.local
+cp -T -r -f nvim-linux64 ~/.local
 popd
 
 # ========== dependencies ==========

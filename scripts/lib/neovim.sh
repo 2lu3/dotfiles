@@ -4,10 +4,11 @@ set -xe
 # ========== neovim ==========
 # https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package
 
-sudo apt-get install -y software-properties-common
-sudo add-apt-repository -y ppa:neovim-ppa/stable
-sudo apt-get update
-sudo apt-get install -y neovim
+pushd /tmp/
+curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
+tar -xvf nvim-linux64.tar.gz
+cp -T -r nvim-linux64 ~/.local
+popd
 
 # ========== dependencies ==========
 

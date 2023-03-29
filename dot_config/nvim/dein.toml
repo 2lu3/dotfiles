@@ -7,8 +7,7 @@ repo = 'Shougo/dein.vim'
 # 自動補完
 #############################
 #[[plugins]]
-#repo = 'https://github.com/Shougo/ddc.vim'
-#hook_source = '''
+#repo = 'https://github.com/Shougo/ddc.vim' hook_source = '''
 #source ~/.config/nvim/plugins/ddc.vim
 #'''
 #
@@ -143,5 +142,13 @@ vnoremap <Leader>pic :Germanium -f=RictyDiminished-Regular<CR>
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
+
+#################### copilot #################### 
+
+[[plugins]]
+repo = 'github/copilot.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/copilot.vim
+'''
 
 

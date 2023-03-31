@@ -34,8 +34,4 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
 

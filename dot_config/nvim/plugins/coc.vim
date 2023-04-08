@@ -55,9 +55,9 @@ nnoremap <silent> <Leader>dt :call CocAction('jumpTypeDeclaration')<CR>
 "スペースrfでReferences
 nnoremap <silent> <Leader>rf :call CocAction('jumpReferences')<CR>
 "スペースrnでRename
-nnoremap <Leader>rn <Plug>(coc-rename)
+nnoremap <silent> <Leader>rn <Plug>(coc-rename)
 "スペースfmtでFormat
-nnoremap <Leader>fmt :call CocActionAsync('format')<CR>
+nnoremap <silent> <Leader>fmt :call CocActionAsync('format')<CR>
 " Coc-quick-fix
 nnoremap <Leader>fx <Plug>(coc-fix-current)
 

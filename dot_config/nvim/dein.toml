@@ -49,15 +49,15 @@ source ~/.config/nvim/plugins/telescope.vim
 
 #################### 見た目 #################### 
 # インデントに線を表示する
-[[plugins]]
-repo = 'Yggdroot/indentLine'
+#[[plugins]]
+#repo = 'Yggdroot/indentLine'
 
 # シンタックスハイライト
-[[plugins]]
-repo='sheerun/vim-polyglot'
-hook_add= '''
-let g:polyglot_disabled = ['markdown']
-'''
+#[[plugins]]
+#repo='sheerun/vim-polyglot'
+#hook_add= '''
+#let g:polyglot_disabled = ['markdown', 'json']
+#'''
 
 # ---------- Vim Airline ---------- 
 [[plugins]]

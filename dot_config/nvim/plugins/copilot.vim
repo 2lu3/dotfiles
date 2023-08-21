@@ -1,7 +1,7 @@
 let g:copilot_no_tab_map = v:true
 
-#:h meta
-# mはalt
+":h meta
+" mはalt
 inoremap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 inoremap <silent> <M-j> <Plug>(copilot-next)
 inoremap <silent> <M-k> <Plug>(copilot-previous)

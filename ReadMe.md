@@ -7,6 +7,7 @@ sudo apt install -y curl
 ```
 
 ```bash
+mkdir ~/.config/chezmoi/
 cat <<'EOF' >> ~/.config/chezmoi/chezmoi.toml
 [data]
     cui = true

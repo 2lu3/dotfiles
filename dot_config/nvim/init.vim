@@ -19,5 +19,11 @@ runtime! dein.vim
 
 "colorscheme gruvbox
 colorscheme tokyonight-night
+Copy code
+hi Normal guibg=NONE ctermbg=NONE
+hi NormalNC guibg=NONE ctermbg=NONE
+hi VertSplit guibg=NONE ctermbg=NONE
+hi StatusLine guibg=NONE ctermbg=NONE
+hi StatusLineNC guibg=NONE ctermbg=NONE
 
 syntax enable

@@ -1,8 +1,7 @@
 #!/bin/zsh
 
 if type nvim > /dev/null 2>&1; then
-    alias v='nvim'
-    alias vi='nvim'
+    alias v='nvim' alias vi='nvim'
 fi
 
 if type exa > /dev/null 2>&1; then
@@ -25,4 +24,9 @@ alias rds='sudo du -m / | sort -n | tail -10'
 
 if type xsel > /dev/null 2>&1; then
     alias pbcopy='xsel --clipboard --input'
+fi
+
+
+if type flatpak > /dev/null 2>&1; then
+    alias wezterm='flatpak run org.wezfurlong.wezterm'
 fi

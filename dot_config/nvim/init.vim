@@ -19,7 +19,6 @@ runtime! dein.vim
 
 "colorscheme gruvbox
 colorscheme tokyonight-night
-Copy code
 hi Normal guibg=NONE ctermbg=NONE
 hi NormalNC guibg=NONE ctermbg=NONE
 hi VertSplit guibg=NONE ctermbg=NONE

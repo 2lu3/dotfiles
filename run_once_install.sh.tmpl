@@ -72,8 +72,11 @@ sudo apt-get install -y unzip
 
 {{ if .gui }}
 
+# wezterm
+flatpak install flathub org.wezfurlong.wezterm
+
 # japanese font
-./lib/font.sh
+#./lib/font.sh
 
 # gnome
 ./lib/gnome.sh

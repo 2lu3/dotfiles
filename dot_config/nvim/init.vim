@@ -18,7 +18,7 @@ endif
 runtime! dein.vim
 
 "colorscheme gruvbox
-colorscheme tokyonight-night
+colorscheme gruvbox
 hi Normal guibg=NONE ctermbg=NONE
 hi NormalNC guibg=NONE ctermbg=NONE
 hi VertSplit guibg=NONE ctermbg=NONE

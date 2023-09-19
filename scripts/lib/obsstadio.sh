@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo flatpak install com.obsproject.Studio -y
+sudo flatpak install --noninteractive com.obsproject.Studio

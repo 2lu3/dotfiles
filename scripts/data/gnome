@@ -1,28 +1,11 @@
 [com/mattjakeman/ExtensionManager]
 last-used-version='0.3.0'
 
-[org/gnome/deja-dup]
-backend='local'
-exclude-list=['$TRASH', '$DOWNLOAD', '/home/glands/backup']
-periodic=true
-
-[org/gnome/deja-dup/local]
-folder='backup'
-
-
-[org/gnome/desktop/input-sources]
-mru-sources=[('ibus', 'mozc-jp'), ('xkb', 'us')]
-per-window=false
-sources=[('ibus', 'mozc-jp'), ('xkb', 'us')]
-xkb-options=@as []
-
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
+font-hinting='slight'
 gtk-theme='Yaru-dark'
 icon-theme='Yaru'
-
-[org/gnome/desktop/privacy]
-report-technical-problems=true
 
 [org/gnome/desktop/session]
 idle-delay=uint32 0
@@ -52,16 +35,17 @@ sleep-inactive-ac-type='nothing'
 
 [org/gnome/shell]
 disable-user-extensions=false
-disabled-extensions=['floatingDock@sun.wxg@gmail.com']
-enabled-extensions=['extension-list@tu.berry', 'dash-to-panel@jderose9.github.com', 'gsconnect@andyholmes.github.io', 'clipboard-indicator@tudmotu.com', 'Vitals@CoreCoding.com', 'CoverflowAltTab@palatis.blogspot.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'sound-output-device-chooser@kgshank.net', 'gTile@vibou']
-favorite-apps=['brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'gnome-system-monitor.desktop', 'discord.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Evince.desktop', 'slack_slack.desktop']
-had-bluetooth-devices-setup=true
+disabled-extensions=['floatingDock@sun.wxg@gmail.com', 'ubuntu-dock@ubuntu.com']
+enabled-extensions=['extension-list@tu.berry', 'dash-to-panel@jderose9.github.com', 'gsconnect@andyholmes.github.io', 'clipboard-indicator@tudmotu.com', 'Vitals@CoreCoding.com', 'CoverflowAltTab@palatis.blogspot.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'sound-output-device-chooser@kgshank.net', 'gTile@vibou', 'dock-from-dash@fthx']
+favorite-apps=['brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'gnome-system-monitor.desktop', 'discord.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Evince.desktop', 'slack_slack.desktop', 'org.wezfurlong.wezterm.desktop']
+had-bluetooth-devices-setup=false
 welcome-dialog-last-shown-version='42.0'
 
 [org/gnome/shell/extensions/clipboard-indicator]
 toggle-menu=['<Super>v']
 
 [org/gnome/shell/extensions/coverflowalttab]
+animation-time=50
 offset=-3
 overlay-icon-size=224
 preview-to-monitor-ratio=57
@@ -104,9 +88,9 @@ window-size=(640, 440)
 
 [org/gnome/shell/extensions/gtile]
 global-auto-tiling=false
-grid-sizes='4x4'
+grid-sizes='6x6,4x4'
 show-grid-lines=true
-show-icon=false
+show-icon=true
 theme='Default'
 
 [org/gnome/shell/extensions/vitals]
@@ -130,7 +114,7 @@ prev-tab='<Primary><Shift>Left'
 [org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
 background-color='rgb(0,0,0)'
 cell-width-scale=1.05
-font='FiraCode Nerd Font Mono 10'
+font='FiraCode Nerd Font 10'
 foreground-color='rgb(255,255,255)'
 use-system-font=false
 use-theme-colors=false

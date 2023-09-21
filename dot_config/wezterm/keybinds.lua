@@ -28,7 +28,7 @@ return {
         --{ key = ')',     mods = 'SHIFT|CTRL',     action = act.ResetFontSize },
         --{ key = '*',     mods = 'CTRL',           action = act.ActivateTab(7) },
         --{ key = '*',     mods = 'SHIFT|CTRL',     action = act.ActivateTab(7) },
-        { key = '+',      mods = 'CTRL',       action = act.IncreaseFontSize },
+        { key = '=',      mods = 'CTRL',       action = act.IncreaseFontSize },
         --{ key = '+',     mods = 'SHIFT|CTRL',     action = act.IncreaseFontSize },
         { key = '-',      mods = 'CTRL',       action = act.DecreaseFontSize },
         --{ key = '-',     mods = 'SHIFT|CTRL',     action = act.DecreaseFontSize },

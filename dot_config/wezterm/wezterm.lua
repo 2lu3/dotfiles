@@ -11,7 +11,7 @@ return {
     window_background_opacity = 0.9,
     font = require("wezterm").font("FiraCode Nerd Font Mono"),
     font_size = 11.0,
-    use_ime=true,
-  ime_preedit_rendering = "Builtin",
+    use_ime = true,
+    ime_preedit_rendering = "Builtin",
     status_update_interval = 1000,
 }

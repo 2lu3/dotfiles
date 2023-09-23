@@ -155,7 +155,6 @@ return {
         { key = 'Insert', mods = 'CTRL',       action = act.CopyTo 'PrimarySelection' },
         { key = 'Copy',   mods = 'NONE',       action = act.CopyTo 'Clipboard' },
         { key = 'Paste',  mods = 'NONE',       action = act.PasteFrom 'Clipboard' },
-        { key = 'Z',      mods = 'CTRL',       action = act.TogglePaneZoomState },
     },
 
     key_tables = {

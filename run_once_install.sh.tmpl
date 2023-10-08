@@ -3,195 +3,22 @@ set -xe
 
 source scripts/lib/utils.sh
 
-pushd {{ .chezmoi.sourceDir }}/scripts
 export PATH="$PATH:${HOME}/.local/bin"
+export DEBIAN_FRONTEND=noninteractive
 
 sudo apt-get update
 sudo apt-get upgrade -y
 
-
-apt_install unzip
-
-######################################################
-# CUI
-######################################################
-
 {{ if .cui }}
-# bashrc
-./lib/bash.sh
 
-# git
-./lib/git.sh
-
-# devbox
-./lib/devbox.sh
-
-# zsh
-./lib/zsh.sh
-
-# useful tools
-./lib/bat.sh
-./lib/exa.sh
+./scripts/cui.sh
 
 {{ end }}
-
-######################################################
-# programming
-######################################################
-
-{{ if .programming }}
-
-# python
-./lib/pyenv.sh
-
-# nodejs
-./lib/nodejs.sh
-
-# neovim
-./lib/neovim.sh
-./lib/deno.sh
-./lib/ripgrep.sh
-./lib/xclip.sh
-./lib/fzf.sh
-./lib/germanium.sh
-
-# useful tools
-./lib/direnv.sh
-./lib/peco.sh
-./lib/ghq.sh
-
-# gcm
-./lib/gcm.sh
-
-# gnupg
-./lib/gnupg.sh
-
-{{ end }}
-
-
-######################################################
-# GUI
-######################################################
 
 {{ if .gui }}
 
-# japanese font
-#./lib/font.sh
-
-# fcitx-mozc
-sudo apt-get -y install fcitx5-mozc
-im-config -n fcitx5
-
-# gnome
-./lib/gnome.sh
-
-# brave
-./lib/brave.sh
-
-# 1password
-./lib/1password.sh
-
-# chrome 
-./lib/chrome.sh
-
-# discord
-./lib/discord.sh
-
-# dropbox
-#./lib/dropbox.sh
-
-# typora
-./lib/typora.sh
-
-# zoom
-flatpak install flathub us.zoom.Zoom
-
-# genome extension manager
-sudo apt-get install -y gnome-shell-extension-manager
-
-# tweaks
-sudo apt-get install -y gnome-tweaks
-
-# slack
-#snap install slack
-
-# flatpak
-sudo add-apt-repository -y ppa:flatpak/stable
-sudo apt-get update
-sudo apt-get install -y flatpak gnome-software-plugin-flatpak
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-
-# wezterm
-flatpak install --noninteractive flathub org.wezfurlong.wezterm
-
-# obs studio
-./lib/obsstadio.sh
-
-# vlc
-./lib/vlc.sh
-
-# xsel
-sudo apt-get install -y xsel
-
-######################################################
-# GUI and programming
-######################################################
-
-{{ if .programming }}
-
-# docker-cli
-./lib/docker-cli.sh
-
-# openssh server
-./lib/server.sh
-
-# code
-./lib/code.sh
-
-# gitcraken
-./lib/gitkraken.sh
+./scripts/gui.sh
 
 {{ end }}
-
-
-{{ end }}
-
-{{ if .research }}
-
-# zotero
-./lib/zotero.sh
-
-# run_scaled
-./lib/run_scaled.sh
-
-{{ end }}
-
-
-######################################################
-# Not installed
-######################################################
-
-# macos
-#sudo apt-get install -y dbus-x11
-
-# biscuit
-#./lib/biscuit.sh
-
-
-# firefox
-#./lib/firefox.sh
-
-# spotify
-#./lib/spotify.sh
-
-# appimagelauncher
-#./lib/appimagelauncher.sh
-
-## virtualbox
-#./lib/virtualbox.sh
-#
-## vagrant
-#./lib/vagrant.sh
 
 echo "finish"

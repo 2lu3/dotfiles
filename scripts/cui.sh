@@ -4,26 +4,31 @@ pushd $(dirname $0)
 
 source lib/utils.sh
 
-{{ if .cui }}
+#------------------------------------
+# unzip
+#------------------------------------
+apt_install unzip unzip
 
-#####################################
+
+
+#------------------------------------
 # bash
-#####################################
+#------------------------------------
 sed -i '/\.config\/bash\/bashrc/d' ~/.bashrc
 echo "source ~/.config/bash/bashrc" >> ~/.bashrc
 
 
-#####################################
+#------------------------------------
 # git
-#####################################
+#------------------------------------
 git config --global include.path ~/.config/git/conf.conf
 git config --global user.name {{- name -}}
 git config --global user.email {{- email -}}
 
-#####################################
-# devbox
-#####################################
 
+#------------------------------------
+# devbox
+#------------------------------------
 ## nix
 #if should_install nix; then
 #    curl -L https://nixos.org/nix/install -o /tmp/nix.sh
@@ -36,12 +41,14 @@ git config --global user.email {{- email -}}
 #    bash /tmp/devbox.sh -f
 #fi
 
-#####################################
+#------------------------------------
 # zsh
-#####################################
+#------------------------------------
 
 apt_install zsh zsh
-chsh -s $(which zsh)
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+    chsh -s $(which zsh)
+fi
 
 if [[ "$is_init" = true ]]; then
     rm ~/.zgen -rf
@@ -51,40 +58,26 @@ if [[ ! -e "$HOME/.zgen" ]]; then
     git clone https://github.com/tarjoilija/zgen.git ~/.zgen
 fi
 
-#####################################
+#------------------------------------
 # bat
-#####################################
-if should_install bat; then
-    wget https://github.com/sharkdp/bat/releases/download/v0.21.0/bat_0.21.0_amd64.deb -O /tmp/bat.deb
-    sudo apt-get install -y /tmp/bat.deb
+#------------------------------------
+apt_install bat batcat
+
+if [[ ! -e "$HOME/.local/bin/bat" ]]; then
+    ln -s /usr/bin/batcat ~/.local/bin/bat
 fi
 
-#####################################
+
+#------------------------------------
 # exa
-#####################################
-if [[ "$is_init" = true ]]; then
-    rm ~/.local/bin/exa -f
-fi
-
-if should_install exa; then
-    wget https://github.com/ogham/exa/releases/download/v0.10.1/exa-linux-x86_64-v0.10.1.zip -O /tmp/exa.zip
-    unzip -o /tmp/exa.zip -d /tmp/
-    mv /tmp/bin/exa ~/.local/bin/
-fi
-
-{{ end  }}
-
-#------------------------------------
-# cui & programming
 #------------------------------------
 
+apt_install exa exa
 
-{{ if .cui }}
-{{ if .programming }}
-
-#####################################
+#------------------------------------
 # python
-#####################################
+#------------------------------------
+
 
 sudo apt-get install -y python3 \
     python3-pip \
@@ -108,6 +101,7 @@ sudo apt-get install -y python3 \
     git \
     python3-tk \
     libgtk-3-dev
+
 # libgtk-3-dev
 # https://stackoverflow.com/questions/74834388/ubuntu-configure-wxwidgets-always-gives-error-the-development-files-for-gtk-we
 
@@ -126,49 +120,45 @@ if [[ ! -e "$HOME/.pyenv" ]]; then
     pyenv global 3.11.5
 fi
 
-#####################################
+#------------------------------------
 # nodejs
-#####################################
+#------------------------------------
 
 if should_install npm; then
     sudo apt-get install -y ca-certificates curl gnupg
     sudo mkdir -p /etc/apt/keyrings
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-    
+
     NODE_MAJOR=20
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-    
+
     sudo apt-get update
     sudo apt-get install nodejs -y
 fi
 
-#####################################
-# neovim
-#####################################
 
+#------------------------------------
+# neovim
+#------------------------------------
 if should_install nvim; then
     # ========== neovim ==========
     # https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package
-    
-    pushd /tmp/
-    curl -LO https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz
-    tar -xvf nvim-linux64.tar.gz
-    cp -T -r -f nvim-linux64 ~/.local
-    popd
-    
+
+    sudo snap install --beta nvim --classic
+
     # ========== dependencies ==========
-    
+
     # required for telescope
-    sudo apt-get install -y fd-find
-    
+    apt_install fd-find fdfind
+
     # nodejs
-    if [[ "$is_init" = true ]]; then
-        sudo npm uninstall --location=global neovim
-    fi
     if ! npm ls --location=global | grep neovim >/dev/null; then
         sudo npm install --location=global neovim
     fi
-    
+    if [[ "$is_init" = true ]]; then
+        sudo npm update -g
+    fi
+
     # python
     if [[ "$is_init" = true ]]; then
         rm ~/.pynvim/ -rf
@@ -178,7 +168,7 @@ if should_install nvim; then
         ~/.pynvim/bin/pip install -U pip
         ~/.pynvim/bin/pip install pynvim doq
     fi
-    
+
     # trach-cli
     apt_install trash-cli trash
 
@@ -202,7 +192,7 @@ if should_install nvim; then
     if [[ "$is_init" = true ]]; then
         rm ~/.fzf -rf
     fi
-    
+
     if [[ ! -e "$HOME/.fzf" ]]; then
         git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
         ~/.fzf/install --no-completion --no-key-bindings --no-update-rc
@@ -212,7 +202,7 @@ if should_install nvim; then
     if [[ "$is_init" = true ]]; then
         rm ~/.local/bin/germanium -f
     fi
-    
+
     if should_install germanium; then
         wget https://github.com/matsuyoshi30/germanium/releases/download/v1.2.2/germanium_1.2.2_linux_x86_64.tar.gz -O /tmp/germanium.tar.gz
         tar -xvf /tmp/germanium.tar.gz -C /tmp/
@@ -220,14 +210,14 @@ if should_install nvim; then
     fi
 fi
 
-#####################################
+#------------------------------------
 # direnv
-#####################################
+#------------------------------------
 apt_install direnv direnv
 
-#####################################
+#------------------------------------
 # peco
-#####################################
+#------------------------------------
 if [[ "$is_init" = true ]]; then
     rm ~/.local/bin/peco -f
 fi
@@ -238,9 +228,9 @@ if should_install peco; then
     mv /tmp/peco_linux_amd64/peco ~/.local/bin/
 fi
 
-#####################################
+#------------------------------------
 # ghq
-#####################################
+#------------------------------------
 if [[ "$is_init" = true ]]; then
     rm ~/.local/bin/ghq -f
 fi
@@ -251,14 +241,14 @@ if should_install ghq; then
     mv /tmp/ghq_linux_amd64/ghq ~/.local/bin/
 fi
 
-#####################################
-# gcm
-#####################################
 
+#------------------------------------
+# gcm
+#------------------------------------
 if [[ "$is_init" = true ]]; then
     rm ${HOME}/.local/bin/git-credential-manager-core
 fi
-fi
+
 if should_install git-credential-manager-core; then
     wget https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.785/gcm-linux_amd64.2.0.785.tar.gz -O /tmp/gcm.tar.gz
     mkdir -p /tmp/gcm
@@ -268,10 +258,10 @@ if should_install git-credential-manager-core; then
     git-credential-manager-core configure
 fi
 
-#####################################
-# gnupg
-#####################################
 
+#------------------------------------
+# gpg
+#------------------------------------
 if [[ "$is_init" = true ]]; then
     rm ~/.gnupg -rf
 fi
@@ -306,14 +296,50 @@ if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
     #echo "register the key to github and gitlab"
 fi
 
+#------------------------------------
+# docker
+#------------------------------------
+if [[ "$is_init" = true ]]; then
+  sudo apt-get remove -y docker docker.io containerd runc
+fi
 
 
+if should_install docker; then
 
+  sudo apt-get install -y \
+      ca-certificates \
+      curl \
+      gnupg \
+      lsb-release
+  
+  sudo mkdir -p /etc/apt/keyrings
+  
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  
+  #if [[ -e "/etc/linuxmint" ]]; then
+  #  echo "OS: linuxmint"
+  #  echo \
+  #  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu\
+  #  focal stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  #else
+  #  echo "OS: ubuntu"
+  echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  #fi
 
-{{ end }}
-{{ end }}
+  sudo apt-get update
 
+  sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
+  # dockerをsudoなしで実行できるようにする
+  sudo gpasswd -a ${USER} docker
+  sudo systemctl restart docker
+fi
 
+#------------------------------------
+# openssh server
+#------------------------------------
+apt_install openssh-server sshd
 
 popd

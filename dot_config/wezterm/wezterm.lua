@@ -1,6 +1,6 @@
 require 'format'
 require 'status'
---require 'event'
+require 'event'
 
 return {
     keys = require("keybinds").keys,

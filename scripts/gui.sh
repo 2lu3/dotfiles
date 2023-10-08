@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 pushd $(dirname $0)
 
@@ -24,9 +25,7 @@ fi
 mkdir -p ~/.backup/gnome
 dconf dump / > ~/.backup/gnome/$(date +%Y%m%d-%H%M%S)
 
-pushd $(dirname $0)
-dconf load / < ../data/gnome
-popd
+dconf load / < ./data/gnome
 
 #------------------------------------
 # brave
@@ -155,7 +154,7 @@ flatpak install --noninteractive gitkraken
 #------------------------------------
 # zotero
 #------------------------------------
-if should_install zoter; then
+if should_install zotero; then
     wget -qO- https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash
     sudo apt-get update
     sudo apt-get install -y zotero
@@ -172,3 +171,4 @@ if should_install run_scaled; then
     sudo python3 -m pip install PyOpenGL==3.1.6 PyOpenGL-accelerate==3.1.6
 fi
 
+popd

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 pushd $(dirname $0)
 
@@ -9,21 +10,18 @@ source lib/utils.sh
 #------------------------------------
 apt_install unzip unzip
 
-
-
 #------------------------------------
 # bash
 #------------------------------------
 sed -i '/\.config\/bash\/bashrc/d' ~/.bashrc
 echo "source ~/.config/bash/bashrc" >> ~/.bashrc
 
-
 #------------------------------------
 # git
 #------------------------------------
 git config --global include.path ~/.config/git/conf.conf
-git config --global user.name {{- name -}}
-git config --global user.email {{- email -}}
+git config --global user.name $CHEZMOI_USERNAME
+git config --global user.email $CHEZMOI_EMAIL
 
 
 #------------------------------------
@@ -61,12 +59,7 @@ fi
 #------------------------------------
 # bat
 #------------------------------------
-apt_install bat batcat
-
-if [[ ! -e "$HOME/.local/bin/bat" ]]; then
-    ln -s /usr/bin/batcat ~/.local/bin/bat
-fi
-
+apt_install bat bat
 
 #------------------------------------
 # exa
@@ -77,8 +70,6 @@ apt_install exa exa
 #------------------------------------
 # python
 #------------------------------------
-
-
 sudo apt-get install -y python3 \
     python3-pip \
     python3-venv \
@@ -123,7 +114,6 @@ fi
 #------------------------------------
 # nodejs
 #------------------------------------
-
 if should_install npm; then
     sudo apt-get install -y ca-certificates curl gnupg
     sudo mkdir -p /etc/apt/keyrings

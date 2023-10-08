@@ -4,7 +4,6 @@ set -xe
 #curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - &&\
 #sudo apt-get install -y nodejs
 
-sudo apt-get update
 sudo apt-get install -y ca-certificates curl gnupg
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg

@@ -9,7 +9,7 @@ return {
     disable_default_key_bindings = true,
     color_scheme = 'Catppuccin Mocha',
     window_background_opacity = 0.9,
-    font = require("wezterm").font("FiraCode Nerd Font Mono"),
+    font = require("wezterm").font("FiraCode Nerd Font"),
     font_size = 11.0,
     use_ime = true,
     ime_preedit_rendering = "Builtin",

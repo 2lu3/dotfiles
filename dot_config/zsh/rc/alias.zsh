@@ -5,7 +5,7 @@ if type nvim > /dev/null 2>&1; then
 fi
 
 if type exa > /dev/null 2>&1; then
-    alias l='exa --icons --group-directories-first -G --color=auto'
+    alias l='exa --icons --group-directories-first --color=auto'
     alias ls=l
     alias la='ls -a'
     alias ll='ls -aahl'

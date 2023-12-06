@@ -236,7 +236,7 @@ fi
 # gcm
 #------------------------------------
 if [[ "$is_init" = true ]]; then
-    rm ${HOME}/.local/bin/git-credential-manager-core
+    rm ${HOME}/.local/bin/git-credential-manager-core -rf
 fi
 
 if should_install git-credential-manager-core; then

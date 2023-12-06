@@ -259,7 +259,7 @@ fi
 if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
     sudo apt-get install -y pass
 
-    cp $(dirname $0)/../data/gnupg /tmp/gnupg.data
+    cp $(dirname $0)/data/gnupg /tmp/gnupg.data
 
     echo "Name-Real: ${CHEZMOI_USERNAME}" >> /tmp/gnupg.data
     echo "Name-Email: ${CHEZMOI_EMAIL}" >> /tmp/gnupg.data

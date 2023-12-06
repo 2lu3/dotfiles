@@ -257,29 +257,18 @@ if [[ "$is_init" = true ]]; then
 fi
 
 if [ -z "`ls ${HOME}/.gnupg/openpgp-revocs.d/`" ]; then
-    if [ -z "$CONFIG_USER_NAME" ]; then
-        echo "CONFIG_USER_NAME is not set"
-        echo "use export CONFIG_USER_NAME=your name"
-        exit 1
-    fi
-    if [ -z "$CONFIG_USER_EMAIL" ]; then
-        echo "CONFIG_USER_EMAIL is not set"
-        echo "use export CONFIG_USER_EMAIL=your name"
-        exit 1
-    fi
-
     sudo apt-get install -y pass
 
     cp $(dirname $0)/../data/gnupg /tmp/gnupg.data
 
-    echo "Name-Real: ${CONFIG_USER_NAME}" >> /tmp/gnupg.data
-    echo "Name-Email: ${CONFIG_USER_EMAIL}" >> /tmp/gnupg.data
+    echo "Name-Real: ${CHEZMOI_USERNAME}" >> /tmp/gnupg.data
+    echo "Name-Email: ${CHEZMOI_EMAIL}" >> /tmp/gnupg.data
 
     cat /tmp/gnupg.data
 
     gpg --batch --gen-key  /tmp/gnupg.data
 
-    pass init ${CONFIG_USER_EMAIL}
+    pass init ${CHEZMOI_EMAIL}
 
     #gpg --export -a ${CONFIG_USER_EMAIL}
 

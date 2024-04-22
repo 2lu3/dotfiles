@@ -34,3 +34,6 @@ zle -N peco-src
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+
+
+source $Z_RC_DIR/plugin/dev.zsh

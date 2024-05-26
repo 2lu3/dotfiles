@@ -1,13 +1,13 @@
 [apps/update-manager]
 first-run=false
-launch-count=26
-launch-time=int64 1696373497
+launch-count=45
+launch-time=int64 1716555964
 
 [com/mattjakeman/ExtensionManager]
 last-used-version='0.3.0'
 
 [com/ubuntu/update-notifier]
-release-check-time=uint32 1696676489
+release-check-time=uint32 1716697613
 
 [org/gnome/Totem]
 active-plugins=['vimeo', 'movie-properties', 'recent', 'screensaver', 'open-directory', 'save-file', 'variable-rate', 'autoload-subtitles', 'mpris', 'apple-trailers', 'screenshot', 'skipto', 'rotation']
@@ -32,13 +32,13 @@ video-x-resolution=1920
 video-y-resolution=1080
 
 [org/gnome/control-center]
-last-panel='printers'
+last-panel='sound'
 
 [org/gnome/deja-dup]
 backend='local'
 exclude-list=['$TRASH', '$DOWNLOAD', '/home/glands/backup']
 last-backup='2023-05-19T03:55:43.673967Z'
-last-run='2023-10-08T04:00:19.309959Z'
+last-run='2024-05-26T22:10:41.364724Z'
 nag-check='2023-03-28T06:03:18.380794Z'
 periodic=true
 prompt-check='2023-03-28T05:55:32.867995Z'
@@ -70,8 +70,12 @@ name='suse-yast.directory'
 translate=true
 
 [org/gnome/desktop/background]
+color-shading-type='solid'
+picture-options='zoom'
 picture-uri='file:///home/glands/Downloads/323997.jpg'
-picture-uri-dark='file:///home/glands/Downloads/323997.jpg'
+picture-uri-dark='file:///usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png'
+primary-color='#333333'
+secondary-color='#333333'
 
 [org/gnome/desktop/calendar]
 show-weekdate=false
@@ -90,8 +94,11 @@ icon-theme='Yaru'
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['timeshift-gtk', 'org-gnome-dejadup', 'org-gnome-nautilus', 'gnome-control-center', 'apport-gtk', 'brave-browser', 'org-gnome-software', 'org-gnome-shell-extensions', 'slack-slack', 'gitkraken-url-handler', 'org-gnome-eog', 'gnome-printers-panel', 'com-mattjakeman-extensionmanager-desktop', 'org-gnome-gedit', 'update-manager', 'org-gnome-terminal', 'filezilla', 'zoom', 'discord', 'org-gnome-fileroller', 'io-snapcraft-sessionagent', 'org-gnome-baobab', 'org-filezillaproject-filezilla', 'gnome-system-monitor', 'gnome-power-panel', 'typora', 'libreoffice-writer', 'gnome-network-panel', 'xsane']
+application-children=['timeshift-gtk', 'org-gnome-dejadup', 'org-gnome-nautilus', 'gnome-control-center', 'apport-gtk', 'brave-browser', 'org-gnome-software', 'org-gnome-shell-extensions', 'slack-slack', 'gitkraken-url-handler', 'org-gnome-eog', 'gnome-printers-panel', 'com-mattjakeman-extensionmanager-desktop', 'org-gnome-gedit', 'update-manager', 'org-gnome-terminal', 'filezilla', 'zoom', 'discord', 'org-gnome-fileroller', 'io-snapcraft-sessionagent', 'org-gnome-baobab', 'org-filezillaproject-filezilla', 'gnome-system-monitor', 'gnome-power-panel', 'typora', 'libreoffice-writer', 'gnome-network-panel', 'xsane', 'firefox-firefox', 'com-slack-slack', 'com-discordapp-discord', 'slack', 'xdg-desktop-portal-gnome', 'org-gnome-totem', 'org-shotcut-shotcut', 'org-gnome-shell-portalhelper', 'anki']
 show-banners=false
+
+[org/gnome/desktop/notifications/application/anki]
+application-id='anki.desktop'
 
 [org/gnome/desktop/notifications/application/apport-gtk]
 application-id='apport-gtk.desktop'
@@ -99,14 +106,23 @@ application-id='apport-gtk.desktop'
 [org/gnome/desktop/notifications/application/brave-browser]
 application-id='brave-browser.desktop'
 
+[org/gnome/desktop/notifications/application/com-discordapp-discord]
+application-id='com.discordapp.Discord.desktop'
+
 [org/gnome/desktop/notifications/application/com-mattjakeman-extensionmanager-desktop]
 application-id='com.mattjakeman.ExtensionManager.desktop.desktop'
+
+[org/gnome/desktop/notifications/application/com-slack-slack]
+application-id='com.slack.Slack.desktop'
 
 [org/gnome/desktop/notifications/application/discord]
 application-id='discord.desktop'
 
 [org/gnome/desktop/notifications/application/filezilla]
 application-id='filezilla.desktop'
+
+[org/gnome/desktop/notifications/application/firefox-firefox]
+application-id='firefox_firefox.desktop'
 
 [org/gnome/desktop/notifications/application/gitkraken-url-handler]
 application-id='gitkraken-url-handler.desktop'
@@ -156,14 +172,26 @@ application-id='org.gnome.Nautilus.desktop'
 [org/gnome/desktop/notifications/application/org-gnome-shell-extensions]
 application-id='org.gnome.Shell.Extensions.desktop'
 
+[org/gnome/desktop/notifications/application/org-gnome-shell-portalhelper]
+application-id='org.gnome.Shell.PortalHelper.desktop'
+
 [org/gnome/desktop/notifications/application/org-gnome-software]
 application-id='org.gnome.Software.desktop'
 
 [org/gnome/desktop/notifications/application/org-gnome-terminal]
 application-id='org.gnome.Terminal.desktop'
 
+[org/gnome/desktop/notifications/application/org-gnome-totem]
+application-id='org.gnome.Totem.desktop'
+
+[org/gnome/desktop/notifications/application/org-shotcut-shotcut]
+application-id='org.shotcut.Shotcut.desktop'
+
 [org/gnome/desktop/notifications/application/slack-slack]
 application-id='slack_slack.desktop'
+
+[org/gnome/desktop/notifications/application/slack]
+application-id='slack.desktop'
 
 [org/gnome/desktop/notifications/application/timeshift-gtk]
 application-id='timeshift-gtk.desktop'
@@ -173,6 +201,9 @@ application-id='typora.desktop'
 
 [org/gnome/desktop/notifications/application/update-manager]
 application-id='update-manager.desktop'
+
+[org/gnome/desktop/notifications/application/xdg-desktop-portal-gnome]
+application-id='xdg-desktop-portal-gnome.desktop'
 
 [org/gnome/desktop/notifications/application/xsane]
 application-id='xsane.desktop'
@@ -194,6 +225,13 @@ report-technical-problems=true
 
 [org/gnome/desktop/remote-desktop/rdp]
 enable=true
+
+[org/gnome/desktop/screensaver]
+color-shading-type='solid'
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png'
+primary-color='#333333'
+secondary-color='#333333'
 
 [org/gnome/desktop/search-providers]
 sort-order=['org.gnome.Contacts.desktop', 'org.gnome.Documents.desktop', 'org.gnome.Nautilus.desktop']
@@ -219,16 +257,16 @@ use-background-color=true
 
 [org/gnome/evince/default]
 continuous=true
-dual-page=false
-dual-page-odd-left=false
+dual-page=true
+dual-page-odd-left=true
 enable-spellchecking=true
 fullscreen=false
 inverted-colors=false
-show-sidebar=true
-sidebar-page='links'
-sidebar-size=148
+show-sidebar=false
+sidebar-page='thumbnails'
+sidebar-size=246
 sizing-mode='free'
-window-ratio=(2.071308099100249, 1.035326357875255)
+window-ratio=(6.2558922558922561, 1.3484486873508352)
 zoom=1.1512759488755646
 
 [org/gnome/evolution-data-server]
@@ -266,15 +304,24 @@ window-height=480
 window-width=600
 
 [org/gnome/gedit/plugins]
-active-plugins=['filebrowser', 'modelines', 'spell', 'sort', 'docinfo', 'openlinks']
+active-plugins=['openlinks', 'modelines', 'sort', 'filebrowser', 'spell', 'docinfo']
 
 [org/gnome/gedit/plugins/filebrowser]
 root='file:///'
 tree-view=true
-virtual-root='file:///home/glands/Downloads/tutorial-9.1/6_steered_MD/1_md'
+virtual-root='file:///home/muto/Downloads'
 
 [org/gnome/gedit/preferences/editor]
 scheme='Yaru-dark'
+
+[org/gnome/gedit/preferences/print]
+print-font-body-pango='Monospace 9'
+print-font-header-pango='Sans 11'
+print-font-numbers-pango='Sans 8'
+print-header=false
+print-line-numbers=uint32 0
+print-syntax-highlighting=true
+print-wrap-mode='word'
 
 [org/gnome/gedit/preferences/ui]
 show-tabs-mode='auto'
@@ -293,7 +340,7 @@ maximized=false
 network-total-in-bits=false
 show-dependencies=false
 show-whose-processes='user'
-window-state=(700, 500, 533, 1427)
+window-state=(646, 514, 1300, 867)
 
 [org/gnome/gnome-system-monitor/disktreenew]
 col-6-visible=true
@@ -318,7 +365,7 @@ default-zoom-level='large'
 default-zoom-level='standard'
 
 [org/gnome/nautilus/preferences]
-default-folder-viewer='icon-view'
+default-folder-viewer='list-view'
 search-filter-time-type='last_modified'
 search-view='list-view'
 
@@ -326,6 +373,18 @@ search-view='list-view'
 initial-size=(864, 524)
 maximized=false
 sidebar-width=209
+
+[org/gnome/nm-applet/eap/2c5a45be-2e0d-37f5-b514-279d1b383f05]
+ignore-ca-cert=false
+ignore-phase2-ca-cert=false
+
+[org/gnome/nm-applet/eap/2f2c06b3-3bda-46ad-946d-3e325a07a16c]
+ignore-ca-cert=true
+ignore-phase2-ca-cert=false
+
+[org/gnome/nm-applet/eap/4a2a1c4a-ab2f-45f5-a560-c3076305fefd]
+ignore-ca-cert=false
+ignore-phase2-ca-cert=false
 
 [org/gnome/nm-applet/eap/70a2e3b0-b348-40f3-ac6a-dfbeee77a719]
 ignore-ca-cert=false
@@ -357,8 +416,8 @@ sleep-inactive-ac-type='nothing'
 
 [org/gnome/shell]
 disable-user-extensions=false
-disabled-extensions=['floatingDock@sun.wxg@gmail.com', 'ubuntu-dock@ubuntu.com']
-enabled-extensions=['extension-list@tu.berry', 'dash-to-panel@jderose9.github.com', 'gsconnect@andyholmes.github.io', 'clipboard-indicator@tudmotu.com', 'Vitals@CoreCoding.com', 'CoverflowAltTab@palatis.blogspot.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'sound-output-device-chooser@kgshank.net', 'gTile@vibou', 'dock-from-dash@fthx']
+disabled-extensions=['floatingDock@sun.wxg@gmail.com', 'ubuntu-appindicators@ubuntu.com', 'ubuntu-dock@ubuntu.com']
+enabled-extensions=['dash-to-panel@jderose9.github.com', 'gsconnect@andyholmes.github.io', 'clipboard-indicator@tudmotu.com', 'Vitals@CoreCoding.com', 'drive-menu@gnome-shell-extensions.gcampax.github.com', 'dock-from-dash@fthx', 'apps-menu@gnome-shell-extensions.gcampax.github.com', 'gTile@vibou', 'extension-list@tu.berry', 'CoverflowAltTab@palatis.blogspot.com', 'dash-to-dock@micxgx.gmail.com', 'clipboard-history@alexsaveau.dev', 'sound-output-device-chooser@kgshank.net']
 favorite-apps=['brave-browser.desktop', 'org.gnome.Nautilus.desktop', 'org.wezfurlong.wezterm.desktop', 'gnome-system-monitor.desktop', 'org.gnome.gedit.desktop', 'org.gnome.Evince.desktop', 'slack_slack.desktop']
 had-bluetooth-devices-setup=false
 welcome-dialog-last-shown-version='42.0'
@@ -383,7 +442,8 @@ dash-max-icon-size=48
 dock-position='BOTTOM'
 height-fraction=0.90000000000000002
 preferred-monitor=-2
-preferred-monitor-by-connector='HDMI-0'
+preferred-monitor-by-connector='DP-1'
+preview-size-scale=0.17999999999999999
 
 [org/gnome/shell/extensions/dash-to-panel]
 animate-appicon-hover-animation-extent={'RIPPLE': 4, 'PLANK': 4, 'SIMPLE': 1}
@@ -439,13 +499,14 @@ toggle-message-tray=['<Super>a']
 
 [org/gnome/simple-scan]
 document-type='photo'
-save-directory='file:///home/glands/Documents/'
+save-directory='file:///home/muto/Downloads/'
+selected-device='pixma:04A918B2'
 
 [org/gnome/software]
-check-timestamp=int64 1696737450
-install-timestamp=int64 1696676344
-online-updates-timestamp=int64 1696737735
-update-notification-timestamp=int64 1696737735
+check-timestamp=int64 1716761264
+install-timestamp=int64 1713669209
+online-updates-timestamp=int64 1716697660
+update-notification-timestamp=int64 1716697660
 
 [org/gnome/system/location]
 enabled=false
@@ -460,7 +521,7 @@ prev-tab='<Primary><Shift>Left'
 background-color='rgb(0,0,0)'
 cell-width-scale=1.05
 default-size-rows=25
-font='FiraCode Nerd Font Mono 10'
+font='Ubuntu Mono 10'
 foreground-color='rgb(255,255,255)'
 use-system-font=false
 use-theme-colors=false
@@ -472,9 +533,9 @@ show-hidden=false
 show-size-column=true
 show-type-column=true
 sidebar-width=223
-sort-column='modified'
+sort-column='name'
 sort-directories-first=false
-sort-order='descending'
+sort-order='ascending'
 type-format='category'
 window-size=(841, 492)
 
@@ -493,10 +554,53 @@ sort-column='name'
 sort-directories-first=true
 sort-order='ascending'
 type-format='category'
-window-position=(0, 1023)
+window-position=(0, 679)
 window-size=(1203, 902)
+
+[org/yorba/shotwell/crop-settings]
+last-crop-height=1
+last-crop-menu-choice=1
+last-crop-width=1
+
+[org/yorba/shotwell/preferences/export]
+constraint='DIMENSIONS'
+export-format-mode='CURRENT'
+export-metadata=true
+photo-file-format='JFIF'
+quality='HIGH'
+scale=800
+
+[org/yorba/shotwell/preferences/ui]
+display-basic-properties=true
+display-extended-properties=false
+display-photo-comments=false
+display-photo-ratings=true
+display-photo-tags=true
+display-photo-titles=false
+display-search-bar=false
+display-sidebar=true
+events-sort-ascending=false
+library-photos-sort-ascending=false
+library-photos-sort-by=2
+show-welcome-dialog=false
+sidebar-position=180
 
 [org/yorba/shotwell/preferences/window]
 direct-height=768
 direct-maximize=false
 direct-width=1024
+library-height=768
+library-maximize=false
+library-width=1024
+
+[org/yorba/shotwell/printing]
+content-height=13.0
+content-layout=3
+content-ppi=600
+content-units=2
+content-width=20.306896551724137
+images-per-page=1
+match-aspect-ratio=true
+print-titles=false
+size-selection=11
+titles-font='Sans Bold 12'

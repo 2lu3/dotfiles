@@ -4,8 +4,8 @@ if type nvim > /dev/null 2>&1; then
     alias v='nvim' alias vi='nvim'
 fi
 
-if type exa > /dev/null 2>&1; then
-    alias l='exa --icons --group-directories-first --color=auto'
+if type lsd > /dev/null 2>&1; then
+    alias l='lsd --icons --group-directories-first --color=auto'
     alias ls=l
     alias la='ls -a'
     alias ll='ls -aahl'

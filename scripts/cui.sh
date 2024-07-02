@@ -65,7 +65,8 @@ apt_install bat bat
 # exa
 #------------------------------------
 
-apt_install exa exa
+#apt_install exa exa
+apt_install lsd lsd
 
 #------------------------------------
 # python

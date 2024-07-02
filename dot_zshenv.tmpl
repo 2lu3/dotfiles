@@ -29,26 +29,26 @@ export Z_DATA_DIR=${Z_HOME_DIR}/
 # /etc/zprofile を読み込まない
 # setopt no_global_rcs
 
-if [ -f "$Z_DOT_DIR/.zshenv.local" ]; then
-    source "$Z_DOT_DIR/.zshenv.local"
-fi
 
 #--------------------------------------------------------------
 #               Third-party Software Configuration
 #--------------------------------------------------------------
 
-if type brew &>/dev/null; then
-    export PATH="$PATH:/opt/homebrew/opt/node@20/bin"
-    export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
-fi
+#if type brew &>/dev/null; then
+{{- if eq .chezmoi.os "darwin" }}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export PATH="$PATH:/opt/homebrew/opt/node@20/bin"
+export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
+{{- end }}
+#fi
 
 
 if type clang-15 > /dev/null 2>&1; then
 export CC=/usr/bin/clang-15
 export CXX=/usr/bin/clang++-15
 fi
-export PATH=$HOME/.robotech/bin:$PATH
 
 # gcm core
 export GPG_TTY=$(tty)
@@ -96,3 +96,7 @@ eval "$(pyenv init -)"
 #    export POETRY_ACTIVE=1
 #    export VIRTUAL_ENV
 #}
+
+if [ -f "$Z_DOT_DIR/.zshenv.local" ]; then
+    source "$Z_DOT_DIR/.zshenv.local"
+fi

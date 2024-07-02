@@ -27,7 +27,7 @@ export Z_RC_DIR=$Z_HOME_DIR/rc
 export Z_DATA_DIR=${Z_HOME_DIR}/
 
 # /etc/zprofile を読み込まない
-setopt no_global_rcs
+# setopt no_global_rcs
 
 if [ -f "$Z_DOT_DIR/.zshenv.local" ]; then
     source "$Z_DOT_DIR/.zshenv.local"

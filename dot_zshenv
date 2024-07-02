@@ -37,6 +37,12 @@ fi
 #               Third-party Software Configuration
 #--------------------------------------------------------------
 
+if type brew &>/dev/null; then
+    export PATH="$PATH:/opt/homebrew/opt/node@20/bin"
+    export LDFLAGS="-L/opt/homebrew/opt/node@20/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/node@20/include"
+fi
+
 
 if type clang-15 > /dev/null 2>&1; then
 export CC=/usr/bin/clang-15

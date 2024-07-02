@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+{{ if .norun }}
+
+echo "run_once_install did not execute"
+exit
+{{ end }}
 
 pushd {{ .chezmoi.sourceDir }}
 

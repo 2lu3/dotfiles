@@ -3,7 +3,7 @@
 ## インストール方法
 
 ```bash
-sudo apt install -y curl
+sudo apt install -y curl flatpak
 ```
 
 ```bash
@@ -14,7 +14,7 @@ cat <<'EOF' >> ~/.config/chezmoi/chezmoi.toml
     gui = true
     programming = true
     research = true
-    mac = false
+    norun = false
     name = 2lu3
     email = "hi2lu3@gmail.com"
 EOF

@@ -1,13 +1,13 @@
 [apps/update-manager]
 first-run=false
-launch-count=45
-launch-time=int64 1716555964
+launch-count=52
+launch-time=int64 1721136678
 
 [com/mattjakeman/ExtensionManager]
 last-used-version='0.3.0'
 
 [com/ubuntu/update-notifier]
-release-check-time=uint32 1716697613
+release-check-time=uint32 1720536847
 
 [org/gnome/Totem]
 active-plugins=['vimeo', 'movie-properties', 'recent', 'screensaver', 'open-directory', 'save-file', 'variable-rate', 'autoload-subtitles', 'mpris', 'apple-trailers', 'screenshot', 'skipto', 'rotation']
@@ -32,13 +32,13 @@ video-x-resolution=1920
 video-y-resolution=1080
 
 [org/gnome/control-center]
-last-panel='sound'
+last-panel='display'
 
 [org/gnome/deja-dup]
 backend='local'
 exclude-list=['$TRASH', '$DOWNLOAD', '/home/glands/backup']
 last-backup='2023-05-19T03:55:43.673967Z'
-last-run='2024-05-26T22:10:41.364724Z'
+last-run='2024-07-21T14:23:18.634224Z'
 nag-check='2023-03-28T06:03:18.380794Z'
 periodic=true
 prompt-check='2023-03-28T05:55:32.867995Z'
@@ -94,8 +94,8 @@ icon-theme='Yaru'
 toolkit-accessibility=false
 
 [org/gnome/desktop/notifications]
-application-children=['timeshift-gtk', 'org-gnome-dejadup', 'org-gnome-nautilus', 'gnome-control-center', 'apport-gtk', 'brave-browser', 'org-gnome-software', 'org-gnome-shell-extensions', 'slack-slack', 'gitkraken-url-handler', 'org-gnome-eog', 'gnome-printers-panel', 'com-mattjakeman-extensionmanager-desktop', 'org-gnome-gedit', 'update-manager', 'org-gnome-terminal', 'filezilla', 'zoom', 'discord', 'org-gnome-fileroller', 'io-snapcraft-sessionagent', 'org-gnome-baobab', 'org-filezillaproject-filezilla', 'gnome-system-monitor', 'gnome-power-panel', 'typora', 'libreoffice-writer', 'gnome-network-panel', 'xsane', 'firefox-firefox', 'com-slack-slack', 'com-discordapp-discord', 'slack', 'xdg-desktop-portal-gnome', 'org-gnome-totem', 'org-shotcut-shotcut', 'org-gnome-shell-portalhelper', 'anki']
-show-banners=false
+application-children=['timeshift-gtk', 'org-gnome-dejadup', 'org-gnome-nautilus', 'gnome-control-center', 'apport-gtk', 'brave-browser', 'org-gnome-software', 'org-gnome-shell-extensions', 'slack-slack', 'gitkraken-url-handler', 'org-gnome-eog', 'gnome-printers-panel', 'com-mattjakeman-extensionmanager-desktop', 'org-gnome-gedit', 'update-manager', 'org-gnome-terminal', 'filezilla', 'zoom', 'discord', 'org-gnome-fileroller', 'io-snapcraft-sessionagent', 'org-gnome-baobab', 'org-filezillaproject-filezilla', 'gnome-system-monitor', 'gnome-power-panel', 'typora', 'libreoffice-writer', 'gnome-network-panel', 'xsane', 'firefox-firefox', 'com-slack-slack', 'com-discordapp-discord', 'slack', 'xdg-desktop-portal-gnome', 'org-gnome-totem', 'org-shotcut-shotcut', 'org-gnome-shell-portalhelper', 'anki', 'google-chrome', 'zotero']
+show-banners=true
 
 [org/gnome/desktop/notifications/application/anki]
 application-id='anki.desktop'
@@ -141,6 +141,9 @@ application-id='gnome-printers-panel.desktop'
 
 [org/gnome/desktop/notifications/application/gnome-system-monitor]
 application-id='gnome-system-monitor.desktop'
+
+[org/gnome/desktop/notifications/application/google-chrome]
+application-id='google-chrome.desktop'
 
 [org/gnome/desktop/notifications/application/io-snapcraft-sessionagent]
 application-id='io.snapcraft.SessionAgent.desktop'
@@ -211,8 +214,11 @@ application-id='xsane.desktop'
 [org/gnome/desktop/notifications/application/zoom]
 application-id='Zoom.desktop'
 
+[org/gnome/desktop/notifications/application/zotero]
+application-id='zotero.desktop'
+
 [org/gnome/desktop/peripherals/keyboard]
-numlock-state=true
+numlock-state=false
 
 [org/gnome/desktop/peripherals/mouse]
 speed=1.0
@@ -266,7 +272,7 @@ show-sidebar=false
 sidebar-page='thumbnails'
 sidebar-size=246
 sizing-mode='free'
-window-ratio=(6.2558922558922561, 1.3484486873508352)
+window-ratio=(1.8141503729086879, 1.0369156214367161)
 zoom=1.1512759488755646
 
 [org/gnome/evolution-data-server]
@@ -309,7 +315,7 @@ active-plugins=['openlinks', 'modelines', 'sort', 'filebrowser', 'spell', 'docin
 [org/gnome/gedit/plugins/filebrowser]
 root='file:///'
 tree-view=true
-virtual-root='file:///home/muto/Downloads'
+virtual-root='file:///home/muto/ghq/gitlab.2lu3.com/kikkawa-lab/aim2/data/02_compare_dna_seq/01_data'
 
 [org/gnome/gedit/preferences/editor]
 scheme='Yaru-dark'
@@ -370,7 +376,7 @@ search-filter-time-type='last_modified'
 search-view='list-view'
 
 [org/gnome/nautilus/window-state]
-initial-size=(864, 524)
+initial-size=(890, 550)
 maximized=false
 sidebar-width=209
 
@@ -500,13 +506,14 @@ toggle-message-tray=['<Super>a']
 [org/gnome/simple-scan]
 document-type='photo'
 save-directory='file:///home/muto/Downloads/'
+save-format='image/jpeg'
 selected-device='pixma:04A918B2'
 
 [org/gnome/software]
-check-timestamp=int64 1716761264
-install-timestamp=int64 1713669209
-online-updates-timestamp=int64 1716697660
-update-notification-timestamp=int64 1716697660
+check-timestamp=int64 1721546278
+install-timestamp=int64 1719823383
+online-updates-timestamp=int64 1721283991
+update-notification-timestamp=int64 1721546294
 
 [org/gnome/system/location]
 enabled=false
@@ -533,11 +540,11 @@ show-hidden=false
 show-size-column=true
 show-type-column=true
 sidebar-width=223
-sort-column='name'
+sort-column='modified'
 sort-directories-first=false
-sort-order='ascending'
+sort-order='descending'
 type-format='category'
-window-size=(841, 492)
+window-size=(841, 488)
 
 [org/gtk/settings/color-chooser]
 custom-colors=[(0.82352942228317261, 0.70588237047195435, 0.54901963472366333, 1.0), (0.52941179275512695, 0.80784314870834351, 0.92156863212585449, 1.0), (0.98039215803146362, 0.50196081399917603, 0.44705882668495178, 1.0), (0.86666667461395264, 0.62745100259780884, 0.86666667461395264, 1.0)]
@@ -554,12 +561,12 @@ sort-column='name'
 sort-directories-first=true
 sort-order='ascending'
 type-format='category'
-window-position=(0, 679)
-window-size=(1203, 902)
+window-position=(2000, 1448)
+window-size=(1440, 763)
 
 [org/yorba/shotwell/crop-settings]
 last-crop-height=1
-last-crop-menu-choice=1
+last-crop-menu-choice=0
 last-crop-width=1
 
 [org/yorba/shotwell/preferences/export]

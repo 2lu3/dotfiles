@@ -15,7 +15,7 @@ cat <<'EOF' >> ~/.config/chezmoi/chezmoi.toml
     programming = true
     research = true
     norun = false
-    name = 2lu3
+    name = "2lu3"
     email = "hi2lu3@gmail.com"
 EOF
 ```

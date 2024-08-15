@@ -112,6 +112,10 @@ if [[ ! -e "$HOME/.pyenv" ]]; then
     pyenv global 3.11.5
 fi
 
+# poetry
+
+curl -sSL https://install.python-poetry.org | python3 -
+
 #------------------------------------
 # nodejs
 #------------------------------------

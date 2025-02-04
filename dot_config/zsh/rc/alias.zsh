@@ -23,7 +23,7 @@ alias remodown='systemctl --user stop remotessh.service'
 alias rds='sudo du -m / | sort -n | tail -10'
 
 if type xsel > /dev/null 2>&1; then
-    alias pbcopy='xsel --clipboard --input'
+    alias copy='xsel --clipboard --input'
 fi
 
 

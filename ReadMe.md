@@ -21,7 +21,7 @@ EOF
 ```
 
 ```bash
-bash -c "$(curl -fsLS https://raw.githubusercontent.com/2lu3/dotfiles/main/init.sh)"
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply 2lu3
 ```
 
 ## アップデート方法

@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+{{- if eq .chezmoi.os "darwin" }}
+exit
+{{- end }}
+
+
 {{ if .norun }}
 
 echo "run_once_install did not execute"

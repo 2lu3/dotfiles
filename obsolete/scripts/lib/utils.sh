@@ -3,8 +3,7 @@
 should_install() {
     COMMAND="$1"
 
-    #if [ "$init" == "true" ] || ! type $COMMAND > /dev/null 2>&1; then
-    if ! type $COMMAND > /dev/null 2>&1; then
+    if [ "$init" == "true" ] || ! type $COMMAND > /dev/null 2>&1; then
         echo "$COMMAND is not installed"
         return 0
     else
@@ -17,8 +16,7 @@ apt_install() {
     PACKAGE_NAME="$1"
     COMMAND="$2"
 
-    #if [ "$init" == "true" ] || ! type $COMMAND > /dev/null 2>&1; then
-    if ! type $COMMAND > /dev/null 2>&1; then
+    if [ "$init" == "true" ] || ! type $COMMAND > /dev/null 2>&1; then
         echo "$PACKAGE_NAME is not installed"
         echo "installing $PACKAGE_NAME"
         sudo apt-get install -y $PACKAGE_NAME
@@ -32,8 +30,7 @@ brew_install() {
     PACKAGE_NAME="$1"
     COMMAND="$2"
 
-    #if [ "$init" == "true" ] || ! type $COMMAND > /dev/null 2>&1; then
-    if ! type $COMMAND > /dev/null 2>&1; then
+    if [ "$init" == "true" ] || ! type $COMMAND > /dev/null 2>&1; then
         echo "$PACKAGE_NAME is not installed"
         echo "installing $PACKAGE_NAME"
         brew install $PACKAGE_NAME
@@ -47,11 +44,17 @@ install() {
     PACKAGE_NAME="$1"
     COMMAND="$2"
 
-    if [ "$(uname)" == "Darwin" ]; then
-        brew_install $PACKAGE_NAME $COMMAND
-    elif [ "$(uname)" == "Linux" ]; then
-        apt_install $PACKAGE_NAME $COMMAND
+    if [ "$init" == "true" ] || ! type $COMMAND > /dev/null 2>&1; then
+        echo "$PACKAGE_NAME is not installed"
+        echo "installing $PACKAGE_NAME"
+        if [ "$(uname)" == "Darwin" ]; then
+            brew install $PACKAGE_NAME
+        elif [ "$(uname)" == "Linux" ]; then
+            sudo apt-get install -y $PACKAGE_NAME
+        else
+            echo "Unsupported OS: $(uname)"
+        fi
     else
-        echo "Unsupported OS: $(uname)"
+        echo "$PACKAGE_NAME is already installed"
     fi
 }

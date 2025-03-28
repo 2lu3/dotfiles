@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+echo "Are you sure you want to install the dotfiles? (y/n)"
+read -r response
+if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+  echo "Installing dotfiles..."
+else
+  echo "Aborting installation..."
+  exit 1
+fi
+
+
+{{- if eq .chezmoi.os "darwin"}}
+
+python scripts/install.py --os macos
+
+{{- else if eq .chezmoi.os "linux"}}
+
+python scripts/install.py --os linux
+
+{{ else }}
+
+echo "Unsupported OS: {{ .chezmoi.os }}"
+
+{{- end }}

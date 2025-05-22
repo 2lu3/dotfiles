@@ -32,5 +32,5 @@ if type flatpak > /dev/null 2>&1; then
 fi
 
 if type oco > /dev/null 2>&1; then
-    alias auto='oco --yes && git push'
+    alias auto='git add -A && oco --yes && git push'
 fi

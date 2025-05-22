@@ -30,3 +30,7 @@ fi
 if type flatpak > /dev/null 2>&1; then
     alias wezterm='flatpak run org.wezfurlong.wezterm'
 fi
+
+if type oco > /dev/null 2>&1; then
+    alias auto='oco --yes && git push'
+fi

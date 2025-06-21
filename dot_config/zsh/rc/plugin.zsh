@@ -17,8 +17,10 @@ if ! zgen saved; then
   zgen save
 fi
 
-# To customize prompt, run `p10k configure` or edit p10k.zsh.
-source $Z_RC_DIR/plugin/p10k.zsh
+if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+    source $Z_RC_DIR/plugin/p10k.zsh
+fi
+
 
 # peco
 function peco-src () {

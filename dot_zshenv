@@ -1,0 +1,46 @@
+#!/bin/zsh
+# シェルスクリプトでもインタラクティブシェルでも必要な設定を書く
+
+#--------------------------------------------------------------
+#               Configuration
+#--------------------------------------------------------------
+
+
+# -をつけると、左側の環境変数が指定されていた場合はそちらを優先する
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:=$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:=$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:=$HOME/.cache}"
+
+export PAGER="less -R"
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+#--------------------------------------------------------------
+#               Zsh Configuration
+#--------------------------------------------------------------
+
+export Z_DOT_DIR=$HOME
+export Z_HOME_DIR=${XDG_CONFIG_HOME}/zsh
+export Z_RC_DIR=$Z_HOME_DIR/rc
+export Z_DATA_DIR=${Z_HOME_DIR}/
+
+#--------------------------------------------------------------
+#               Third-party Software Configuration
+#--------------------------------------------------------------
+
+# Homebrew (macOS)
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+
+# direnv
+eval "$(direnv hook zsh)"
+
+if [ -f "$Z_DOT_DIR/.zshenv.local" ]; then
+    source "$Z_DOT_DIR/.zshenv.local"
+fi

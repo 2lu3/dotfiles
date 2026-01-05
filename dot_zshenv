@@ -44,3 +44,6 @@ eval "$(direnv hook zsh)"
 if [ -f "$Z_DOT_DIR/.zshenv.local" ]; then
     source "$Z_DOT_DIR/.zshenv.local"
 fi
+
+# mise
+eval "$(mise activate zsh)"

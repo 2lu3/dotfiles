@@ -1,24 +1,11 @@
 # dotfiles
 
-## インストール方法
+## Requirements
 
-```bash
-sudo apt install -y curl flatpak
-```
+* chemoi
 
-```bash
-mkdir ~/.config/chezmoi/
-cat <<'EOF' >> ~/.config/chezmoi/chezmoi.toml
-[data]
-    cui = true
-    gui = true
-    programming = true
-    research = true
-    norun = false
-    name = "2lu3"
-    email = "hi2lu3@gmail.com"
-EOF
-```
+
+## Installation
 
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply 2lu3

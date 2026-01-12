@@ -25,6 +25,7 @@ chezmoi update
 * trello
 * slack
 * runcat
+* scrool reverser
 
 
 ### homebrew

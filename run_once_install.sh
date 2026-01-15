@@ -16,7 +16,8 @@ install_zgen() {
 main() {
     install_zgen
 
-    brew install peco ghq neovim direnv deno mise
+    brew install peco ghq neovim direnv deno mise lsd
+    brew install --cask alt-tab
     
     # ここに他のインストール処理を追加
 }

@@ -25,7 +25,6 @@ main() {
     npm install -g opencommit
     oco config set OCO_LANGUAGE=japanese
     oco config set OCO_LANGUAGE=ja
-    oco config set OCO_MODEL=gpt-5-nano-2025-08-07
     oco config set OCO_EMOJI=true
     
     # ここに他のインストール処理を追加

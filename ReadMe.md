@@ -31,3 +31,7 @@ chezmoi update
 ### homebrew
 
 * alttab
+
+### その他
+
+* finderを右クリック→オプション→全てのデスクトップに割り当て

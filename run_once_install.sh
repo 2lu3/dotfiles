@@ -26,6 +26,8 @@ main() {
     oco config set OCO_LANGUAGE=japanese
     oco config set OCO_LANGUAGE=ja
     oco config set OCO_EMOJI=true
+
+    brew install font-fira-code
     
     # ここに他のインストール処理を追加
 }

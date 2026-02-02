@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -xe
 
 # zgenのインストール
 install_zgen() {
@@ -23,11 +23,9 @@ main() {
     mise use -g node@24
 
     npm install -g opencommit
-    oco config set OCO_LANGUAGE=japanese
     oco config set OCO_LANGUAGE=ja
     oco config set OCO_EMOJI=true
 
-    brew install font-fira-code
     
     # ここに他のインストール処理を追加
 }

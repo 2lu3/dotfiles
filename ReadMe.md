@@ -8,7 +8,8 @@
 ## Installation
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply 2lu3
+brew install chezmoi
+chezmoi init --apply 2lu3
 ```
 
 ## アップデート方法

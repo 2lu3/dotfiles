@@ -16,16 +16,25 @@ install_zgen() {
 main() {
     install_zgen
 
-    brew install peco ghq neovim direnv deno mise lsd
-    brew install --cask alt-tab
+    if ! type brew > /dev/null 2>&1; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
 
+        if ! type brew > /dev/null 2>&1; then
+            echo "brew is not installed"
+            return 1
+        fi
+    fi
+
+    brew install peco ghq neovim direnv deno mise lsd
+    brew install --cask alt-tab wezterm
+
+    eval "$(mise activate zsh)"
     mise install node@24
     mise use -g node@24
 
     npm install -g opencommit
     oco config set OCO_LANGUAGE=ja
     oco config set OCO_EMOJI=true
-
     
     # ここに他のインストール処理を追加
 }

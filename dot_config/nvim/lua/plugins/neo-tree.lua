@@ -6,7 +6,7 @@ return {
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons", -- optional, but recommended
   },
-  lazy = true,
+  lazy = false,
   ---@module 'neo-tree'
   ---@type neotree.Config
 

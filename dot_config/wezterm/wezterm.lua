@@ -9,7 +9,7 @@ return {
 	--disable_default_key_bindings = true,
 	color_scheme = "MaterialDesignColors",
 	window_background_opacity = 1,
-	font = require("wezterm").font_with_fallback({ "FiraCode Nerd Font", "Moralerspace Neon JPDOC" }),
+	font = require("wezterm").font_with_fallback({ "FiraCode Nerd Font", "Moralerspace Neon HWJPDOC" }),
 	font_size = 11.0,
 	use_ime = true,
 	ime_preedit_rendering = "Builtin",

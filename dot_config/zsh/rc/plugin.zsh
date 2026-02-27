@@ -17,10 +17,6 @@ if ! zgen saved; then
   zgen save
 fi
 
-if [[ "$TERM_PROGRAM" != "vscode" ]]; then
-    source $Z_RC_DIR/plugin/p10k.zsh
-fi
-
 
 # peco
 function peco-src () {
@@ -35,7 +31,3 @@ zle -N peco-src
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-
-
-source $Z_RC_DIR/plugin/dev.zsh

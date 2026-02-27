@@ -28,15 +28,17 @@ main() {
     brew install peco ghq neovim direnv deno mise lsd
     brew install --cask alt-tab wezterm
 
-    eval "$(mise activate zsh)"
-    mise install node@24
-    mise use -g node@24
+    if ! type npm > /dev/null 2>&1; then
+    	eval "$(mise activate zsh)"
+    	mise install node@24
+    	mise use -g node@24
+    fi
+
 
     npm install -g opencommit
     oco config set OCO_LANGUAGE=ja
     oco config set OCO_EMOJI=true
     
-    # ここに他のインストール処理を追加
 }
 
 main

@@ -2,12 +2,11 @@
 set -xe
 
 # ~/.${name} に .${name}.global を読み込む行を追加（既にあればスキップ）
-# 用法: ensure_sources_global zshenv または ensure_sources_global zshrc
 ensure_sources_global() {
     local name="$1"
     local file="${HOME}/.${name}"
     local marker="# load global ${name} (managed by chezmoi run_once_install)"
-    local source_line="[ -f \"\${HOME}/.${name}.global\" ] && source \"\${HOME}/.${name}.global\""
+    local source_line="[ -f \"\${HOME}/.global.${name}\" ] && source \"\${HOME}/.global.${name}\""
 
     if [ -f "$file" ] && grep -q "$marker" "$file" 2>/dev/null; then
         echo "~/.${name} already sources .${name}.global, skipping..."
@@ -22,7 +21,6 @@ ensure_sources_global() {
     } >> "$file"
 }
 
-# zgenのインストール
 install_zgen() {
     if [ -d "${HOME}/.zgen" ]; then
         echo ".zgen is already installed, skipping..."
@@ -36,6 +34,7 @@ install_zgen() {
 main() {
     ensure_sources_global zshenv
     ensure_sources_global zshrc
+    
     install_zgen
 
     if ! type brew > /dev/null 2>&1; then
@@ -51,16 +50,14 @@ main() {
     brew install --cask alt-tab wezterm
 
     if ! type npm > /dev/null 2>&1; then
-    	eval "$(mise activate zsh)"
     	mise install node@24
     	mise use -g node@24
+
+        eval "$(mise activate bash)"
+        npm install -g opencommit
+        oco config set OCO_LANGUAGE=ja
+        oco config set OCO_EMOJI=true
     fi
-
-
-    npm install -g opencommit
-    oco config set OCO_LANGUAGE=ja
-    oco config set OCO_EMOJI=true
-    
 }
 
 main

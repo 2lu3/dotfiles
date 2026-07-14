@@ -2,5 +2,10 @@
 
 return {
     "saghen/blink.cmp",
-    dependencies = { "saghen/blink.lib" },
+    -- リリースタグを使うことでプリビルトのfuzzyライブラリが自動ダウンロードされる
+    -- (mainブランチだとタグがなくダウンロードできず、cargoでのビルドが必要になる)
+    version = "1.*",
+    opts = {
+        keymap = { preset = "default" },
+    },
 }

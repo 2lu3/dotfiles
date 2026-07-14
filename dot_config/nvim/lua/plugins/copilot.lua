@@ -2,7 +2,9 @@
 
 return {
   "zbirenbaum/copilot.lua",
+  event = "InsertEnter",
   dependencies = {
     "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
   },
+  opts = {},
 }

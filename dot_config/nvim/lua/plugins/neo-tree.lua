@@ -1,3 +1,15 @@
+-- neo-tree.nvim: ファイルツリー（サイドバー）エクスプローラ
+
+
+-- a: new file
+-- A: new dir
+-- c: copy
+-- d: delete
+-- H: show hidden file
+-- i: view info
+-- r: rename
+-- P: preview
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
@@ -6,7 +18,6 @@ return {
     "MunifTanjim/nui.nvim",
     "nvim-tree/nvim-web-devicons", -- optional, but recommended
   },
-  lazy = false,
   ---@module 'neo-tree'
   ---@type neotree.Config
 

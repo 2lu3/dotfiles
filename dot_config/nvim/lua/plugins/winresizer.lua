@@ -1,4 +1,5 @@
--- lua/plugins/winresizer.lua
+-- winresizer: キー操作でウィンドウサイズを変更
+
 return {
     "simeji/winresizer",
     keys = {

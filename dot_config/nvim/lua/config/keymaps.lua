@@ -1,5 +1,8 @@
 vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true })
 
+-- 検索ハイライトをEscでキャンセル --
+vim.keymap.set("n", "<Esc>", ":nohlsearch<CR>", { noremap = true, silent = true, desc = "Clear search highlight" })
+
 -- window操作 --
 -- split
 vim.keymap.set("n", "<leader>v", "<C-w>v", { desc = "Vertical split" })

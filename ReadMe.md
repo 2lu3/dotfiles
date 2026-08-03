@@ -36,3 +36,4 @@ chezmoi update
 ### その他
 
 * finderを右クリック→オプション→全てのデスクトップに割り当て
+* Finickyを一度起動し、既定のWebブラウザに設定する（設定は`~/.finicky.js`。通常クリックはComet、option+クリックはGoogle Chromeの`genda.jp`プロファイルで開く）

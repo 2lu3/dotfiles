@@ -47,7 +47,7 @@ main() {
     fi
 
     brew install peco ghq neovim direnv deno mise lsd gh uv
-    brew install --cask alt-tab wezterm
+    brew install --cask alt-tab wezterm finicky
 
     if ! type npm > /dev/null 2>&1; then
     	mise install node@24

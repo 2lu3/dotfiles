@@ -1,0 +1,125 @@
+feature_packages:
+  base:
+    darwin:
+      brew:
+        formulae:
+          - ca-certificates
+          - curl
+          - git
+          - unzip
+        casks: []
+      apt: []
+      official: []
+    linux:
+      brew:
+        formulae: []
+        casks: []
+      apt:
+        - ca-certificates
+        - curl
+        - git
+        - unzip
+      official: []
+  shell:
+    darwin:
+      brew:
+        formulae:
+          - lsd
+          - tmux
+          - zsh
+        casks: []
+      apt: []
+      official: []
+    linux:
+      brew:
+        formulae: []
+        casks: []
+      apt:
+        - lsd
+        - tmux
+        - zsh
+      official: []
+  dev:
+    darwin:
+      brew:
+        formulae:
+          - direnv
+          - fzf
+          - gh
+          - ghq
+          - mise
+          - neovim
+          - peco
+          - ripgrep
+          - uv
+        casks: []
+      apt: []
+      official: []
+    linux:
+      brew:
+        formulae: []
+        casks: []
+      apt:
+        - direnv
+        - fzf
+        - gh
+        - neovim
+        - ripgrep
+      official:
+        - ghq
+        - mise
+        - peco
+        - uv
+  ai:
+    darwin:
+      brew:
+        formulae:
+          - mise
+        casks: []
+      apt: []
+      official: []
+      npm:
+        - opencommit
+        - "@openai/codex"
+        - "@anthropic-ai/claude-code"
+        - "@getpaseo/cli"
+    linux:
+      brew:
+        formulae: []
+        casks: []
+      apt: []
+      official:
+        - mise
+      npm:
+        - opencommit
+        - "@openai/codex"
+        - "@anthropic-ai/claude-code"
+        - "@getpaseo/cli"
+  gui:
+    darwin:
+      brew:
+        formulae: []
+        casks:
+          - alt-tab
+          - finicky
+          - wezterm
+      apt: []
+      official: []
+    linux:
+      brew:
+        formulae: []
+        casks: []
+      apt: []
+      official: []
+
+tool_releases:
+  ghq:
+    repository: x-motemen/ghq
+    version: 1.10.1
+    archive: ghq_linux_{arch}.zip
+    binary: ghq
+  peco:
+    repository: peco/peco
+    version: 0.5.11
+    archive: peco_linux_{arch}.tar.gz
+    binary: peco

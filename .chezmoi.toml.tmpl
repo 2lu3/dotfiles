@@ -1,0 +1,11 @@
+{{- $shell := promptBoolOnce . "features.shell" "Enable shell features (zsh, tmux, and lsd)?" false -}}
+{{- $dev := promptBoolOnce . "features.dev" "Enable development features (Neovim and CLI tools)?" false -}}
+{{- $ai := promptBoolOnce . "features.ai" "Enable AI features (OpenCommit)?" false -}}
+{{- $gui := promptBoolOnce . "features.gui" "Enable GUI features (WezTerm and macOS apps)?" false -}}
+
+[data.features]
+base = true
+shell = {{ $shell }}
+dev = {{ $dev }}
+ai = {{ $ai }}
+gui = {{ $gui }}

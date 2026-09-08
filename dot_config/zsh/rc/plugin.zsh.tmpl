@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+if [ -r "$HOME/.zgen/zgen.zsh" ]; then
+    source "$HOME/.zgen/zgen.zsh"
+
+    if command -v zgen >/dev/null 2>&1 && ! zgen saved; then
+        zgen load romkatv/powerlevel10k powerlevel10k
+        zgen load zdharma-continuum/fast-syntax-highlighting
+        zgen load zsh-users/zsh-autosuggestions
+        zgen load zsh-users/zsh-completions
+        zgen save
+    fi
+fi
+
+{{ if .features.dev }}
+if command -v ghq >/dev/null 2>&1 && command -v peco >/dev/null 2>&1; then
+    peco-src() {
+        local selected_dir
+        selected_dir="$(ghq list -p | peco --query "$LBUFFER")"
+        if [ -n "$selected_dir" ]; then
+            BUFFER="cd ${selected_dir}"
+            zle accept-line
+        fi
+        zle clear-screen
+    }
+    zle -N peco-src
+fi
+
+if [ -r "$HOME/.fzf.zsh" ] && command -v fzf >/dev/null 2>&1; then
+    source "$HOME/.fzf.zsh"
+fi
+{{ end }}

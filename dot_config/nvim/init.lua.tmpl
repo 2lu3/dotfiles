@@ -1,0 +1,38 @@
+local function add_mise_node_environment()
+  local mise = vim.fn.exepath("mise")
+  if mise == "" then
+    local local_mise = vim.fn.expand("~/.local/bin/mise")
+    if vim.fn.executable(local_mise) == 1 then
+      mise = local_mise
+    end
+  end
+
+  if mise == "" then
+    return
+  end
+
+  local mise_path = vim.fn.systemlist({
+    mise,
+    "exec",
+    "node@24",
+    "--",
+    "sh",
+    "-c",
+    "printf '%s' \"$PATH\"",
+  })
+
+  if vim.v.shell_error == 0 and #mise_path > 0 and mise_path[1] ~= "" then
+    vim.env.PATH = mise_path[1] .. ":" .. vim.env.PATH
+  end
+end
+
+add_mise_node_environment()
+
+local nvim_python = vim.fn.expand("~/.local/share/dotfiles/nvim-venv/bin/python")
+if vim.fn.executable(nvim_python) == 1 then
+  vim.g.python3_host_prog = nvim_python
+end
+
+require("config.options")
+require("config.lazy")
+require("config.keymaps")

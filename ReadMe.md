@@ -18,6 +18,10 @@ chezmoi init --apply 2lu3
 chezmoi update
 ```
 
+## タスク管理
+
+タスク管理にはLinearを使用します。
+
 ## mac 手動セットアップ
 
 ### app store

@@ -36,6 +36,41 @@ chezmoi init --apply 2lu3
 * Ubuntu で `gui = true` を指定すると、設定の適用前に未対応エラーになります。
 * 機能やパッケージの一覧は `.chezmoidata/features.yaml` で、`feature -> OS -> 導入方法` の順に管理しています。パッケージを追加するときは、対象機能の OS 別リストを更新してください。
 
+### インストールされるものと sudo 権限
+
+以下は `chezmoi apply` で導入されるものの一覧です。macOS は Homebrew が事前に導入済みであることを前提にしています。`sudo` 欄は、導入処理の実行時に必要な権限を示します。
+
+| feature | ソフトウェア | macOS | Ubuntu | sudo |
+| -- | -- | -- | -- | -- |
+| base | `ca-certificates` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| base | `curl` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| base | `git` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| base | `unzip` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| shell | `lsd` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| shell | `tmux` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| shell | `zsh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| shell | `zgen` | `~/.zgen` に git clone | `~/.zgen` に git clone | 不要 |
+| dev | `direnv` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `fzf` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `gh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `ghq` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
+| dev / ai | `mise` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
+| dev | `neovim` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `peco` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
+| dev | `ripgrep` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `uv` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
+| dev / ai | Node.js 24 | mise | mise | 不要 |
+| dev | `neovim`（npm パッケージ） | mise / npm | mise / npm | 不要 |
+| dev | `pynvim` | uv の仮想環境 | uv の仮想環境 | 不要 |
+| dev | `doq` | uv の仮想環境 | uv の仮想環境 | 不要 |
+| ai | `opencommit` | mise / npm | mise / npm | 不要 |
+| ai | `@openai/codex` | mise / npm | mise / npm | 不要 |
+| ai | `@anthropic-ai/claude-code` | mise / npm | mise / npm | 不要 |
+| ai | `@getpaseo/cli` | mise / npm | mise / npm | 不要 |
+| gui | `alt-tab` | Homebrew cask | 対応なし | 不要 |
+| gui | `finicky` | Homebrew cask | 対応なし | 不要 |
+| gui | `wezterm` | Homebrew cask | 対応なし | 不要 |
+
 ## ランタイム
 
 * Python 本体、仮想環境、依存関係は uv で管理します。Node.js と Go は mise で管理し、開発用の言語バージョンは各プロジェクトの `.python-version`、`pyproject.toml`、`mise.toml` に任せます。

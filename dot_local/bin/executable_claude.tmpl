@@ -1,0 +1,20 @@
+{{- if .features.ai -}}
+#!/bin/sh
+set -eu
+
+mise_command=''
+if command -v mise >/dev/null 2>&1; then
+    mise_command="$(command -v mise)"
+elif [ -x "$HOME/.local/bin/mise" ]; then
+    mise_command="$HOME/.local/bin/mise"
+else
+    echo "mise is required for the ai feature." >&2
+    exit 1
+fi
+
+exec "$mise_command" exec node@24 -- claude "$@"
+{{- else -}}
+#!/bin/sh
+echo "The ai feature is disabled; enable it in chezmoi's configuration to use claude." >&2
+exit 1
+{{- end }}

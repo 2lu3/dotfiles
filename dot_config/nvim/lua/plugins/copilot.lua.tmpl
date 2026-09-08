@@ -1,0 +1,16 @@
+{{ if .features.ai }}
+-- copilot.lua: GitHub Copilot によるAIコード補完
+
+return {
+  "zbirenbaum/copilot.lua",
+  event = "InsertEnter",
+  dependencies = {
+    "copilotlsp-nvim/copilot-lsp",
+  },
+  opts = {},
+}
+{{ else }}
+-- Keep a concrete empty plugin specification so disabling ai cannot leave
+-- the previous Copilot configuration active.
+return {}
+{{ end }}

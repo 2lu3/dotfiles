@@ -1,0 +1,223 @@
+#!/bin/bash
+set -euo pipefail
+
+export PATH="$HOME/.local/bin:$PATH"
+
+SHELL_FEATURE_ENABLED="{{ .features.shell }}"
+DEV_FEATURE_ENABLED="{{ .features.dev }}"
+AI_FEATURE_ENABLED="{{ .features.ai }}"
+GUI_FEATURE_ENABLED="{{ .features.gui }}"
+
+if [ "{{ .chezmoi.os }}" = "linux" ] && [ "$GUI_FEATURE_ENABLED" = "true" ]; then
+    echo "The gui feature is only supported on macOS." >&2
+    exit 1
+fi
+
+mkdir -p "$HOME/.local/bin"
+
+install_brew_formula() {
+    local formula="$1"
+
+    if ! brew list --formula "$formula" >/dev/null 2>&1; then
+        brew install "$formula"
+    fi
+}
+
+install_brew_cask() {
+    local cask="$1"
+
+    if ! brew list --cask "$cask" >/dev/null 2>&1; then
+        brew install --cask "$cask"
+    fi
+}
+
+install_uv() {
+    if command -v uv >/dev/null 2>&1; then
+        return 0
+    fi
+
+    curl -LsSf https://astral.sh/uv/install.sh \
+        | env UV_INSTALL_DIR="$HOME/.local/bin" UV_NO_MODIFY_PATH=1 sh
+}
+
+install_mise() {
+    if command -v mise >/dev/null 2>&1; then
+        return 0
+    fi
+
+    curl -fsSL https://mise.run \
+        | env MISE_INSTALL_PATH="$HOME/.local/bin/mise" sh
+}
+
+install_release_binary() {
+    local name="$1"
+    local repository="$2"
+    local version="$3"
+    local archive="$4"
+    local binary="$5"
+    local arch
+    local temporary_directory
+    local archive_path
+    local binary_path
+
+    if command -v "$name" >/dev/null 2>&1; then
+        return 0
+    fi
+
+    case "$(uname -m)" in
+        x86_64|amd64)
+            arch=amd64
+            ;;
+        arm64|aarch64)
+            arch=arm64
+            ;;
+        *)
+            echo "Unsupported architecture for $name: $(uname -m)" >&2
+            return 1
+            ;;
+    esac
+
+    temporary_directory="$(mktemp -d)"
+    archive_path="$temporary_directory/${archive//\{arch\}/$arch}"
+
+    cleanup_release() {
+        rm -rf -- "$temporary_directory"
+        trap - RETURN
+    }
+    trap cleanup_release RETURN
+
+    curl -fsSL \
+        "https://github.com/$repository/releases/download/v$version/${archive//\{arch\}/$arch}" \
+        -o "$archive_path"
+    mkdir "$temporary_directory/extracted"
+
+    case "$archive" in
+        *.zip)
+            unzip -q "$archive_path" -d "$temporary_directory/extracted"
+            ;;
+        *.tar.gz)
+            tar -xzf "$archive_path" -C "$temporary_directory/extracted"
+            ;;
+        *)
+            echo "Unsupported archive format for $name: $archive" >&2
+            return 1
+            ;;
+    esac
+
+    binary_path="$(find "$temporary_directory/extracted" -type f -name "$binary" -print -quit)"
+    if [ -z "$binary_path" ]; then
+        echo "Could not find $binary in the $name release archive." >&2
+        return 1
+    fi
+
+    install -m 0755 "$binary_path" "$HOME/.local/bin/$name"
+}
+
+install_official_tool() {
+    local tool="$1"
+
+    case "$tool" in
+        ghq)
+            install_release_binary \
+                "ghq" \
+                {{ .tool_releases.ghq.repository | quote }} \
+                {{ .tool_releases.ghq.version | quote }} \
+                {{ .tool_releases.ghq.archive | quote }} \
+                {{ .tool_releases.ghq.binary | quote }}
+            ;;
+        mise)
+            install_mise
+            ;;
+        peco)
+            install_release_binary \
+                "peco" \
+                {{ .tool_releases.peco.repository | quote }} \
+                {{ .tool_releases.peco.version | quote }} \
+                {{ .tool_releases.peco.archive | quote }} \
+                {{ .tool_releases.peco.binary | quote }}
+            ;;
+        uv)
+            install_uv
+            ;;
+        *)
+            echo "Unsupported official tool: $tool" >&2
+            return 1
+            ;;
+    esac
+}
+
+case "{{ .chezmoi.os }}" in
+    darwin)
+        if ! command -v brew >/dev/null 2>&1; then
+            echo "Homebrew must be installed before applying the macOS configuration." >&2
+            exit 1
+        fi
+
+        {{- range .feature_packages.base.darwin.brew.formulae }}
+        install_brew_formula {{ . | quote }}
+        {{- end }}
+        {{- if .features.shell }}
+        {{- range .feature_packages.shell.darwin.brew.formulae }}
+        install_brew_formula {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if .features.dev }}
+        {{- range .feature_packages.dev.darwin.brew.formulae }}
+        install_brew_formula {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if .features.ai }}
+        {{- range .feature_packages.ai.darwin.brew.formulae }}
+        install_brew_formula {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if .features.gui }}
+        {{- range .feature_packages.gui.darwin.brew.formulae }}
+        install_brew_formula {{ . | quote }}
+        {{- end }}
+        {{- range .feature_packages.gui.darwin.brew.casks }}
+        install_brew_cask {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        ;;
+    linux)
+        sudo apt-get update
+        sudo apt-get install -y \
+            {{- range .feature_packages.base.linux.apt }}
+            {{ . | quote }} \
+            {{- end }}
+            {{- if .features.shell }}
+            {{- range .feature_packages.shell.linux.apt }}
+            {{ . | quote }} \
+            {{- end }}
+            {{- end }}
+            {{- if .features.dev }}
+            {{- range .feature_packages.dev.linux.apt }}
+            {{ . | quote }} \
+            {{- end }}
+            {{- end }}
+
+        {{- range .feature_packages.base.linux.official }}
+        install_official_tool {{ . | quote }}
+        {{- end }}
+        {{- if .features.shell }}
+        {{- range .feature_packages.shell.linux.official }}
+        install_official_tool {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if .features.dev }}
+        {{- range .feature_packages.dev.linux.official }}
+        install_official_tool {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        {{- if .features.ai }}
+        {{- range .feature_packages.ai.linux.official }}
+        install_official_tool {{ . | quote }}
+        {{- end }}
+        {{- end }}
+        ;;
+    *)
+        echo "Unsupported operating system: {{ .chezmoi.os }}" >&2
+        exit 1
+        ;;
+esac

@@ -1,0 +1,113 @@
+#!/bin/bash
+set -euo pipefail
+
+export PATH="$HOME/.local/bin:$PATH"
+
+SHELL_FEATURE_ENABLED="{{ .features.shell }}"
+DEV_FEATURE_ENABLED="{{ .features.dev }}"
+AI_FEATURE_ENABLED="{{ .features.ai }}"
+{{ $ai_platform := index .feature_packages.ai .chezmoi.os }}
+
+ensure_global_source() {
+    local name="$1"
+    local file="${HOME}/.${name}"
+    local marker="# load global ${name} (managed by chezmoi run_once_install)"
+    local source_line="[ -f \"\${HOME}/.global.${name}\" ] && source \"\${HOME}/.global.${name}\""
+
+    if [ ! -e "$file" ]; then
+        : > "$file"
+    fi
+
+    if grep -Fqx "$marker" "$file" 2>/dev/null; then
+        return 0
+    fi
+
+    printf '\n%s\n%s\n' "$marker" "$source_line" >> "$file"
+}
+
+remove_global_source() {
+    local name="$1"
+    local file="${HOME}/.${name}"
+    local marker="# load global ${name} (managed by chezmoi run_once_install)"
+    local source_line="[ -f \"\${HOME}/.global.${name}\" ] && source \"\${HOME}/.global.${name}\""
+    local temporary_file
+
+    if [ ! -f "$file" ]; then
+        return 0
+    fi
+
+    temporary_file="$(mktemp)"
+    awk -v marker="$marker" -v source_line="$source_line" '
+        $0 == marker { pending_marker = 1; next }
+        pending_marker {
+            if ($0 == source_line) {
+                pending_marker = 0
+                next
+            }
+            print marker
+            pending_marker = 0
+        }
+        { print }
+        END {
+            if (pending_marker) print marker
+        }
+    ' "$file" > "$temporary_file"
+    mv "$temporary_file" "$file"
+}
+
+install_zgen() {
+    if [ -f "$HOME/.zgen/zgen.zsh" ]; then
+        return 0
+    fi
+
+    if [ -e "$HOME/.zgen" ]; then
+        echo "The existing $HOME/.zgen directory does not contain zgen.zsh." >&2
+        return 1
+    fi
+
+    git clone https://github.com/tarjoilija/zgen.git "$HOME/.zgen"
+}
+
+setup_node_runtime() {
+    mise install node@24
+
+    if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
+        mise exec node@24 -- npm install --global --no-fund --no-audit neovim
+    fi
+
+    if [ "$AI_FEATURE_ENABLED" = "true" ]; then
+        mise exec node@24 -- npm install --global --no-fund --no-audit{{ range $ai_platform.npm }} {{ . | quote }}{{ end }}
+        mise exec node@24 -- oco config set OCO_LANGUAGE=ja
+        mise exec node@24 -- oco config set OCO_EMOJI=true
+    fi
+}
+
+setup_nvim_python() {
+    local nvim_python_environment="$HOME/.local/share/dotfiles/nvim-venv"
+
+    if [ ! -x "$nvim_python_environment/bin/python" ]; then
+        uv venv "$nvim_python_environment"
+    fi
+
+    uv pip install \
+        --python "$nvim_python_environment/bin/python" \
+        pynvim \
+        doq
+}
+
+if [ "$SHELL_FEATURE_ENABLED" = "true" ]; then
+    install_zgen
+    ensure_global_source zshenv
+    ensure_global_source zshrc
+else
+    remove_global_source zshenv
+    remove_global_source zshrc
+fi
+
+if [ "$DEV_FEATURE_ENABLED" = "true" ] || [ "$AI_FEATURE_ENABLED" = "true" ]; then
+    setup_node_runtime
+fi
+
+if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
+    setup_nvim_python
+fi

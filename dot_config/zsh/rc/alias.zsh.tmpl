@@ -1,0 +1,44 @@
+#!/bin/zsh
+
+{{ if .features.dev }}
+if command -v nvim >/dev/null 2>&1; then
+    alias v='nvim'
+    alias vi='nvim'
+fi
+{{ end }}
+
+if command -v lsd >/dev/null 2>&1; then
+    alias l='lsd --group-directories-first --color=auto'
+    alias ls=l
+    alias la='ls -a'
+    alias ll='ls -aahl'
+    alias lc='clear && ls'
+fi
+
+if command -v docker >/dev/null 2>&1; then
+    alias dc='docker compose'
+fi
+
+{{ if .features.dev }}
+if command -v uv >/dev/null 2>&1; then
+    pycreate() {
+        uv venv .venv || return 1
+
+        if [ ! -f .envrc ] || ! grep -qxF 'source .venv/bin/activate' .envrc; then
+            printf '%s\n' 'source .venv/bin/activate' 'unset PS1' >> .envrc
+        fi
+
+        if command -v direnv >/dev/null 2>&1; then
+            direnv allow
+        fi
+    }
+fi
+{{ end }}
+
+alias rds='sudo du -m / | sort -n | tail -10'
+
+{{ if .features.ai }}
+if command -v oco >/dev/null 2>&1; then
+    alias auto='git add -A && oco --yes && git push'
+fi
+{{ end }}

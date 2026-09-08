@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+#--------------------------------------------------------------
+#               History Configuration
+#--------------------------------------------------------------
+
+HISTFILE="$Z_DATA_DIR/zsh_history"
+HISTSIZE=1000
+SAVEHIST=100000
+HISTORY_IGNORE="(ls|l|s|la|ll|cd|pwd|zsh|exit|cd *)"
+
+#--------------------------------------------------------------
+#               Environment Variables
+#--------------------------------------------------------------
+
+{{ if .features.dev }}
+if command -v nvim >/dev/null 2>&1; then
+    export EDITOR=nvim
+fi
+{{ end }}
+
+#--------------------------------------------------------------
+#               Uncategorized
+#--------------------------------------------------------------
+
+autoload -Uz compinit
+compinit

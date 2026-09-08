@@ -1,5 +1,19 @@
-scripts
-init.sh
+{{- if not .features.shell }}
+.config/zsh/**
+.global.zshenv
+.global.zshrc
+.tmux.conf
+{{- end }}
+
+{{- if not .features.dev }}
+.config/nvim/**
+{{- end }}
+
+{{- if not .features.gui }}
+.config/wezterm/**
+.finicky.js
+{{- end }}
+
 ReadMe.md
 images
 obsolete

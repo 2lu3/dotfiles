@@ -49,6 +49,60 @@ install_mise() {
         | env MISE_INSTALL_PATH="$HOME/.local/bin/mise" sh
 }
 
+install_direnv() {
+    if command -v direnv >/dev/null 2>&1; then
+        return 0
+    fi
+
+    curl -sfL https://direnv.net/install.sh \
+        | env bin_path="$HOME/.local/bin" bash
+}
+
+install_gh() {
+    if command -v gh >/dev/null 2>&1; then
+        return 0
+    fi
+
+    case "$(uname -m)" in
+        x86_64|amd64)
+            ;;
+        *)
+            echo "Unsupported architecture for gh: $(uname -m) (x86_64 required)" >&2
+            return 1
+            ;;
+    esac
+
+    local temporary_directory
+    local download_url
+    local binary_path
+
+    temporary_directory="$(mktemp -d)"
+    cleanup_gh() {
+        rm -rf -- "$temporary_directory"
+        trap - RETURN
+    }
+    trap cleanup_gh RETURN
+
+    download_url="$(
+        curl -fsSL https://api.github.com/repos/cli/cli/releases/latest \
+            | sed -n 's/.*"browser_download_url": "\(.*linux_amd64.tar.gz\)".*/\1/p' \
+            | head -n1
+    )"
+    if [ -z "$download_url" ]; then
+        echo "Could not find the latest gh Linux amd64 release." >&2
+        return 1
+    fi
+
+    curl -fsSL "$download_url" | tar -xz -C "$temporary_directory"
+    binary_path="$(find "$temporary_directory" -type f -path '*/bin/gh' -print -quit)"
+    if [ -z "$binary_path" ]; then
+        echo "Could not find gh in the release archive." >&2
+        return 1
+    fi
+
+    install -m 0755 "$binary_path" "$HOME/.local/bin/gh"
+}
+
 install_release_binary() {
     local name="$1"
     local repository="$2"
@@ -117,6 +171,12 @@ install_official_tool() {
     local tool="$1"
 
     case "$tool" in
+        direnv)
+            install_direnv
+            ;;
+        gh)
+            install_gh
+            ;;
         ghq)
             install_release_binary \
                 "ghq" \
@@ -208,6 +268,9 @@ case "{{ .chezmoi.os }}" in
         {{- if .features.dev }}
         {{- range .feature_packages.dev.linux.official }}
         install_official_tool {{ . | quote }}
+        {{- end }}
+        {{- range .feature_packages.dev.linux.mise }}
+        mise use -g {{ . | quote }}
         {{- end }}
         {{- end }}
         {{- if .features.ai }}

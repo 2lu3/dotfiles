@@ -60,16 +60,17 @@ feature_packages:
         formulae: []
         casks: []
       apt:
-        - direnv
-        - fzf
-        - gh
         - neovim
         - ripgrep
       official:
+        - direnv
+        - gh
         - ghq
         - mise
         - peco
         - uv
+      mise:
+        - fzf@latest
   ai:
     darwin:
       brew:

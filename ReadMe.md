@@ -11,6 +11,10 @@ task_tracker: linear
 ## Installation
 
 ```bash
+# linux
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
+
+# macos
 brew install chezmoi
 chezmoi init --apply 2lu3
 ```

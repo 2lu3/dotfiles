@@ -182,21 +182,33 @@ case "{{ .chezmoi.os }}" in
         {{- end }}
         ;;
     linux)
-        sudo apt-get update
-        sudo apt-get install -y \
+        apt_packages=(
             {{- range .feature_packages.base.linux.apt }}
-            {{ . | quote }} \
+            {{ . | quote }}
             {{- end }}
             {{- if .features.shell }}
             {{- range .feature_packages.shell.linux.apt }}
-            {{ . | quote }} \
+            {{ . | quote }}
             {{- end }}
             {{- end }}
             {{- if .features.dev }}
             {{- range .feature_packages.dev.linux.apt }}
-            {{ . | quote }} \
+            {{ . | quote }}
             {{- end }}
             {{- end }}
+        )
+
+        missing_apt_packages=()
+        for package in "${apt_packages[@]}"; do
+            if [ "$(dpkg-query -W -f='${Status}' "$package" 2>/dev/null || true)" != "install ok installed" ]; then
+                missing_apt_packages+=("$package")
+            fi
+        done
+
+        if [ "${#missing_apt_packages[@]}" -gt 0 ]; then
+            sudo apt-get update
+            sudo apt-get install -y "${missing_apt_packages[@]}"
+        fi
 
         {{- range .feature_packages.base.linux.official }}
         install_official_tool {{ . | quote }}

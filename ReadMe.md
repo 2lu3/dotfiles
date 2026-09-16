@@ -19,6 +19,23 @@ brew install chezmoi
 chezmoi init --apply 2lu3
 ```
 
+### Ubuntuでsudoなしでインストールする場合
+
+`chezmoi init --apply` で `sudo` を使わない場合は、事前に必要なaptパッケージを導入します。
+
+```bash
+sudo apt-get update
+
+# base（常に有効）
+sudo apt-get install -y ca-certificates curl git unzip
+
+# shell=true の場合
+sudo apt-get install -y lsd tmux zsh
+
+# dev=true の場合
+sudo apt-get install -y direnv fzf gh neovim ripgrep
+```
+
 初回の `chezmoi init` で、shell・dev・ai・gui の機能を個別に選択します。base は常に有効です。選択内容はユーザーごとの `~/.config/chezmoi/chezmoi.toml` に保存されます。
 
 ## Features

@@ -32,7 +32,7 @@ chezmoi init --apply 2lu3
 ## OS とパッケージ
 
 * macOS は Homebrew の formula と cask を使用します。Homebrew は事前にインストールしてください。
-* Ubuntu は apt を基本に使用します。apt で提供されない uv、mise、ghq、peco は公式配布物からユーザー領域へ導入します。
+* Ubuntu は apt を基本に使用します。direnv、gh、ghq、mise、peco、uv は公式配布物、fzf は mise からユーザー領域へ導入します。
 * Ubuntu で `gui = true` を指定すると、設定の適用前に未対応エラーになります。
 * 機能やパッケージの一覧は `.chezmoidata/features.yaml` で、`feature -> OS -> 導入方法` の順に管理しています。パッケージを追加するときは、対象機能の OS 別リストを更新してください。
 
@@ -50,9 +50,9 @@ chezmoi init --apply 2lu3
 | shell | `tmux` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
 | shell | `zsh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
 | shell | `zgen` | `~/.zgen` に git clone | `~/.zgen` に git clone | 不要 |
-| dev | `direnv` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| dev | `fzf` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| dev | `gh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `direnv` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
+| dev | `fzf` | Homebrew formula | mise | 不要 |
+| dev | `gh` | Homebrew formula | 公式tarball（x86_64、ユーザー領域） | 不要 |
 | dev | `ghq` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
 | dev / ai | `mise` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
 | dev | `neovim` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |

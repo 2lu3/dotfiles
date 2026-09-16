@@ -57,6 +57,8 @@ install_release_binary() {
     local archive="$4"
     local binary="$5"
     local arch
+    local target
+    local archive_name
     local temporary_directory
     local archive_path
     local binary_path
@@ -68,9 +70,11 @@ install_release_binary() {
     case "$(uname -m)" in
         x86_64|amd64)
             arch=amd64
+            target=x86_64
             ;;
         arm64|aarch64)
             arch=arm64
+            target=aarch64
             ;;
         *)
             echo "Unsupported architecture for $name: $(uname -m)" >&2
@@ -79,7 +83,10 @@ install_release_binary() {
     esac
 
     temporary_directory="$(mktemp -d)"
-    archive_path="$temporary_directory/${archive//\{arch\}/$arch}"
+    archive_name="${archive//\{arch\}/$arch}"
+    archive_name="${archive_name//\{target\}/$target}"
+    archive_name="${archive_name//\{version\}/$version}"
+    archive_path="$temporary_directory/$archive_name"
 
     cleanup_release() {
         rm -rf -- "$temporary_directory"
@@ -88,7 +95,7 @@ install_release_binary() {
     trap cleanup_release RETURN
 
     curl -fsSL \
-        "https://github.com/$repository/releases/download/v$version/${archive//\{arch\}/$arch}" \
+        "https://github.com/$repository/releases/download/v$version/$archive_name" \
         -o "$archive_path"
     mkdir "$temporary_directory/extracted"
 
@@ -118,6 +125,14 @@ install_official_tool() {
     local tool="$1"
 
     case "$tool" in
+        lsd)
+            install_release_binary \
+                "lsd" \
+                {{ .tool_releases.lsd.repository | quote }} \
+                {{ .tool_releases.lsd.version | quote }} \
+                {{ .tool_releases.lsd.archive | quote }} \
+                {{ .tool_releases.lsd.binary | quote }}
+            ;;
         ghq)
             install_release_binary \
                 "ghq" \

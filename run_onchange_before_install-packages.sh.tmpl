@@ -2,6 +2,7 @@
 set -euo pipefail
 
 export PATH="$HOME/.local/bin:$PATH"
+export HOMEBREW_NO_ASK=1
 
 SHELL_FEATURE_ENABLED="{{ .features.shell }}"
 DEV_FEATURE_ENABLED="{{ .features.dev }}"

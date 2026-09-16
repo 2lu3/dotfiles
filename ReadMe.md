@@ -10,29 +10,39 @@ task_tracker: linear
 
 ## Installation
 
-```bash
-# linux
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
+### Linux
 
-# macos
+```bash
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
+```
+
+### macOS
+
+```bash
 brew install chezmoi
 chezmoi init --apply 2lu3
 ```
 
-### Ubuntuでsudoなしでインストールする場合
+### Ubuntuの事前インストール
 
-`chezmoi init --apply` で `sudo` を使わない場合は、事前に必要なaptパッケージを導入します。
+`chezmoi init --apply` の途中で `sudo` を使わない場合は、baseを実行し、選択する機能のブロックも実行します。baseは常に有効です。`lsd` は公式リリースからユーザー領域へ導入するため、sudoは不要です。
+
+#### base
 
 ```bash
 sudo apt-get update
-
-# base（常に有効）
 sudo apt-get install -y ca-certificates curl git unzip
+```
 
-# shell=true の場合
-sudo apt-get install -y lsd tmux zsh
+#### shell
 
-# dev=true の場合
+```bash
+sudo apt-get install -y tmux zsh
+```
+
+#### dev
+
+```bash
 sudo apt-get install -y direnv fzf gh neovim ripgrep
 ```
 
@@ -53,7 +63,7 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 ## OS とパッケージ
 
 * macOS は Homebrew の formula と cask を使用します。Homebrew は事前にインストールしてください。
-* Ubuntu は apt を基本に使用します。apt で提供されない uv、mise、ghq、peco は公式配布物からユーザー領域へ導入します。選択したaptパッケージがすべて導入済みなら、`sudo` と apt の処理をスキップします。不足分がある場合だけ、不足パッケージを `sudo` で導入します。
+* Ubuntu は apt を基本に使用します。apt で提供されない lsd、uv、mise、ghq、peco は公式配布物からユーザー領域へ導入します。選択したaptパッケージがすべて導入済みなら、`sudo` と apt の処理をスキップします。不足分がある場合だけ、不足パッケージを `sudo` で導入します。
 * Ubuntu で `gui = true` を指定すると、設定の適用前に未対応エラーになります。
 * 機能やパッケージの一覧は `.chezmoidata/features.yaml` で、`feature -> OS -> 導入方法` の順に管理しています。パッケージを追加するときは、対象機能の OS 別リストを更新してください。
 
@@ -67,7 +77,7 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 | base | `curl` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | base | `git` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | base | `unzip` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
-| shell | `lsd` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| shell | `lsd` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
 | shell | `tmux` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `zsh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `zgen` | `~/.zgen` に git clone | `~/.zgen` に git clone | 不要 |

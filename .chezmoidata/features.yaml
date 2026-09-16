@@ -35,10 +35,10 @@ feature_packages:
         formulae: []
         casks: []
       apt:
-        - lsd
         - tmux
         - zsh
-      official: []
+      official:
+        - lsd
   dev:
     darwin:
       brew:
@@ -113,6 +113,11 @@ feature_packages:
       official: []
 
 tool_releases:
+  lsd:
+    repository: lsd-rs/lsd
+    version: 1.2.0
+    archive: lsd-v{version}-{target}-unknown-linux-gnu.tar.gz
+    binary: lsd
   ghq:
     repository: x-motemen/ghq
     version: 1.10.1

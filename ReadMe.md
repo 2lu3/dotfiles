@@ -6,7 +6,7 @@ task_tracker: linear
 
 * chezmoi
 * macOS: Homebrew is installed before applying this repository
-* Ubuntu: `sudo` can install system packages with `apt`
+* Ubuntu: `sudo` is only needed when selected apt packages are missing
 
 ## Installation
 
@@ -36,32 +36,32 @@ chezmoi init --apply 2lu3
 ## OS とパッケージ
 
 * macOS は Homebrew の formula と cask を使用します。Homebrew は事前にインストールしてください。
-* Ubuntu は apt を基本に使用します。apt で提供されない uv、mise、ghq、peco は公式配布物からユーザー領域へ導入します。
+* Ubuntu は apt を基本に使用します。apt で提供されない uv、mise、ghq、peco は公式配布物からユーザー領域へ導入します。選択したaptパッケージがすべて導入済みなら、`sudo` と apt の処理をスキップします。不足分がある場合だけ、不足パッケージを `sudo` で導入します。
 * Ubuntu で `gui = true` を指定すると、設定の適用前に未対応エラーになります。
 * 機能やパッケージの一覧は `.chezmoidata/features.yaml` で、`feature -> OS -> 導入方法` の順に管理しています。パッケージを追加するときは、対象機能の OS 別リストを更新してください。
 
 ### インストールされるものと sudo 権限
 
-以下は `chezmoi apply` で導入されるものの一覧です。macOS は Homebrew が事前に導入済みであることを前提にしています。`sudo` 欄は、導入処理の実行時に必要な権限を示します。
+以下は `chezmoi apply` で導入されるものの一覧です。macOS は Homebrew が事前に導入済みであることを前提にしています。`sudo` 欄は、導入処理の実行時に必要な権限を示します。Ubuntu は `dpkg-query` で導入状態を確認し、必要な場合だけ `sudo` を実行します。
 
 | feature | ソフトウェア | macOS | Ubuntu | sudo |
 | -- | -- | -- | -- | -- |
-| base | `ca-certificates` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| base | `curl` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| base | `git` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| base | `unzip` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| shell | `lsd` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| shell | `tmux` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| shell | `zsh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| base | `ca-certificates` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| base | `curl` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| base | `git` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| base | `unzip` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| shell | `lsd` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| shell | `tmux` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| shell | `zsh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `zgen` | `~/.zgen` に git clone | `~/.zgen` に git clone | 不要 |
-| dev | `direnv` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| dev | `fzf` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
-| dev | `gh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `direnv` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| dev | `fzf` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
+| dev | `gh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | dev | `ghq` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
 | dev / ai | `mise` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
-| dev | `neovim` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `neovim` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | dev | `peco` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
-| dev | `ripgrep` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 必要 |
+| dev | `ripgrep` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | dev | `uv` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
 | dev / ai | Node.js 24 | mise | mise | 不要 |
 | dev | `neovim`（npm パッケージ） | mise / npm | mise / npm | 不要 |

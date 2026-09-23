@@ -60,6 +60,12 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 
 機能の選択は独立しています。ai を選択しても dev 全体は有効にならず、OpenCommit に必要な Node.js 24 と mise だけを用意します。
 
+## エージェント設定
+
+共通の agent ルールは `~/.agents/rules/`、共通スキルは `~/.agents/skills/` を正本として管理します。`chezmoi apply` は Codex の `~/.codex/AGENTS.md` / `~/.codex/skills/` と Claude Code の `~/.claude/CLAUDE.md` / `~/.claude/skills/` に必要な共有設定を配置します。
+
+既存の Codex の `.system` や Paseo 管理スキル、`config.toml`、認証情報、履歴、キャッシュは管理対象にせず保持します。用途別ルールや `flow` などプロジェクト固有の設定は、rules リポジトリから対象プロジェクトへ導入します。
+
 ## OS とパッケージ
 
 * macOS は Homebrew の formula と cask を使用します。Homebrew は事前にインストールしてください。

@@ -39,6 +39,16 @@ alias rds='sudo du -m / | sort -n | tail -10'
 
 {{ if .features.ai }}
 if command -v oco >/dev/null 2>&1; then
-    alias auto='git add -A && oco --yes && git push'
+    auto() {
+        case "$PWD/" in
+            */ghq/github.com/2lu3/*)
+                git add -A && oco --yes && git push
+                ;;
+            *)
+                printf '%s\n' 'auto can only run under ghq/github.com/2lu3/' >&2
+                return 1
+                ;;
+        esac
+    }
 fi
 {{ end }}

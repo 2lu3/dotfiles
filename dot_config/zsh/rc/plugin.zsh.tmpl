@@ -3,8 +3,11 @@
 if [ -r "$HOME/.zgen/zgen.zsh" ]; then
     source "$HOME/.zgen/zgen.zsh"
 
+    if grep -Fq 'romkatv/powerlevel10k' "$ZGEN_INIT" 2>/dev/null; then
+        zgen reset
+    fi
+
     if command -v zgen >/dev/null 2>&1 && ! zgen saved; then
-        zgen load romkatv/powerlevel10k powerlevel10k
         zgen load zdharma-continuum/fast-syntax-highlighting
         zgen load zsh-users/zsh-autosuggestions
         zgen load zsh-users/zsh-completions

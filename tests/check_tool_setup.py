@@ -11,6 +11,11 @@ import tempfile
 
 root = Path(__file__).resolve().parents[1]
 chezmoi = sys.argv[1] if len(sys.argv) > 1 else "chezmoi"
+prompt = (root / "dot_config/zsh/rc/prompt.zsh").read_text()
+zshrc = (root / "dot_global.zshrc").read_text()
+
+assert 'starship init zsh' in prompt
+assert zshrc.index('source "$Z_RC_DIR/plugin.zsh"') < zshrc.index('source "$Z_RC_DIR/prompt.zsh"')
 
 
 def render(name, platform, features):
@@ -51,6 +56,11 @@ esac''',
             plugins = render("dot_config/zsh/rc/plugin.zsh.tmpl", platform, features)
             for executable, script in (("bash", setup), ("zsh", shell), ("zsh", plugins)):
                 subprocess.run([executable, "-n"], input=script, text=True, check=True)
+            assert "zgen load romkatv/powerlevel10k" not in plugins
+            assert "zgen reset" in plugins
+            for plugin in ("zdharma-continuum/fast-syntax-highlighting",
+                           "zsh-users/zsh-autosuggestions", "zsh-users/zsh-completions"):
+                assert plugin in plugins
             managed_shell = shell.split('if [ -f "$Z_DOT_DIR/.zshenv.local"')[0]
             resolved_uv = subprocess.check_output(
                 ["zsh", "-f"], input=managed_shell + "\ncommand -v uv\n", text=True, env=env,
@@ -79,6 +89,7 @@ if [ "$SHELL_FEATURE_ENABLED"''' + actions
                 assert (f"brew {action} neovim" in calls) == features["dev"], calls
                 if installed == "0":
                     assert ("brew install lsd" in calls) == features["shell"], calls
+                    assert ("brew install starship" in calls) == features["shell"], calls
                     assert ("brew install tmux" in calls) == features["shell"], calls
                     assert ("brew install uv" in calls) == features["dev"], calls
                     assert ("brew install mise" in calls) == (features["dev"] or features["ai"]), calls
@@ -104,5 +115,27 @@ if [ "$SHELL_FEATURE_ENABLED"''' + actions
                     assert log.read_text().strip() == f"mise exec node@24 npm:{package}@latest -- {cli} --version"
                 else:
                     assert result.returncode == 1 and not log.read_text()
+
+    zgen = temp / ".zgen"
+    zgen.mkdir()
+    (zgen / "init.zsh").write_text("romkatv/powerlevel10k\n")
+    (zgen / "zgen.zsh").write_text('''ZGEN_INIT="$HOME/.zgen/init.zsh"
+zgen() {
+    printf '%s\\n' "$*" >> "$CALL_LOG"
+    case "$1" in
+        reset) rm -f "$ZGEN_INIT" ;;
+        saved) test -f "$ZGEN_INIT" ;;
+        save) : > "$ZGEN_INIT" ;;
+    esac
+}
+''')
+    log.write_text("")
+    result = subprocess.run(["zsh", "-f"], input=plugins, text=True, capture_output=True,
+                            env=dict(env, HOME=str(temp)))
+    assert result.returncode == 0, result.stderr
+    assert log.read_text().splitlines() == ["reset", "saved",
+                                             "load zdharma-continuum/fast-syntax-highlighting",
+                                             "load zsh-users/zsh-autosuggestions",
+                                             "load zsh-users/zsh-completions", "save"]
 
 print("OK: Linux/macOS feature combinations, Homebrew installs, mise CLI wrappers, and uv tools")

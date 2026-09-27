@@ -1,0 +1,12 @@
+presets:
+  workspace:
+    allow:
+      - "$HOME/ghq"
+      - "/tmp"
+      - "$HOME/.codex"
+      - "$HOME/.paseo"
+
+auto-presets:
+  - command: codex
+    presets:
+      - workspace

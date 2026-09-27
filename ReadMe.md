@@ -77,8 +77,7 @@ gui = false
 | dev | `ripgrep` | Homebrew formula | Homebrew formula | 不要 |
 | dev | `uv` | Homebrew formula | Homebrew formula | 不要 |
 | dev / ai | Node.js 24 | mise | mise | 不要 |
-| dev | Go 1.25 | mise | mise | 不要 |
-| ai | Go | mise | mise | 不要 |
+| dev / ai | Go 1.25 | mise | mise | 不要 |
 | dev | `neovim`（npm パッケージ） | mise npm backend | mise npm backend | 不要 |
 | dev | `pynvim` | uv tool | uv tool | 不要 |
 | dev | `doq` | uv tool | uv tool | 不要 |

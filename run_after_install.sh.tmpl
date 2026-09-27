@@ -143,15 +143,9 @@ install_zgen() {
 }
 
 setup_mise_tools() {
-    mise install {{ .mise_tools.node | quote }}
-
-    if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
-        mise install {{ .mise_tools.go | quote }}
-        mise exec {{ .mise_tools.node | quote }} -- mise install{{ range .mise_tools.dev }} {{ . | quote }}{{ end }}
-    fi
+    mise install
 
     if [ "$AI_FEATURE_ENABLED" = "true" ]; then
-        mise exec {{ .mise_tools.node | quote }} -- mise install{{ range .mise_tools.ai }} {{ . | quote }}{{ end }}
         mise exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco config set OCO_LANGUAGE=ja
         mise exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco config set OCO_EMOJI=true
     fi

@@ -24,6 +24,17 @@ fi
 
 mkdir -p "$HOME/.local/bin"
 
+ensure_global_source() {
+    local name="$1"
+    local file="$HOME/.${name}"
+    local source_line="[ -r \"\${HOME}/.${name}.global\" ] && source \"\${HOME}/.${name}.global\""
+
+    touch "$file"
+    sed -i.bak "s|\\.global\\.${name}|.${name}.global|g" "$file"
+    grep -Fqx "$source_line" "$file" || sed -i.bak '$a\\'"$source_line" "$file"
+    rm -f "$file.bak"
+}
+
 install_brew_formula() {
     local formula="$1"
 
@@ -108,53 +119,6 @@ install_brew_cask {{ . | quote }}
 {{- end }}
 {{- end }}
 
-ensure_global_source() {
-    local name="$1"
-    local file="${HOME}/.${name}"
-    local marker="# load global ${name} (managed by chezmoi run_once_install)"
-    local source_line="[ -f \"\${HOME}/.global.${name}\" ] && source \"\${HOME}/.global.${name}\""
-
-    if [ ! -e "$file" ]; then
-        : > "$file"
-    fi
-
-    if grep -Fqx "$marker" "$file" 2>/dev/null; then
-        return 0
-    fi
-
-    printf '\n%s\n%s\n' "$marker" "$source_line" >> "$file"
-}
-
-remove_global_source() {
-    local name="$1"
-    local file="${HOME}/.${name}"
-    local marker="# load global ${name} (managed by chezmoi run_once_install)"
-    local source_line="[ -f \"\${HOME}/.global.${name}\" ] && source \"\${HOME}/.global.${name}\""
-    local temporary_file
-
-    if [ ! -f "$file" ]; then
-        return 0
-    fi
-
-    temporary_file="$(mktemp)"
-    awk -v marker="$marker" -v source_line="$source_line" '
-        $0 == marker { pending_marker = 1; next }
-        pending_marker {
-            if ($0 == source_line) {
-                pending_marker = 0
-                next
-            }
-            print marker
-            pending_marker = 0
-        }
-        { print }
-        END {
-            if (pending_marker) print marker
-        }
-    ' "$file" > "$temporary_file"
-    mv "$temporary_file" "$file"
-}
-
 install_zgen() {
     if [ -f "$HOME/.zgen/zgen.zsh" ]; then
         return 0
@@ -193,9 +157,6 @@ if [ "$SHELL_FEATURE_ENABLED" = "true" ]; then
     install_zgen
     ensure_global_source zshenv
     ensure_global_source zshrc
-else
-    remove_global_source zshenv
-    remove_global_source zshrc
 fi
 
 if [ "$DEV_FEATURE_ENABLED" = "true" ] || [ "$AI_FEATURE_ENABLED" = "true" ]; then

@@ -1,7 +1,7 @@
 {{- if not .features.shell }}
 .config/zsh/**
-.global.zshenv
-.global.zshrc
+.zshenv.global
+.zshrc.global
 {{- end }}
 
 {{- if not .features.dev }}

@@ -100,6 +100,8 @@ chezmoi apply --dry-run --verbose
 chezmoi apply
 ```
 
+インストール後は、`.zshenv` に `.zshenv.local` を読み込む行を一度だけ追加します。shell 機能を有効にした場合は、`.zshenv.global` と `.zshrc.global` も同様に読み込みます。この処理は macOS と Linux の両方で動作します。
+
 ## アップデート方法
 
 ```bash

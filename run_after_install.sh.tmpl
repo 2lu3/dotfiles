@@ -146,6 +146,7 @@ setup_mise_tools() {
     mise install {{ .mise_tools.node | quote }}
 
     if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
+        mise use -g {{ .mise_tools.go | quote }}
         mise exec {{ .mise_tools.node | quote }} -- mise install{{ range .mise_tools.dev }} {{ . | quote }}{{ end }}
     fi
 

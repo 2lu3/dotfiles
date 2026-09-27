@@ -77,6 +77,7 @@ gui = false
 | dev | `ripgrep` | Homebrew formula | Homebrew formula | 不要 |
 | dev | `uv` | Homebrew formula | Homebrew formula | 不要 |
 | dev / ai | Node.js 24 | mise | mise | 不要 |
+| dev | Go 1.25 | mise | mise | 不要 |
 | dev | `neovim`（npm パッケージ） | mise npm backend | mise npm backend | 不要 |
 | dev | `pynvim` | uv tool | uv tool | 不要 |
 | dev | `doq` | uv tool | uv tool | 不要 |
@@ -116,6 +117,7 @@ uv tool upgrade --all
 mise のツールは対象を指定して更新します。例えば開発ツールは次のとおりです。
 
 ```bash
+mise upgrade go
 mise install node@24
 mise exec node@24 -- mise install npm:neovim@latest npm:@fsouza/prettierd@latest
 ```

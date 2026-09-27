@@ -13,7 +13,4 @@
 
 | path | 説明 |
 | --- | --- |
-| `~/.codex/skills/close/SKILL.md` | Merge the target PR and move its task to done. |
-| `~/.codex/skills/kickoff/SKILL.md` | Move a tracked task to in progress before implementation. |
-| `~/.codex/skills/register/SKILL.md` | Create a tracked task from an agreed plan. |
-| `~/.codex/skills/ship/SKILL.md` | Review changes, create or update a PR, and move its task to review. |
+| `~/.codex/skills/flow/SKILL.md` | Run the repository lifecycle from planning through PR merge. |

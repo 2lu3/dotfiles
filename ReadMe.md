@@ -41,7 +41,6 @@ sudo apt-get install -y zsh
 
 ```toml
 [data.features]
-base = true
 shell = false
 dev = false
 ai = false

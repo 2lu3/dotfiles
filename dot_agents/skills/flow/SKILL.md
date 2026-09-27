@@ -81,8 +81,8 @@ Reach the implementation endpoint.
 4. For `single`, implement in the current task workspace. For `multi`, act as the parent coordinator: follow the registered decomposition, assign clear ownership, avoid concurrent edits to shared files, integrate results, resolve conflicts, and run the relevant validation as the parent.
 5. Do not broaden the registered scope or invent subtasks. If the plan cannot be decomposed safely, stop and report the blocker.
 6. Always update the relevant documentation for the implementation. This is mandatory for every `d`: update the affected README, docs, or agent instructions, and do not skip the update because the code change appears self-explanatory.
-7. Always add or update tests for the implementation. This is mandatory for every `d`: cover the changed behavior and regression cases; merely running existing tests does not count as a test update. If no suitable test location or framework exists, stop and report the blocker instead of skipping the update.
-8. Run the relevant local validation, including the tests added or updated in step 7, and report its result.
+7. When the repository has an existing test suite or suitable test framework, add or update tests for the implementation. Cover the changed behavior and regression cases; merely running existing tests does not count as a test update. If the repository has no existing tests or test framework, report that tests were skipped and why; do not treat their absence as a blocker.
+8. Run the relevant local validation, including the tests added or updated in step 7 when applicable, and report its result.
 
 Do not commit, push, create/update a PR, or merge during `d`. A successful `d` leaves the work ready for `c` and keeps a tracked task In Progress.
 

@@ -35,6 +35,16 @@ ensure_global_source() {
     rm -f "$file.bak"
 }
 
+ensure_local_source() {
+    local name="$1"
+    local file="$HOME/.${name}"
+    local source_line="[ -r \"\${HOME}/.${name}.local\" ] && source \"\${HOME}/.${name}.local\""
+
+    touch "$file"
+    grep -Fqx "$source_line" "$file" || sed -i.bak '$a\\'"$source_line" "$file"
+    rm -f "$file.bak"
+}
+
 install_brew_formula() {
     local formula="$1"
 
@@ -158,6 +168,8 @@ if [ "$SHELL_FEATURE_ENABLED" = "true" ]; then
     ensure_global_source zshenv
     ensure_global_source zshrc
 fi
+
+ensure_local_source zshenv
 
 if [ "$DEV_FEATURE_ENABLED" = "true" ] || [ "$AI_FEATURE_ENABLED" = "true" ]; then
     setup_mise_tools

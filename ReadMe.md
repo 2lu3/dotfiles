@@ -87,7 +87,7 @@ gui = false
 | ai | `@openai/codex` | mise npm backend | mise npm backend | 不要 |
 | ai | `@anthropic-ai/claude-code` | mise npm backend | mise npm backend | 不要 |
 | ai | `@getpaseo/cli` | mise npm backend | mise npm backend | 不要 |
-| ai | `cage` | mise Go backend | mise Go backend | 不要 |
+| ai | `cage` | mise 管理の Go で `go install` | mise 管理の Go で `go install` | 不要 |
 | gui | `alt-tab` | Homebrew cask | 対応なし | 不要 |
 | gui | `wezterm` | Homebrew cask | 対応なし | 不要 |
 
@@ -125,4 +125,12 @@ mise install node@24
 mise exec node@24 -- mise install npm:neovim@latest npm:@fsouza/prettierd@latest
 ```
 
-AI CLI も `mise_tools.ai` にある `npm:...@latest` を同様に指定します。以前の npm グローバルパッケージや手動配置のバイナリは自動削除しません。
+AI CLI も `mise_tools.ai` にある `npm:...@latest` を同様に指定します。Cage は mise 管理の Go を使って更新します。
+
+```bash
+GOBIN="$HOME/.local/bin" mise exec go@1.25 -- go install github.com/Warashi/cage@latest
+```
+
+以前の npm グローバルパッケージや手動配置のバイナリは自動削除しません。
+
+Linux で Cage の書き込み制限を有効にするには、Landlock ABI 2 以降が必要です。Ubuntu 22.04 の標準カーネル（5.15）は対象外で、Ubuntu 24.04 の標準カーネル（6.8）以降を使用してください。

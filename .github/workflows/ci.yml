@@ -30,3 +30,6 @@ jobs:
           extra_args: >-
             --from-ref ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
             --to-ref ${{ github.sha }}
+
+      - name: Verify Cage installation configuration
+        run: bash tests/test_cage_install.sh

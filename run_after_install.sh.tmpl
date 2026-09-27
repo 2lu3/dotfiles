@@ -148,6 +148,7 @@ setup_mise_tools() {
     if [ "$AI_FEATURE_ENABLED" = "true" ]; then
         mise exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco config set OCO_LANGUAGE=ja
         mise exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco config set OCO_EMOJI=true
+        GOBIN="$HOME/.local/bin" mise exec {{ .mise_tools.go | quote }} -- go install github.com/Warashi/cage@latest
     fi
 }
 

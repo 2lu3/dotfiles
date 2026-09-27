@@ -11,7 +11,6 @@
 
 {{- if not .features.gui }}
 .config/wezterm/**
-.finicky.js
 {{- end }}
 
 ReadMe.md

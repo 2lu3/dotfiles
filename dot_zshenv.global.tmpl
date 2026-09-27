@@ -16,7 +16,3 @@ if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
 {{ end }}
-
-if [ -f "$HOME/.zshenv.local" ]; then
-    source "$HOME/.zshenv.local"
-fi

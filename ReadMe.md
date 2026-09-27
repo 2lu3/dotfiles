@@ -37,7 +37,7 @@ sudo apt-get install -y ca-certificates curl git unzip
 #### shell
 
 ```bash
-sudo apt-get install -y tmux zsh
+sudo apt-get install -y zsh
 ```
 
 #### dev
@@ -53,7 +53,7 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 | 機能 | 内容 |
 | -- | -- |
 | base | Git、ダウンロード・展開に必要な基本ツールと Git 設定。常に有効 |
-| shell | zsh、zgen、tmux、lsd と関連設定 |
+| shell | zsh、zgen、lsd と関連設定 |
 | dev | Neovim、gh、ghq、peco、direnv、uv、mise と関連設定 |
 | ai | OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI。dev も有効な場合は Neovim の Copilot 設定 |
 | gui | WezTerm、AltTab、Finicky と関連設定。macOS のみ |
@@ -84,7 +84,6 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 | base | `git` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | base | `unzip` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `lsd` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
-| shell | `tmux` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `zsh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `zgen` | `~/.zgen` に git clone | `~/.zgen` に git clone | 不要 |
 | dev | `direnv` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
@@ -115,7 +114,6 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 * Neovim、OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI が必要とする Node.js 24 は mise でインストールします。Node.js 24 は各 CLI の wrapper 経由でだけ有効になり、開発用のグローバルバージョンにはしません。
 * `ai` を有効にすると `oco`、`codex`、`claude`、`paseo` が `~/.local/bin` に配置されます。
 * Neovim の Python provider は `~/.local/share/dotfiles/nvim-venv` に uv で用意します。
-* `pycreate` は `uv venv` を使って `.venv` を作成します。Poetry と pyenv は新しい導入経路では使用しません。
 
 ## 設定の変更
 
@@ -126,7 +124,7 @@ chezmoi apply --dry-run --verbose
 chezmoi apply
 ```
 
-設定ファイルは選択した機能に応じて配置します。dev=false では mise・direnv のシェル初期化、Neovim の `EDITOR`、開発用 alias、ghq/peco の関数とキーバインドを有効にしません。shell=false では chezmoi が追加した zsh の読み込み行だけを解除し、ユーザー自身の設定は残します。
+設定ファイルは選択した機能に応じて配置します。dev=false では mise・direnv のシェル初期化、開発用 alias、ghq/peco の関数とキーバインドを有効にしません。shell=false では chezmoi が追加した zsh の読み込み行だけを解除し、ユーザー自身の設定は残します。
 
 同じ構成を再適用しても zsh の読み込み行や導入済みパッケージは重複しません。機能を無効にしても、導入済みパッケージや既存のユーザー設定を自動削除しません。新しい機能やパッケージの選択は、次回の `chezmoi apply` で必要な導入処理を再実行します。
 

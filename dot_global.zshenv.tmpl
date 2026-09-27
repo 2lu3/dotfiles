@@ -1,19 +1,11 @@
 #!/bin/zsh
 # Shell configuration shared by interactive and non-interactive shells.
 
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-export PAGER="less -R"
-
 if [ -d "$HOME/.local/bin" ]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
-export Z_DOT_DIR="$HOME"
-export Z_HOME_DIR="$XDG_CONFIG_HOME/zsh"
-export Z_RC_DIR="$Z_HOME_DIR/rc"
-export Z_DATA_DIR="$Z_HOME_DIR"
+export Z_HOME_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
 # Homebrew is a macOS prerequisite, but may be installed in either common prefix.
 if [ -x /opt/homebrew/bin/brew ]; then
@@ -32,6 +24,6 @@ if command -v mise >/dev/null 2>&1; then
 fi
 {{ end }}
 
-if [ -f "$Z_DOT_DIR/.zshenv.local" ]; then
-    source "$Z_DOT_DIR/.zshenv.local"
+if [ -f "$HOME/.zshenv.local" ]; then
+    source "$HOME/.zshenv.local"
 fi

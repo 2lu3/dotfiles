@@ -25,7 +25,6 @@ feature_packages:
       brew:
         formulae:
           - lsd
-          - tmux
           - zsh
         casks: []
       apt: []
@@ -35,7 +34,6 @@ feature_packages:
         formulae: []
         casks: []
       apt:
-        - tmux
         - zsh
       official:
         - lsd

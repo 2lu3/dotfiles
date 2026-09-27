@@ -62,7 +62,7 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 
 ## エージェント設定
 
-共通の agent ルールは `~/.agents/rules/`、共通スキルは `~/.agents/skills/` を正本として管理します。`chezmoi apply` は Codex の `~/.codex/AGENTS.md` / `~/.codex/skills/` と Claude Code の `~/.claude/CLAUDE.md` / `~/.claude/skills/` に必要な共有設定を配置します。
+共通の agent ルールは `~/.agents/rules/`、共通スキルは `~/.agents/skills/` を正本として管理します。`chezmoi apply` の同期スクリプトが、`rules/` と `skills/` を Codex の `~/.codex/` と Claude Code の `~/.claude/` へコピーします。ルート設定は各ツール用に分け、それぞれ自身のディレクトリを参照します。
 
 既存の Codex の `.system` や Paseo 管理スキル、`config.toml`、認証情報、履歴、キャッシュは管理対象にせず保持します。用途別ルールや `flow` などプロジェクト固有の設定は、rules リポジトリから対象プロジェクトへ導入します。
 

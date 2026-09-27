@@ -9,7 +9,6 @@ feature_packages:
           - unzip
         casks: []
       apt: []
-      official: []
     linux:
       brew:
         formulae: []
@@ -19,24 +18,23 @@ feature_packages:
         - curl
         - git
         - unzip
-      official: []
   shell:
     darwin:
       brew:
         formulae:
           - lsd
+          - starship
           - zsh
         casks: []
       apt: []
-      official: []
     linux:
       brew:
-        formulae: []
+        formulae:
+          - lsd
+          - starship
         casks: []
       apt:
         - zsh
-      official:
-        - lsd
   dev:
     darwin:
       brew:
@@ -52,22 +50,20 @@ feature_packages:
           - uv
         casks: []
       apt: []
-      official: []
     linux:
       brew:
-        formulae: []
+        formulae:
+          - direnv
+          - fzf
+          - gh
+          - ghq
+          - mise
+          - neovim
+          - peco
+          - ripgrep
+          - uv
         casks: []
-      apt:
-        - direnv
-        - fzf
-        - gh
-        - neovim
-        - ripgrep
-      official:
-        - ghq
-        - mise
-        - peco
-        - uv
+      apt: []
   ai:
     darwin:
       brew:
@@ -75,54 +71,36 @@ feature_packages:
           - mise
         casks: []
       apt: []
-      official: []
-      npm:
-        - opencommit
-        - "@openai/codex"
-        - "@anthropic-ai/claude-code"
-        - "@getpaseo/cli"
     linux:
       brew:
-        formulae: []
+        formulae:
+          - mise
         casks: []
       apt: []
-      official:
-        - mise
-      npm:
-        - opencommit
-        - "@openai/codex"
-        - "@anthropic-ai/claude-code"
-        - "@getpaseo/cli"
   gui:
     darwin:
       brew:
         formulae: []
         casks:
           - alt-tab
-          - finicky
           - wezterm
       apt: []
-      official: []
     linux:
       brew:
         formulae: []
         casks: []
       apt: []
-      official: []
 
-tool_releases:
-  lsd:
-    repository: lsd-rs/lsd
-    version: 1.2.0
-    archive: lsd-v{version}-{target}-unknown-linux-gnu.tar.gz
-    binary: lsd
-  ghq:
-    repository: x-motemen/ghq
-    version: 1.10.1
-    archive: ghq_linux_{arch}.zip
-    binary: ghq
-  peco:
-    repository: peco/peco
-    version: 0.5.11
-    archive: peco_linux_{arch}.tar.gz
-    binary: peco
+mise_tools:
+  node: node@24
+  dev:
+    neovim: npm:neovim@latest
+    prettierd: npm:@fsouza/prettierd@latest
+  ai:
+    # Reviewed 9.x security backport without provenance; limit the exception to this release.
+    # https://github.com/octokit/plugin-paginate-rest.js/releases/tag/v9.2.2
+    oco: "npm:opencommit[trust_policy_excludes=@octokit/plugin-paginate-rest@9.2.2]@latest"
+    codex: npm:@openai/codex@latest
+    # The reviewed postinstall places the platform-native binary from optionalDependencies.
+    claude: "npm:@anthropic-ai/claude-code[allow_builds=@anthropic-ai/claude-code]@latest"
+    paseo: npm:@getpaseo/cli@latest

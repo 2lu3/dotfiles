@@ -2,12 +2,6 @@
 
 task_tracker: linear
 
-## Requirements
-
-* chezmoi
-* macOS: Homebrew is installed before applying this repository
-* Ubuntu: `sudo` is only needed when selected apt packages are missing
-
 ## Installation
 
 ### Linux
@@ -19,13 +13,10 @@ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
 ### macOS
 
 ```bash
-brew install chezmoi
-chezmoi init --apply 2lu3
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
 ```
 
-### Ubuntuの事前インストール
-
-`chezmoi init --apply` の途中で `sudo` を使わない場合は、baseを実行し、選択する機能のブロックも実行します。baseは常に有効です。`lsd` は公式リリースからユーザー領域へ導入するため、sudoは不要です。
+### Sudo権限がない場合の事前Install
 
 #### base
 
@@ -40,42 +31,38 @@ sudo apt-get install -y ca-certificates curl git unzip
 sudo apt-get install -y zsh
 ```
 
-#### dev
+#### dev / ai
 
-```bash
-sudo apt-get install -y direnv fzf gh neovim ripgrep
+なし
+
+
+## Configuration
+
+
+```toml
+[data.features]
+base = true
+shell = false
+dev = false
+ai = false
+gui = false
 ```
-
-初回の `chezmoi init` で、shell・dev・ai・gui の機能を個別に選択します。base は常に有効です。選択内容はユーザーごとの `~/.config/chezmoi/chezmoi.toml` に保存されます。
 
 ## Features
 
 | 機能 | 内容 |
 | -- | -- |
 | base | Git、ダウンロード・展開に必要な基本ツールと Git 設定。常に有効 |
-| shell | zsh、zgen、lsd と関連設定 |
+| shell | zsh、zgen、Starship、lsd と関連設定 |
 | dev | Neovim、gh、ghq、peco、direnv、uv、mise と関連設定 |
 | ai | OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI。dev も有効な場合は Neovim の Copilot 設定 |
-| gui | WezTerm、AltTab、Finicky と関連設定。macOS のみ |
+| gui | WezTerm、AltTab と関連設定。macOS のみ |
 
 機能の選択は独立しています。ai を選択しても dev 全体は有効にならず、OpenCommit に必要な Node.js 24 と mise だけを用意します。
 
-## エージェント設定
-
-共通の agent ルールは `~/.agents/rules/`、共通スキルは `~/.agents/skills/` を正本として管理します。`chezmoi apply` は Codex の `~/.codex/AGENTS.md` / `~/.codex/skills/` と Claude Code の `~/.claude/CLAUDE.md` / `~/.claude/skills/` に必要な共有設定を配置します。
-
-既存の Codex の `.system` や Paseo 管理スキル、`config.toml`、認証情報、履歴、キャッシュは管理対象にせず保持します。用途別ルールや `flow` などプロジェクト固有の設定は、rules リポジトリから対象プロジェクトへ導入します。
-
-## OS とパッケージ
-
-* macOS は Homebrew の formula と cask を使用します。Homebrew は事前にインストールしてください。
-* Ubuntu は apt を基本に使用します。apt で提供されない lsd、uv、mise、ghq、peco は公式配布物からユーザー領域へ導入します。選択したaptパッケージがすべて導入済みなら、`sudo` と apt の処理をスキップします。不足分がある場合だけ、不足パッケージを `sudo` で導入します。
-* Ubuntu で `gui = true` を指定すると、設定の適用前に未対応エラーになります。
-* 機能やパッケージの一覧は `.chezmoidata/features.yaml` で、`feature -> OS -> 導入方法` の順に管理しています。パッケージを追加するときは、対象機能の OS 別リストを更新してください。
-
 ### インストールされるものと sudo 権限
 
-以下は `chezmoi apply` で導入されるものの一覧です。macOS は Homebrew が事前に導入済みであることを前提にしています。`sudo` 欄は、導入処理の実行時に必要な権限を示します。Ubuntu は `dpkg-query` で導入状態を確認し、必要な場合だけ `sudo` を実行します。
+`sudo` 欄は、導入処理の実行時に必要な権限を示します。Ubuntu は `dpkg-query` で導入状態を確認し、必要な場合だけ `sudo` を実行します。
 
 | feature | ソフトウェア | macOS | Ubuntu | sudo |
 | -- | -- | -- | -- | -- |
@@ -83,37 +70,31 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 | base | `curl` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | base | `git` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | base | `unzip` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
-| shell | `lsd` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
+| shell | `lsd` | Homebrew formula | Homebrew formula | 不要 |
+| shell | `starship` | Homebrew formula | Homebrew formula | 不要 |
 | shell | `zsh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `zgen` | `~/.zgen` に git clone | `~/.zgen` に git clone | 不要 |
-| dev | `direnv` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
-| dev | `fzf` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
-| dev | `gh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
-| dev | `ghq` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
-| dev / ai | `mise` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
-| dev | `neovim` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
-| dev | `peco` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
-| dev | `ripgrep` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
-| dev | `uv` | Homebrew formula | 公式配布（ユーザー領域） | 不要 |
+| dev | `direnv` | Homebrew formula | Homebrew formula | 不要 |
+| dev | `fzf` | Homebrew formula | Homebrew formula | 不要 |
+| dev | `gh` | Homebrew formula | Homebrew formula | 不要 |
+| dev | `ghq` | Homebrew formula | Homebrew formula | 不要 |
+| dev / ai | `mise` | Homebrew formula | Homebrew formula | 不要 |
+| dev | `neovim` | Homebrew formula | Homebrew formula | 不要 |
+| dev | `peco` | Homebrew formula | Homebrew formula | 不要 |
+| dev | `ripgrep` | Homebrew formula | Homebrew formula | 不要 |
+| dev | `uv` | Homebrew formula | Homebrew formula | 不要 |
 | dev / ai | Node.js 24 | mise | mise | 不要 |
-| dev | `neovim`（npm パッケージ） | mise / npm | mise / npm | 不要 |
-| dev | `pynvim` | uv の仮想環境 | uv の仮想環境 | 不要 |
-| dev | `doq` | uv の仮想環境 | uv の仮想環境 | 不要 |
-| ai | `opencommit` | mise / npm | mise / npm | 不要 |
-| ai | `@openai/codex` | mise / npm | mise / npm | 不要 |
-| ai | `@anthropic-ai/claude-code` | mise / npm | mise / npm | 不要 |
-| ai | `@getpaseo/cli` | mise / npm | mise / npm | 不要 |
+| dev | `neovim`（npm パッケージ） | mise npm backend | mise npm backend | 不要 |
+| dev | `pynvim` | uv tool | uv tool | 不要 |
+| dev | `doq` | uv tool | uv tool | 不要 |
+| dev | `ruff` | uv tool | uv tool | 不要 |
+| dev | `@fsouza/prettierd` | mise npm backend | mise npm backend | 不要 |
+| ai | `opencommit` | mise npm backend | mise npm backend | 不要 |
+| ai | `@openai/codex` | mise npm backend | mise npm backend | 不要 |
+| ai | `@anthropic-ai/claude-code` | mise npm backend | mise npm backend | 不要 |
+| ai | `@getpaseo/cli` | mise npm backend | mise npm backend | 不要 |
 | gui | `alt-tab` | Homebrew cask | 対応なし | 不要 |
-| gui | `finicky` | Homebrew cask | 対応なし | 不要 |
 | gui | `wezterm` | Homebrew cask | 対応なし | 不要 |
-
-## ランタイム
-
-* Python 本体、仮想環境、依存関係は uv で管理します。Node.js と Go は mise で管理し、開発用の言語バージョンは各プロジェクトの `.python-version`、`pyproject.toml`、`mise.toml` に任せます。
-* `dev` を選択しただけでは Python、Node.js、Go のグローバルバージョンを設定しません。Go 本体も自動導入しません。
-* Neovim、OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI が必要とする Node.js 24 は mise でインストールします。Node.js 24 は各 CLI の wrapper 経由でだけ有効になり、開発用のグローバルバージョンにはしません。
-* `ai` を有効にすると `oco`、`codex`、`claude`、`paseo` が `~/.local/bin` に配置されます。
-* Neovim の Python provider は `~/.local/share/dotfiles/nvim-venv` に uv で用意します。
 
 ## 設定の変更
 
@@ -124,35 +105,26 @@ chezmoi apply --dry-run --verbose
 chezmoi apply
 ```
 
-設定ファイルは選択した機能に応じて配置します。dev=false では mise・direnv のシェル初期化、開発用 alias、ghq/peco の関数とキーバインドを有効にしません。shell=false では chezmoi が追加した zsh の読み込み行だけを解除し、ユーザー自身の設定は残します。
-
-同じ構成を再適用しても zsh の読み込み行や導入済みパッケージは重複しません。機能を無効にしても、導入済みパッケージや既存のユーザー設定を自動削除しません。新しい機能やパッケージの選択は、次回の `chezmoi apply` で必要な導入処理を再実行します。
-
-## タスク管理
-
-タスク管理には Linear を使用します。
-
-## mac 手動セットアップ
-
-### app store
-
-* magnet
-* trello
-* slack
-* runcat
-* scrool reverser
-
-### homebrew
-
-* alttab
-
-### その他
-
-* Finderを右クリック→オプション→全てのデスクトップに割り当て
-* Finickyを一度起動し、既定のWebブラウザに設定する（設定は `~/.finicky.js`。通常クリックはComet、option+クリックはGoogle Chromeの `genda.jp` プロファイルで開く）
-
 ## アップデート方法
 
 ```bash
 chezmoi update
 ```
+
+```bash
+brew update
+brew upgrade
+```
+
+```bash
+uv tool upgrade --all
+```
+
+mise のツールは対象を指定して更新します。例えば開発ツールは次のとおりです。
+
+```bash
+mise install node@24
+mise exec node@24 -- mise install npm:neovim@latest npm:@fsouza/prettierd@latest
+```
+
+AI CLI も `mise_tools.ai` にある `npm:...@latest` を同様に指定します。以前の npm グローバルパッケージや手動配置のバイナリは自動削除しません。

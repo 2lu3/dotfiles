@@ -12,6 +12,11 @@ return {
     },
   },
   opts = {
+    formatters = {
+      ruff_format = {
+        command = require("conform.util").find_executable({ ".venv/bin/ruff" }, "ruff"),
+      },
+    },
     formatters_by_ft = {
       python = { "ruff_format" },
       javascript = { "prettierd" },

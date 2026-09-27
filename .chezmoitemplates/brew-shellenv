@@ -1,0 +1,7 @@
+for brew_binary in "$(command -v brew || true)" /home/linuxbrew/.linuxbrew/bin/brew /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    if [ -x "$brew_binary" ]; then
+        eval "$("$brew_binary" shellenv {{ . }})"
+        break
+    fi
+done
+unset brew_binary

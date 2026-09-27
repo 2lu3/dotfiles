@@ -92,6 +92,7 @@ feature_packages:
       apt: []
 
 mise_tools:
+  go: go@1.25
   node: node@24
   dev:
     neovim: npm:neovim@latest

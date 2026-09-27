@@ -56,7 +56,7 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 | shell | zsh、zgen、tmux、lsd と関連設定 |
 | dev | Neovim、gh、ghq、peco、direnv、uv、mise と関連設定 |
 | ai | OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI。dev も有効な場合は Neovim の Copilot 設定 |
-| gui | WezTerm、AltTab、Finicky と関連設定。macOS のみ |
+| gui | WezTerm、AltTab と関連設定。macOS のみ |
 
 機能の選択は独立しています。ai を選択しても dev 全体は有効にならず、OpenCommit に必要な Node.js 24 と mise だけを用意します。
 
@@ -105,7 +105,6 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 | ai | `@anthropic-ai/claude-code` | mise / npm | mise / npm | 不要 |
 | ai | `@getpaseo/cli` | mise / npm | mise / npm | 不要 |
 | gui | `alt-tab` | Homebrew cask | 対応なし | 不要 |
-| gui | `finicky` | Homebrew cask | 対応なし | 不要 |
 | gui | `wezterm` | Homebrew cask | 対応なし | 不要 |
 
 ## ランタイム
@@ -153,7 +152,6 @@ chezmoi apply
 ### その他
 
 * Finderを右クリック→オプション→全てのデスクトップに割り当て
-* Finickyを一度起動し、既定のWebブラウザに設定する（設定は `~/.finicky.js`。通常クリックはComet、option+クリックはGoogle Chromeの `genda.jp` プロファイルで開く）
 
 ## アップデート方法
 

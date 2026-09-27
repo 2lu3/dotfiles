@@ -101,7 +101,6 @@ feature_packages:
         formulae: []
         casks:
           - alt-tab
-          - finicky
           - wezterm
       apt: []
       official: []

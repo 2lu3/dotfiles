@@ -1,4 +1,4 @@
-format = "$username[ in ](bold white)$hostname[ in ](bold white)$directory $git_branch$git_status$character"
+format = "$username[ in ](bold white)$hostname[ in ](bold white)$directory $git_branch$git_status\n$character"
 
 [username]
 show_always = true
@@ -12,5 +12,5 @@ format = "[󰒋 $hostname](bold cyan)"
 format = "[$path](bold blue)"
 
 [character]
-success_symbol = " [❯](bold green) "
-error_symbol = " [❯](bold red) "
+success_symbol = "[>](bold green) "
+error_symbol = "[>](bold red) "

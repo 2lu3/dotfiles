@@ -48,7 +48,7 @@ gui = false
 | base | Git、ダウンロード・展開に必要な基本ツールと Git 設定。常に有効 |
 | shell | zsh、zgen、Starship、lsd と関連設定 |
 | dev | Neovim、gh、ghq、peco、direnv、uv、mise と関連設定 |
-| ai | OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI。dev も有効な場合は Neovim の Copilot 設定 |
+| ai | OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI、Cage。dev も有効な場合は Neovim の Copilot 設定 |
 | gui | WezTerm、AltTab と関連設定。macOS のみ |
 
 機能の選択は独立しています。ai を選択しても dev 全体は有効にならず、OpenCommit に必要な Node.js 24 と mise だけを用意します。
@@ -77,6 +77,7 @@ gui = false
 | dev | `ripgrep` | Homebrew formula | Homebrew formula | 不要 |
 | dev | `uv` | Homebrew formula | Homebrew formula | 不要 |
 | dev / ai | Node.js 24 | mise | mise | 不要 |
+| ai | Go | mise | mise | 不要 |
 | dev | `neovim`（npm パッケージ） | mise npm backend | mise npm backend | 不要 |
 | dev | `pynvim` | uv tool | uv tool | 不要 |
 | dev | `doq` | uv tool | uv tool | 不要 |
@@ -86,6 +87,7 @@ gui = false
 | ai | `@openai/codex` | mise npm backend | mise npm backend | 不要 |
 | ai | `@anthropic-ai/claude-code` | mise npm backend | mise npm backend | 不要 |
 | ai | `@getpaseo/cli` | mise npm backend | mise npm backend | 不要 |
+| ai | `cage` | mise Go backend | mise Go backend | 不要 |
 | gui | `alt-tab` | Homebrew cask | 対応なし | 不要 |
 | gui | `wezterm` | Homebrew cask | 対応なし | 不要 |
 

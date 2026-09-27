@@ -12,6 +12,7 @@
 
 各スキルは `<skill-name>/SKILL.md` に置きます。
 
-chezmoi はこの内容を `~/.codex/skills/` と `~/.claude/skills/` に実体コピーします。既存の `.system`、Paseo 管理スキル、その他のユーザー設定は置き換えません。
+chezmoi の同期スクリプトはこの内容を `~/.codex/skills/` と `~/.claude/skills/` に実体コピーします。既存の `.system`、Paseo 管理スキル、その他のユーザー設定は置き換えません。
+`~/.agents/rules/` も同様に各エージェント配下の `rules/` にコピーされます。
 
-プロジェクト固有のスキル（`flow` を含む）は rules リポジトリから必要なプロジェクトだけに導入します。
+プロジェクト固有のスキルは rules リポジトリから必要なプロジェクトだけに導入します。

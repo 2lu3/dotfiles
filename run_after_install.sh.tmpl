@@ -31,7 +31,7 @@ ensure_global_source() {
 
     touch "$file"
     sed -i.bak "s|\\.global\\.${name}|.${name}.global|g" "$file"
-    grep -Fqx "$source_line" "$file" || sed -i.bak '$a\\'"$source_line" "$file"
+    grep -Fqx "$source_line" "$file" || printf '%s\n' "$source_line" >> "$file"
     rm -f "$file.bak"
 }
 
@@ -41,7 +41,7 @@ ensure_local_source() {
     local source_line="[ -r \"\${HOME}/.${name}.local\" ] && source \"\${HOME}/.${name}.local\""
 
     touch "$file"
-    grep -Fqx "$source_line" "$file" || sed -i.bak '$a\\'"$source_line" "$file"
+    grep -Fqx "$source_line" "$file" || printf '%s\n' "$source_line" >> "$file"
     rm -f "$file.bak"
 }
 

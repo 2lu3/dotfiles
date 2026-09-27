@@ -18,44 +18,44 @@ fi
 #               Base Configuration
 #--------------------------------------------------------------
 
-source "$Z_HOME_DIR/rc/base.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/rc/base.zsh"
 
 #--------------------------------------------------------------
 #               Option
 #--------------------------------------------------------------
 
-source "$Z_HOME_DIR/rc/option.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/rc/option.zsh"
 
 #--------------------------------------------------------------
 #               Completion
 #--------------------------------------------------------------
 
-source "$Z_HOME_DIR/rc/completion.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/rc/completion.zsh"
 
 #--------------------------------------------------------------
 #               Alias
 #--------------------------------------------------------------
 
-source "$Z_HOME_DIR/rc/alias.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/rc/alias.zsh"
 
 
 #--------------------------------------------------------------
 #               Plugin
 #--------------------------------------------------------------
 
-source "$Z_HOME_DIR/rc/plugin.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/rc/plugin.zsh"
 
 #--------------------------------------------------------------
 #               Prompt Configuration
 #--------------------------------------------------------------
 
-source "$Z_HOME_DIR/rc/prompt.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/rc/prompt.zsh"
 
 #--------------------------------------------------------------
 #               Bind key
 #--------------------------------------------------------------
 
-source "$Z_HOME_DIR/rc/bind_key.zsh"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/rc/bind_key.zsh"
 
 
 

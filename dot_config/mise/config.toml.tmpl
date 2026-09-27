@@ -1,0 +1,14 @@
+[tools]
+{{ if or .features.dev .features.ai }}
+node = "24"
+{{ end }}
+{{ if .features.dev }}
+"npm:neovim" = "latest"
+"npm:@fsouza/prettierd" = "latest"
+{{ end }}
+{{ if .features.ai }}
+"npm:opencommit" = { version = "latest", trust_policy_excludes = ["@octokit/plugin-paginate-rest@9.2.2"] }
+"npm:@openai/codex" = "latest"
+"npm:@anthropic-ai/claude-code" = { version = "latest", allow_builds = ["@anthropic-ai/claude-code"] }
+"npm:@getpaseo/cli" = "latest"
+{{ end }}

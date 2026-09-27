@@ -99,8 +99,8 @@ mise_tools:
   ai:
     # Reviewed 9.x security backport without provenance; limit the exception to this release.
     # https://github.com/octokit/plugin-paginate-rest.js/releases/tag/v9.2.2
-    oco: "npm:opencommit[trust_policy_excludes=@octokit/plugin-paginate-rest@9.2.2]@latest"
+    oco: npm:opencommit@latest
     codex: npm:@openai/codex@latest
     # The reviewed postinstall places the platform-native binary from optionalDependencies.
-    claude: "npm:@anthropic-ai/claude-code[allow_builds=@anthropic-ai/claude-code]@latest"
+    claude: npm:@anthropic-ai/claude-code@latest
     paseo: npm:@getpaseo/cli@latest

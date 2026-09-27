@@ -115,6 +115,8 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 * Neovim、OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI が必要とする Node.js 24 は mise でインストールします。Node.js 24 は各 CLI の wrapper 経由でだけ有効になり、開発用のグローバルバージョンにはしません。
 * `ai` を有効にすると `oco`、`codex`、`claude`、`paseo` が `~/.local/bin` に配置されます。
 * Neovim の Python provider は `~/.local/share/dotfiles/nvim-venv` に uv で用意します。
+* Neovim は起動後に lazy.nvim がプラグインを自動更新します。指定のないプラグインは既定ブランチの最新コミットを使い、`fzf-preview.vim` はリモートプラグイン用の `release/remote` ブランチを維持します。
+* `blink.cmp` の最新メインブランチを使うため、Neovim 0.12 以上が必要です。
 * `pycreate` は `uv venv` を使って `.venv` を作成します。Poetry と pyenv は新しい導入経路では使用しません。
 
 ## 設定の変更

@@ -17,12 +17,23 @@ fi
 
 if [ "{{ .chezmoi.os }}" = "darwin" ] || [ "$SHELL_FEATURE_ENABLED" = "true" ] || [ "$DEV_FEATURE_ENABLED" = "true" ] || [ "$AI_FEATURE_ENABLED" = "true" ]; then
     if ! command -v brew >/dev/null 2>&1; then
-        echo "Homebrew must be installed before applying this configuration: https://brew.sh" >&2
-        exit 1
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        {{ template "brew-shellenv" "bash" }}
     fi
 fi
 
 mkdir -p "$HOME/.local/bin"
+
+ensure_global_source() {
+    local name="$1"
+    local file="$HOME/.${name}"
+    local source_line="[ -r \"\${HOME}/.${name}.global\" ] && source \"\${HOME}/.${name}.global\""
+
+    touch "$file"
+    sed -i.bak "s|\\.global\\.${name}|.${name}.global|g" "$file"
+    grep -Fqx "$source_line" "$file" || sed -i.bak '$a\\'"$source_line" "$file"
+    rm -f "$file.bak"
+}
 
 install_brew_formula() {
     local formula="$1"
@@ -144,6 +155,8 @@ setup_python_tools() {
 
 if [ "$SHELL_FEATURE_ENABLED" = "true" ]; then
     install_zgen
+    ensure_global_source zshenv
+    ensure_global_source zshrc
 fi
 
 if [ "$DEV_FEATURE_ENABLED" = "true" ] || [ "$AI_FEATURE_ENABLED" = "true" ]; then
@@ -153,3 +166,12 @@ fi
 if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
     setup_python_tools
 fi
+
+source_directory="$HOME/.agents"
+
+for target in codex claude; do
+    target_directory="$HOME/.$target"
+    mkdir -p "$target_directory/rules" "$target_directory/skills"
+    cp -R "$source_directory/rules/." "$target_directory/rules/"
+    cp -R "$source_directory/skills/." "$target_directory/skills/"
+done

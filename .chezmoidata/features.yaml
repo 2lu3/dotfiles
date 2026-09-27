@@ -23,6 +23,7 @@ feature_packages:
       brew:
         formulae:
           - lsd
+          - starship
           - tmux
           - zsh
         casks: []
@@ -31,6 +32,7 @@ feature_packages:
       brew:
         formulae:
           - lsd
+          - starship
           - tmux
         casks: []
       apt:

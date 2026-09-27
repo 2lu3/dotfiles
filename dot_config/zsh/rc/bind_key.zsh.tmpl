@@ -1,13 +1,9 @@
 #!/bin/zsh
 
-bindkey -e
+bindkey -v
 
 {{ if .features.dev }}
 if command -v peco >/dev/null 2>&1 && command -v ghq >/dev/null 2>&1; then
     bindkey '^]' peco-src
 fi
 {{ end }}
-
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-bindkey "^[[3~" delete-char

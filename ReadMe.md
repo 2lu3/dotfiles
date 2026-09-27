@@ -1,10 +1,10 @@
 # dotfiles
 
+task_tracker: linear
+
 ## Installation
 
 ### Linux
-
-```
 
 ```bash
 sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
@@ -53,7 +53,7 @@ gui = false
 | 機能 | 内容 |
 | -- | -- |
 | base | Git、ダウンロード・展開に必要な基本ツールと Git 設定。常に有効 |
-| shell | zsh、zgen、Starship、tmux、lsd と関連設定 |
+| shell | zsh、zgen、Starship、lsd と関連設定 |
 | dev | Neovim、gh、ghq、peco、direnv、uv、mise と関連設定 |
 | ai | OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI。dev も有効な場合は Neovim の Copilot 設定 |
 | gui | WezTerm、AltTab と関連設定。macOS のみ |
@@ -72,7 +72,6 @@ gui = false
 | base | `unzip` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `lsd` | Homebrew formula | Homebrew formula | 不要 |
 | shell | `starship` | Homebrew formula | Homebrew formula | 不要 |
-| shell | `tmux` | Homebrew formula | Homebrew formula | 不要 |
 | shell | `zsh` | Homebrew formula | apt | macOS: 不要 / Ubuntu: 不足時のみ |
 | shell | `zgen` | `~/.zgen` に git clone | `~/.zgen` に git clone | 不要 |
 | dev | `direnv` | Homebrew formula | Homebrew formula | 不要 |

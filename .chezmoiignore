@@ -2,7 +2,6 @@
 .config/zsh/**
 .global.zshenv
 .global.zshrc
-.tmux.conf
 {{- end }}
 
 {{- if not .features.dev }}

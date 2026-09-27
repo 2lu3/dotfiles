@@ -24,7 +24,6 @@ feature_packages:
         formulae:
           - lsd
           - starship
-          - tmux
           - zsh
         casks: []
       apt: []
@@ -33,7 +32,6 @@ feature_packages:
         formulae:
           - lsd
           - starship
-          - tmux
         casks: []
       apt:
         - zsh

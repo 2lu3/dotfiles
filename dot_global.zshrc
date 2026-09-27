@@ -9,8 +9,8 @@
 #               Local Configuration
 #--------------------------------------------------------------
 
-if [ -f "$Z_DOT_DIR/.zshrc.local" ]; then
-    source "$Z_DOT_DIR/.zshrc.local"
+if [ -f "$HOME/.zshrc.local" ]; then
+    source "$HOME/.zshrc.local"
 fi
 
 
@@ -18,44 +18,44 @@ fi
 #               Base Configuration
 #--------------------------------------------------------------
 
-source "$Z_RC_DIR/base.zsh"
+source "$Z_HOME_DIR/rc/base.zsh"
 
 #--------------------------------------------------------------
 #               Option
 #--------------------------------------------------------------
 
-source "$Z_RC_DIR/option.zsh"
+source "$Z_HOME_DIR/rc/option.zsh"
 
 #--------------------------------------------------------------
 #               Completion
 #--------------------------------------------------------------
 
-source "$Z_RC_DIR/completion.zsh"
+source "$Z_HOME_DIR/rc/completion.zsh"
 
 #--------------------------------------------------------------
 #               Alias
 #--------------------------------------------------------------
 
-source "$Z_RC_DIR/alias.zsh"
+source "$Z_HOME_DIR/rc/alias.zsh"
 
 
 #--------------------------------------------------------------
 #               Plugin
 #--------------------------------------------------------------
 
-source "$Z_RC_DIR/plugin.zsh"
+source "$Z_HOME_DIR/rc/plugin.zsh"
 
 #--------------------------------------------------------------
 #               Prompt Configuration
 #--------------------------------------------------------------
 
-source "$Z_RC_DIR/prompt.zsh"
+source "$Z_HOME_DIR/rc/prompt.zsh"
 
 #--------------------------------------------------------------
 #               Bind key
 #--------------------------------------------------------------
 
-source "$Z_RC_DIR/bind_key.zsh"
+source "$Z_HOME_DIR/rc/bind_key.zsh"
 
 
 

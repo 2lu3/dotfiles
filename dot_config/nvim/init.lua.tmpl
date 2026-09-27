@@ -1,4 +1,4 @@
-local function add_mise_node_environment()
+local function add_mise_tools_environment()
   local mise = vim.fn.exepath("mise")
   if mise == "" then
     local local_mise = vim.fn.expand("~/.local/bin/mise")
@@ -14,7 +14,10 @@ local function add_mise_node_environment()
   local mise_path = vim.fn.systemlist({
     mise,
     "exec",
-    "node@24",
+    {{ .mise_tools.node | quote }},
+    {{- range .mise_tools.dev }}
+    {{ . | quote }},
+    {{- end }}
     "--",
     "sh",
     "-c",
@@ -26,11 +29,13 @@ local function add_mise_node_environment()
   end
 end
 
-add_mise_node_environment()
+add_mise_tools_environment()
 
-local nvim_python = vim.fn.expand("~/.local/share/dotfiles/nvim-venv/bin/python")
-if vim.fn.executable(nvim_python) == 1 then
-  vim.g.python3_host_prog = nvim_python
+local node_host = vim.fn.resolve(vim.fn.exepath("neovim-node-host"))
+if node_host ~= "" then
+  -- mise's aube installer exposes a shell shim; the provider runs its target with node.
+  local host_js = vim.fn.fnamemodify(node_host, ":h") .. "/../neovim/bin/cli.js"
+  vim.g.node_host_prog = vim.fn.filereadable(host_js) == 1 and host_js or node_host
 end
 
 require("config.options")

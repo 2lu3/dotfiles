@@ -2,11 +2,11 @@
 set -euo pipefail
 
 export PATH="$HOME/.local/bin:$PATH"
+{{ template "brew-shellenv" "bash" }}
 
 SHELL_FEATURE_ENABLED="{{ .features.shell }}"
 DEV_FEATURE_ENABLED="{{ .features.dev }}"
 AI_FEATURE_ENABLED="{{ .features.ai }}"
-{{ $ai_platform := index .feature_packages.ai .chezmoi.os }}
 
 ensure_global_source() {
     local name="$1"
@@ -68,31 +68,25 @@ install_zgen() {
     git clone https://github.com/tarjoilija/zgen.git "$HOME/.zgen"
 }
 
-setup_node_runtime() {
-    mise install node@24
+setup_mise_tools() {
+    mise install {{ .mise_tools.node | quote }}
 
     if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
-        mise exec node@24 -- npm install --global --no-fund --no-audit neovim
+        mise exec {{ .mise_tools.node | quote }} -- mise install{{ range .mise_tools.dev }} {{ . | quote }}{{ end }}
     fi
 
     if [ "$AI_FEATURE_ENABLED" = "true" ]; then
-        mise exec node@24 -- npm install --global --no-fund --no-audit{{ range $ai_platform.npm }} {{ . | quote }}{{ end }}
-        mise exec node@24 -- oco config set OCO_LANGUAGE=ja
-        mise exec node@24 -- oco config set OCO_EMOJI=true
+        mise exec {{ .mise_tools.node | quote }} -- mise install{{ range .mise_tools.ai }} {{ . | quote }}{{ end }}
+        mise exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco config set OCO_LANGUAGE=ja
+        mise exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco config set OCO_EMOJI=true
     fi
 }
 
-setup_nvim_python() {
-    local nvim_python_environment="$HOME/.local/share/dotfiles/nvim-venv"
-
-    if [ ! -x "$nvim_python_environment/bin/python" ]; then
-        uv venv "$nvim_python_environment"
-    fi
-
-    uv pip install \
-        --python "$nvim_python_environment/bin/python" \
-        pynvim \
-        doq
+setup_python_tools() {
+    export UV_TOOL_BIN_DIR="$HOME/.local/bin"
+    uv tool install --upgrade --managed-python pynvim
+    uv tool install --upgrade --managed-python doq
+    uv tool install --upgrade --managed-python ruff
 }
 
 if [ "$SHELL_FEATURE_ENABLED" = "true" ]; then
@@ -105,9 +99,9 @@ else
 fi
 
 if [ "$DEV_FEATURE_ENABLED" = "true" ] || [ "$AI_FEATURE_ENABLED" = "true" ]; then
-    setup_node_runtime
+    setup_mise_tools
 fi
 
 if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
-    setup_nvim_python
+    setup_python_tools
 fi

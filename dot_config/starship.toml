@@ -1,0 +1,16 @@
+format = "$username[ in ](bold white)$hostname[ in ](bold white)$directory $git_branch$git_status$character"
+
+[username]
+show_always = true
+format = "[$user](bold green)"
+
+[hostname]
+ssh_only = false
+format = "[󰒋 $hostname](bold cyan)"
+
+[directory]
+format = "[$path](bold blue)"
+
+[character]
+success_symbol = " [❯](bold green) "
+error_symbol = " [❯](bold red) "

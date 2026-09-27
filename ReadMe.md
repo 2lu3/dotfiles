@@ -62,13 +62,13 @@ Homebrew 導入後は、開発ツールを `chezmoi apply` が brew でインス
 | shell | zsh、zgen、tmux、lsd と関連設定 |
 | dev | Neovim、gh、ghq、peco、direnv、uv、mise と関連設定 |
 | ai | OpenCommit、Codex CLI、Claude Code CLI、Paseo CLI。dev も有効な場合は Neovim の Copilot 設定 |
-| gui | WezTerm、AltTab、Finicky と関連設定。macOS のみ |
+| gui | WezTerm、AltTab と関連設定。macOS のみ |
 
 機能の選択は独立しています。ai を選択しても dev 全体は有効にならず、OpenCommit に必要な Node.js 24 と mise だけを用意します。
 
 ## エージェント設定
 
-共通の agent ルールは `~/.agents/rules/`、共通スキルは `~/.agents/skills/` を正本として管理します。`chezmoi apply` は Codex の `~/.codex/AGENTS.md` / `~/.codex/skills/` と Claude Code の `~/.claude/CLAUDE.md` / `~/.claude/skills/` に必要な共有設定を配置します。
+共通の agent ルールは `~/.agents/rules/`、共通スキルは `~/.agents/skills/` を正本として管理します。`chezmoi apply` の同期スクリプトが、`rules/` と `skills/` を Codex の `~/.codex/` と Claude Code の `~/.claude/` へコピーします。ルート設定は各ツール用に分け、それぞれ自身のディレクトリを参照します。
 
 既存の Codex の `.system` や Paseo 管理スキル、`config.toml`、認証情報、履歴、キャッシュは管理対象にせず保持します。用途別ルールや `flow` などプロジェクト固有の設定は、rules リポジトリから対象プロジェクトへ導入します。
 
@@ -76,7 +76,7 @@ Homebrew 導入後は、開発ツールを `chezmoi apply` が brew でインス
 
 * macOS は Homebrew の formula と cask を使用します。Homebrew は事前にインストールしてください。
 * Ubuntu の開発ツールと mise は Homebrew を使用します。lsd と tmux も Homebrew、base とログインシェル用の zsh は apt で導入します。選択したaptパッケージがすべて導入済みなら、`sudo` と apt の処理をスキップします。不足分がある場合だけ、不足パッケージを `sudo` で導入します。
-* Ubuntu で `gui = true` を指定すると、設定の適用前に未対応エラーになります。
+* Ubuntu で `gui = true` を指定すると、ツールのセットアップ時に未対応エラーになります（設定ファイルの配置後）。
 * 機能やパッケージの一覧は `.chezmoidata/features.yaml` で、`feature -> OS -> 導入方法` の順に管理しています。パッケージを追加するときは、対象機能の OS 別リストを更新してください。
 
 ### インストールされるものと sudo 権限
@@ -113,7 +113,6 @@ Homebrew 導入後は、開発ツールを `chezmoi apply` が brew でインス
 | ai | `@anthropic-ai/claude-code` | mise npm backend | mise npm backend | 不要 |
 | ai | `@getpaseo/cli` | mise npm backend | mise npm backend | 不要 |
 | gui | `alt-tab` | Homebrew cask | 対応なし | 不要 |
-| gui | `finicky` | Homebrew cask | 対応なし | 不要 |
 | gui | `wezterm` | Homebrew cask | 対応なし | 不要 |
 
 ## ランタイム
@@ -130,6 +129,8 @@ Homebrew 導入後は、開発ツールを `chezmoi apply` が brew でインス
 * Neovim のフォーマッターはプロジェクトの `.venv/bin/ruff` と `node_modules/.bin/prettierd` を優先し、見つからない場合は共通のツールを使用します。LSP は引き続き Mason で管理します。
 * fzf のバイナリは Homebrew で導入し、Neovim の build hook ではダウンロードしません。zsh 連携は `fzf --zsh` を使います。
 * zsh は Homebrew の PATH を初期化してから mise を有効化します。
+* Neovim は起動後に lazy.nvim がプラグインを自動更新します。指定のないプラグインは既定ブランチの最新コミットを使い、`fzf-preview.vim` はリモートプラグイン用の `release/remote` ブランチを維持します。
+* `blink.cmp` の最新メインブランチを使うため、Neovim 0.12 以上が必要です。
 * `pycreate` は `uv venv` を使って `.venv` を作成します。Poetry と pyenv は新しい導入経路では使用しません。
 
 ## 設定の変更
@@ -142,6 +143,8 @@ chezmoi apply
 ```
 
 設定ファイルは選択した機能に応じて配置します。dev=false では mise・direnv のシェル初期化、Neovim の `EDITOR`、開発用 alias、ghq/peco の関数とキーバインドを有効にしません。shell=false では chezmoi が追加した zsh の読み込み行だけを解除し、ユーザー自身の設定は残します。
+
+`run_onchange_after_setup-tools.sh.tmpl` は、設定ファイルの配置後にパッケージの導入とツールの設定を順番に実行します。初回と、テンプレート展開後のスクリプト内容が変わったときに動きます。エージェント設定のコピーは別の `run_after_copy-agent-settings.sh` で毎回実行します。
 
 同じ構成を再適用しても zsh の読み込み行や導入済みパッケージは重複しません。機能を無効にしても、導入済みパッケージや既存のユーザー設定を自動削除しません。新しい機能やパッケージの選択は、次回の `chezmoi apply` で必要な導入処理を再実行します。
 
@@ -166,7 +169,6 @@ chezmoi apply
 ### その他
 
 * Finderを右クリック→オプション→全てのデスクトップに割り当て
-* Finickyを一度起動し、既定のWebブラウザに設定する（設定は `~/.finicky.js`。通常クリックはComet、option+クリックはGoogle Chromeの `genda.jp` プロファイルで開く）
 
 ## アップデート方法
 

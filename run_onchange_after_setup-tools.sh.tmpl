@@ -107,3 +107,101 @@ install_brew_formula {{ . | quote }}
 install_brew_cask {{ . | quote }}
 {{- end }}
 {{- end }}
+
+ensure_global_source() {
+    local name="$1"
+    local file="${HOME}/.${name}"
+    local marker="# load global ${name} (managed by chezmoi run_once_install)"
+    local source_line="[ -f \"\${HOME}/.global.${name}\" ] && source \"\${HOME}/.global.${name}\""
+
+    if [ ! -e "$file" ]; then
+        : > "$file"
+    fi
+
+    if grep -Fqx "$marker" "$file" 2>/dev/null; then
+        return 0
+    fi
+
+    printf '\n%s\n%s\n' "$marker" "$source_line" >> "$file"
+}
+
+remove_global_source() {
+    local name="$1"
+    local file="${HOME}/.${name}"
+    local marker="# load global ${name} (managed by chezmoi run_once_install)"
+    local source_line="[ -f \"\${HOME}/.global.${name}\" ] && source \"\${HOME}/.global.${name}\""
+    local temporary_file
+
+    if [ ! -f "$file" ]; then
+        return 0
+    fi
+
+    temporary_file="$(mktemp)"
+    awk -v marker="$marker" -v source_line="$source_line" '
+        $0 == marker { pending_marker = 1; next }
+        pending_marker {
+            if ($0 == source_line) {
+                pending_marker = 0
+                next
+            }
+            print marker
+            pending_marker = 0
+        }
+        { print }
+        END {
+            if (pending_marker) print marker
+        }
+    ' "$file" > "$temporary_file"
+    mv "$temporary_file" "$file"
+}
+
+install_zgen() {
+    if [ -f "$HOME/.zgen/zgen.zsh" ]; then
+        return 0
+    fi
+
+    if [ -e "$HOME/.zgen" ]; then
+        echo "The existing $HOME/.zgen directory does not contain zgen.zsh." >&2
+        return 1
+    fi
+
+    git clone https://github.com/tarjoilija/zgen.git "$HOME/.zgen"
+}
+
+setup_mise_tools() {
+    mise install {{ .mise_tools.node | quote }}
+
+    if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
+        mise exec {{ .mise_tools.node | quote }} -- mise install{{ range .mise_tools.dev }} {{ . | quote }}{{ end }}
+    fi
+
+    if [ "$AI_FEATURE_ENABLED" = "true" ]; then
+        mise exec {{ .mise_tools.node | quote }} -- mise install{{ range .mise_tools.ai }} {{ . | quote }}{{ end }}
+        mise exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco config set OCO_LANGUAGE=ja
+        mise exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco config set OCO_EMOJI=true
+    fi
+}
+
+setup_python_tools() {
+    export UV_TOOL_BIN_DIR="$HOME/.local/bin"
+    uv tool install --upgrade --managed-python pynvim
+    uv tool install --upgrade --managed-python doq
+    uv tool install --upgrade --managed-python ruff
+}
+
+if [ "$SHELL_FEATURE_ENABLED" = "true" ]; then
+    install_zgen
+    ensure_global_source zshenv
+    ensure_global_source zshrc
+else
+    remove_global_source zshenv
+    remove_global_source zshrc
+fi
+
+if [ "$DEV_FEATURE_ENABLED" = "true" ] || [ "$AI_FEATURE_ENABLED" = "true" ]; then
+    setup_mise_tools
+fi
+
+if [ "$DEV_FEATURE_ENABLED" = "true" ]; then
+    setup_python_tools
+fi

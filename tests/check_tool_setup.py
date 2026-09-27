@@ -46,21 +46,27 @@ esac''',
     for platform in ("linux", "darwin"):
         for flags in itertools.product((False, True), repeat=4):
             features = dict(zip(("shell", "dev", "ai", "gui"), flags))
-            before = render("run_onchange_before_install-packages.sh.tmpl", platform, features)
-            after = render("run_onchange_after_configure-tools.sh.tmpl", platform, features)
+            setup = render("run_onchange_after_setup-tools.sh.tmpl", platform, features)
             shell = render("dot_global.zshenv.tmpl", platform, features)
             plugins = render("dot_config/zsh/rc/plugin.zsh.tmpl", platform, features)
-            for executable, script in (("bash", before), ("bash", after), ("zsh", shell), ("zsh", plugins)):
+            for executable, script in (("bash", setup), ("zsh", shell), ("zsh", plugins)):
                 subprocess.run([executable, "-n"], input=script, text=True, check=True)
             managed_shell = shell.split('if [ -f "$Z_DOT_DIR/.zshenv.local"')[0]
             resolved_uv = subprocess.check_output(
                 ["zsh", "-f"], input=managed_shell + "\ncommand -v uv\n", text=True, env=env,
             ).strip()
             assert resolved_uv == str(temp / "uv"), resolved_uv
+            # Exercise feature gates while skipping unrelated zsh-file edits.
+            definitions, actions = setup.split('\nif [ "$SHELL_FEATURE_ENABLED"', 1)
+            script = definitions + '''
+install_zgen() { :; }
+ensure_global_source() { :; }
+remove_global_source() { :; }
+if [ "$SHELL_FEATURE_ENABLED"''' + actions
             for installed in ("0", "1"):
                 log.write_text("")
                 result = subprocess.run(
-                    ["bash"], input=before, text=True, capture_output=True,
+                    ["bash"], input=script, text=True, capture_output=True,
                     env=dict(env, BREW_INSTALLED=installed),
                 )
                 if platform == "linux" and features["gui"]:
@@ -77,16 +83,8 @@ esac''',
                     assert ("brew install uv" in calls) == features["dev"], calls
                     assert ("brew install mise" in calls) == (features["dev"] or features["ai"]), calls
 
-            # Exercise feature gates while skipping unrelated zsh-file edits.
-            definitions, actions = after.split('\nif [ "$SHELL_FEATURE_ENABLED"', 1)
-            log.write_text("")
-            script = definitions + '''
-install_zgen() { :; }
-ensure_global_source() { :; }
-remove_global_source() { :; }
-if [ "$SHELL_FEATURE_ENABLED"''' + actions
-            subprocess.run(["bash"], input=script,
-                           text=True, env=env, check=True)
+            if platform == "linux" and features["gui"]:
+                continue
             calls = log.read_text().splitlines()
             assert ("mise install node@24" in calls) == (features["dev"] or features["ai"]), calls
             assert ("mise exec node@24 -- mise install npm:neovim@latest npm:@fsouza/prettierd@latest" in calls) == features["dev"], calls

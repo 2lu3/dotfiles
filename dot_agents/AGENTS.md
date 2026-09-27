@@ -1,13 +1,16 @@
 # Global agent settings
 
-The shared rules in `~/.agents/rules/` are the source of truth for every
-repository. Apply every rule marked `applies_to: [all]`:
+## Rules
 
-- `~/.agents/rules/general-workflow.md`
-- `~/.agents/rules/git.md`
-- `~/.agents/rules/task-management.md`
-- `~/.agents/rules/python.md`
+| path | 説明 |
+| --- | --- |
+| `~/.agents/rules/general-workflow.md` | General workflow, scope, verification, and output rules. |
+| `~/.agents/rules/git.md` | Git safety, merge, and commit rules. |
+| `~/.agents/rules/task-management.md` | Task tracker status and workflow rules. |
+| `~/.agents/rules/python.md` | Python package-management rules using uv. |
 
-Common skills are maintained in `~/.agents/skills/` and rendered into the
-Codex and Claude skill directories by chezmoi. Project-specific profiles and
-the `flow` skill remain owned by the rules repository.
+## Skills
+
+| path | 説明 |
+| --- | --- |
+| `~/.agents/skills/flow/SKILL.md` | Run the repository lifecycle from planning through PR merge. |

@@ -70,7 +70,7 @@ sudo apt-get install -y direnv fzf gh neovim ripgrep
 
 * macOS は Homebrew の formula と cask を使用します。Homebrew は事前にインストールしてください。
 * Ubuntu は apt を基本に使用します。apt で提供されない lsd、uv、mise、ghq、peco は公式配布物からユーザー領域へ導入します。選択したaptパッケージがすべて導入済みなら、`sudo` と apt の処理をスキップします。不足分がある場合だけ、不足パッケージを `sudo` で導入します。
-* Ubuntu で `gui = true` を指定すると、設定の適用前に未対応エラーになります。
+* Ubuntu で `gui = true` を指定すると、ツールのセットアップ時に未対応エラーになります（設定ファイルの配置後）。
 * 機能やパッケージの一覧は `.chezmoidata/features.yaml` で、`feature -> OS -> 導入方法` の順に管理しています。パッケージを追加するときは、対象機能の OS 別リストを更新してください。
 
 ### インストールされるものと sudo 権限
@@ -129,6 +129,8 @@ chezmoi apply
 ```
 
 設定ファイルは選択した機能に応じて配置します。dev=false では mise・direnv のシェル初期化、Neovim の `EDITOR`、開発用 alias、ghq/peco の関数とキーバインドを有効にしません。shell=false では chezmoi が追加した zsh の読み込み行だけを解除し、ユーザー自身の設定は残します。
+
+`run_onchange_after_setup-tools.sh.tmpl` は、設定ファイルの配置後にパッケージの導入とツールの設定を順番に実行します。初回と、テンプレート展開後のスクリプト内容が変わったときに動きます。エージェント設定のコピーは別の `run_after_copy-agent-settings.sh` で毎回実行します。
 
 同じ構成を再適用しても zsh の読み込み行や導入済みパッケージは重複しません。機能を無効にしても、導入済みパッケージや既存のユーザー設定を自動削除しません。新しい機能やパッケージの選択は、次回の `chezmoi apply` で必要な導入処理を再実行します。
 

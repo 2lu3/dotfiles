@@ -13,8 +13,7 @@ sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
 ### macOS
 
 ```bash
-brew install chezmoi
-chezmoi init --apply 2lu3
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
 ```
 
 ### Sudo権限がない場合の事前Install

@@ -17,8 +17,8 @@ fi
 
 if [ "{{ .chezmoi.os }}" = "darwin" ] || [ "$SHELL_FEATURE_ENABLED" = "true" ] || [ "$DEV_FEATURE_ENABLED" = "true" ] || [ "$AI_FEATURE_ENABLED" = "true" ]; then
     if ! command -v brew >/dev/null 2>&1; then
-        echo "Homebrew must be installed before applying this configuration: https://brew.sh" >&2
-        exit 1
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        {{ template "brew-shellenv" "bash" }}
     fi
 fi
 

@@ -15,12 +15,7 @@ export Z_HOME_DIR="$XDG_CONFIG_HOME/zsh"
 export Z_RC_DIR="$Z_HOME_DIR/rc"
 export Z_DATA_DIR="$Z_HOME_DIR"
 
-# Homebrew is a macOS prerequisite, but may be installed in either common prefix.
-if [ -x /opt/homebrew/bin/brew ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [ -x /usr/local/bin/brew ]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-fi
+{{ template "brew-shellenv" "zsh" }}
 
 {{ if .features.dev }}
 if command -v direnv >/dev/null 2>&1; then

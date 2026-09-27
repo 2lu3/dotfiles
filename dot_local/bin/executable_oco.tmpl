@@ -12,7 +12,7 @@ else
     exit 1
 fi
 
-exec "$mise_command" exec node@24 -- oco "$@"
+exec "$mise_command" exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.oco | quote }} -- oco "$@"
 {{- else -}}
 #!/bin/sh
 echo "The ai feature is disabled; enable it in chezmoi's configuration to use OpenCommit." >&2

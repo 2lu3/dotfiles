@@ -97,7 +97,6 @@ mise_tools:
     neovim: npm:neovim@latest
     prettierd: npm:@fsouza/prettierd@latest
   ai:
-    go: go@latest
     # Reviewed 9.x security backport without provenance; limit the exception to this release.
     # https://github.com/octokit/plugin-paginate-rest.js/releases/tag/v9.2.2
     oco: npm:opencommit@latest

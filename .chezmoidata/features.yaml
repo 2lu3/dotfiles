@@ -105,4 +105,3 @@ mise_tools:
     # The reviewed postinstall places the platform-native binary from optionalDependencies.
     claude: npm:@anthropic-ai/claude-code@latest
     paseo: npm:@getpaseo/cli@latest
-    cage: go:github.com/Warashi/cage@latest

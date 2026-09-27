@@ -4,13 +4,7 @@ task_tracker: linear
 
 ## Installation
 
-### Linux
-
-```bash
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3
-```
-
-### macOS
+### macOS / Linux
 
 ```bash
 sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply 2lu3

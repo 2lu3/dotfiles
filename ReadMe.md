@@ -54,6 +54,17 @@ Homebrew 導入後は、開発ツールを `chezmoi apply` が brew でインス
 
 初回の `chezmoi init` で、shell・dev・ai・gui の機能を個別に選択します。base は常に有効です。選択内容はユーザーごとの `~/.config/chezmoi/chezmoi.toml` に保存されます。
 
+設定ファイルのテンプレートは次のとおりです。必要な機能を `true` に変更します。
+
+```toml
+[data.features]
+base = true
+shell = false
+dev = false
+ai = false
+gui = false
+```
+
 ## Features
 
 | 機能 | 内容 |

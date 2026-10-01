@@ -1,16 +1,18 @@
 ---
 name: flow
-description: Use when the user explicitly invokes the repository lifecycle as `flow p/plan`, `flow d/do`, `flow c/check`, or `flow a/auto`; recognize the current task, worktree, and PR state and run through the requested endpoint.
+description: Use when the user explicitly invokes `flow p/plan`, `flow d/do`, `flow c/check`, or `flow a/auto`, with an optional task argument; recognize the current task, worktree, and PR state and run through the requested endpoint.
 ---
 
 # Flow
 
-`flow` is the single public lifecycle skill for this repository. The phase argument is required:
+`flow` is the single public lifecycle skill for this repository. Its form is `flow <phase> [task]`; the phase argument is required.
 
-- `flow p` / `flow plan`: plan the work and register the task.
+- `flow p` / `flow plan`: plan the work without creating a task.
 - `flow d` / `flow do`: implement the work.
 - `flow c` / `flow check`: finish implementation, validate it, and create or update a non-draft PR.
 - `flow a` / `flow auto`: resume from the current state and complete the whole lifecycle through PR merge.
+
+`task` is an explicit task title or identifier immediately following the phase. When it is omitted, no phase creates a task. When it is present, resolve it in the declared tracker; if no equivalent task exists, create it by running the `p` registration work first, then continue to the requested phase. `flow p <task>` stops after that registration.
 
 There is no `flow m` phase. `flow a` owns PR merge.
 
@@ -25,10 +27,10 @@ Permission summary:
 
 An explicit phase invocation authorizes only the operations in that phase and any prerequisite phases that the endpoint requires:
 
-- `p` authorizes task registration, but not implementation or Git delivery.
-- `d` authorizes implementation and local validation, but not commit, push, PR creation, or PR merge.
-- `c` authorizes the `p`/`d` prerequisites when needed, commit, merging the latest `origin/main` into the feature branch, pushing the feature branch, and creating or updating one non-draft PR. It NEVER authorizes merging a PR.
-- `a` authorizes all required `p`/`d`/`c` work, including `c`'s push and non-draft PR creation/update permissions, and PR merge. It is the only phase that merges a PR.
+- `p` authorizes planning only when `task` is omitted. With `task`, it also authorizes creating that task, but not implementation or Git delivery.
+- `d` authorizes implementation and local validation. With `task`, it also authorizes the `p` registration prerequisite when the named task does not exist; it does not authorize commit, push, PR creation, or PR merge.
+- `c` authorizes its missing `p`/`d` prerequisites when `task` is present, commit, merging the latest `origin/main` into the feature branch, pushing the feature branch, and creating or updating one non-draft PR. It NEVER authorizes merging a PR.
+- `a` authorizes its missing `p`/`d`/`c` prerequisites when `task` is present, including `c`'s push and non-draft PR creation/update permissions, and PR merge. It is the only phase that merges a PR.
 
 Never run the entire lifecycle for a bare `flow` request. Report the valid phases and stop. If a phase is invalid or ambiguous, stop before mutation.
 
@@ -36,7 +38,7 @@ Never run the entire lifecycle for a bare `flow` request. Report the valid phase
 
 Use evidence in this order:
 
-1. Use the task explicitly named by the user or registered earlier in the conversation. Do not guess a task from the current branch name.
+1. Use the task argument when present, otherwise the task explicitly named by the user or registered earlier in the conversation. Do not guess a task from the current branch name. A task argument that does not resolve is explicit authorization to create that task through the `p` registration work.
 2. When a task exists, read the repository README declaration `task_tracker: <name>` and use that tracker as the source of truth. Follow [タスクの状態管理](../../../.agents/rules/task-management.md).
 3. Inspect the registered plan, current worktree changes, branch, relevant validation, and the open PR associated with the current branch. Use `gh api` for PR operations.
 4. Determine the first incomplete endpoint from the evidence. If task or PR ownership, implementation completeness, or the requested scope is ambiguous, stop and report the ambiguity instead of guessing.
@@ -52,30 +54,31 @@ The endpoint behavior is:
 
 | Invocation | Required endpoint |
 | --- | --- |
-| `flow p` | task registered |
+| `flow p` | agreed implementation plan produced, or task registered when a task argument is present |
 | `flow d` | implementation and local validation complete |
 | `flow c` | validated non-draft PR created or updated |
 | `flow a` | PR merged and task completion verified |
 
-If there is no target task, output `タスクが明記されていません。`, skip tracker mutations, task metadata, and closing references, and continue only with the user's explicit scope. Do not invent a task. For `flow p`, a task tracker declaration is still required before registration.
+When `task` is omitted and there is no task explicitly registered earlier in the conversation, output `タスクが明記されていません。`, skip tracker mutations, task metadata, and closing references, and continue only with the user's explicit scope. Do not invent a task from the branch name or the conversation. A task argument is the only condition that permits creating a missing task; it requires a tracker declaration before registration.
 
-## `flow p` / `flow plan`
+## `flow p` / `flow plan` `[task]`
 
-Turn the agreed plan into the source-of-truth task.
+Turn the user's scope into an agreed implementation plan. Without `task`, this is a non-mutating planning phase.
 
-1. Confirm the requirements and intended scope from the conversation. Do not create a task from an unresolved or ambiguous plan.
-2. Read the repository README for `task_tracker: <name>`. If absent, ask which tracker to use and do not infer one from installed tools or integrations.
-3. Prefer `Execution mode: single` when no mode is specified. Use `multi` only when the user explicitly agrees. Record exactly one of these values in the task.
-4. Create one task containing the requirements, implementation plan, key decisions, and a reconstructed `# User Prompt` that stands alone. Do not paste a chat log.
-5. Stop after task registration. Do not implement, commit, push, create a PR, or merge.
+1. Confirm the requirements and intended scope from the conversation. If the plan is unresolved or ambiguous, state what remains to decide and stop.
+2. Prefer `Execution mode: single` when no mode is specified. Use `multi` only when the user explicitly agrees.
+3. If `task` is omitted, report the plan, scope, key decisions, and proposed execution mode. Do not create or update a task, commit, push, create a PR, or merge.
+4. If `task` is present, read the repository README for `task_tracker: <name>`. If absent, ask which tracker to use and do not infer one from installed tools or integrations.
+5. Resolve the named task. If no equivalent task exists, create one containing the requirements, implementation plan, key decisions, and a reconstructed `# User Prompt` that stands alone. Do not paste a chat log. Record exactly one execution mode in the task.
+6. Stop after resolving or creating the task. Do not implement, commit, push, create a PR, or merge.
 
-If an equivalent task is already registered, do not create a duplicate; report the existing task and continue only when the user explicitly invoked a later endpoint.
+If an equivalent task is already registered, do not create a duplicate; report the existing task and stop. A later phase must be explicitly invoked.
 
 ## `flow d` / `flow do`
 
 Reach the implementation endpoint.
 
-1. If the plan/task endpoint has not been completed, run the `p` prerequisite first. If no target task exists, use no-task mode and the user's explicit request as the source of truth.
+1. When `task` is present, resolve it and run the `p` registration prerequisite if it does not exist. When `task` is omitted, use an earlier explicitly registered task when one exists; otherwise use no-task mode and the user's explicit request as the source of truth.
 2. For a target task, move it to the tracker's In Progress equivalent before implementation and verify the result. If the tracker has no matching state, report it and stop.
 3. Read exactly one `Execution mode: single` or `Execution mode: multi` from the task. Missing mode defaults to `single`; an invalid or ambiguous explicit mode stops the workflow.
 4. For `single`, implement in the current task workspace. For `multi`, act as the parent coordinator: follow the registered decomposition, assign clear ownership, avoid concurrent edits to shared files, integrate results, resolve conflicts, and run the relevant validation as the parent.
@@ -88,7 +91,7 @@ Do not commit, push, create/update a PR, or merge during `d`. A successful `d` l
 
 ## `flow c` / `flow check`
 
-Reach the reviewable non-draft PR endpoint. Run any missing `p` and `d` prerequisites first, then:
+Reach the reviewable non-draft PR endpoint. When `task` is present, run missing `p` and `d` prerequisites first; otherwise run only a missing `d` prerequisite, then:
 
 1. Run the relevant validation and stop on validation failures that are not an expected natural downstream failure.
 2. Selectively stage the files belonging to this work. Use a commit message beginning with `feat:`, `fix:`, `refactor:`, `docs:`, or `chore:`. Never bypass pre-commit hooks.
@@ -117,7 +120,7 @@ This policy applies to the `origin/main` merge in `flow c` and to the `c` prereq
 
 ## `flow a` / `flow auto`
 
-Reach the terminal completed endpoint. Run missing `p`, `d`, and `c` prerequisites in order, then:
+Reach the terminal completed endpoint. When `task` is present, run missing `p`, `d`, and `c` prerequisites in order; otherwise run missing `d` and `c` prerequisites, then:
 
 1. Confirm the exact PR to merge from the current flow, the user's explicit PR reference, or an unambiguous task closing reference. Do not guess between multiple PRs.
 2. Check required checks, reviews, mergeability, and branch protection through `gh api`. If required checks fail, required reviews are missing, or the PR is not mergeable, stop and report the current state. Never bypass a required check or review.

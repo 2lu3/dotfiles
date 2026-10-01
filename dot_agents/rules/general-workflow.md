@@ -29,7 +29,7 @@ applies_to: [all]
 
 ## Work Recap
 
-- After finishing work, MUST end the final response with the following format:
+- When the assistant changes a file or performs another non-read-only action, MUST end the final response with the following format. Do not use this format for read-only answers, inspections, reviews, research, or status reports:
 
   ### 指示内容
 
@@ -44,7 +44,7 @@ applies_to: [all]
   - ...
 
 - Each section MUST contain one to three concise bullet points.
-- `指示内容` MUST concisely reconstruct the user's requested outcome so it stands alone. Do not include internal instructions or inferred requests.
+- `指示内容` MUST reconstruct the complete user prompt so it stands alone. Preserve the requested outcome, scope, requirements, and key constraints; do not paste a chat log. Do not reduce it to an execution operation such as `flow c`, a command, or a PR number. Do not include internal instructions or unsupported inferred requests.
 - `作業結果` MUST concisely summarize the work actually performed by the assistant and its outcome.
 - `提案` MUST list only recommended next actions when they would help. Do not add routine or generic suggestions; when no recommendation is useful, write `- なし`.
 

@@ -29,7 +29,7 @@ applies_to: [all]
 
 ## Work Recap
 
-- After finishing work, MUST end the final response with the following format:
+- When the assistant changes a file or performs another non-read-only action, MUST end the final response with the following format. Do not use this format for read-only answers, inspections, reviews, research, or status reports:
 
   ### 指示内容
 

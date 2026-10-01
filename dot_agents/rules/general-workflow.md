@@ -29,7 +29,24 @@ applies_to: [all]
 
 ## Work Recap
 
-- After finishing work, MUST briefly explain what was done in the final response using bullet points
+- After finishing work, MUST end the final response with the following format:
+
+  ### 指示内容
+
+  - ...
+
+  ### 作業結果
+
+  - ...
+
+  ### 提案
+
+  - ...
+
+- Each section MUST contain one to three concise bullet points.
+- `指示内容` MUST reconstruct the user's complete requested outcome so it stands alone. When the relevant task or PR has a `# User Prompt`, use its complete standalone reconstruction as the primary wording; do not summarize it further or replace it with an execution operation such as `flow c`, a command, or a PR number. Include an explicitly requested delivery operation only as a separate supplemental bullet. When no `# User Prompt` exists, reconstruct the request from the conversation in the same standalone style. Do not include internal instructions or unsupported inferred requests.
+- `作業結果` MUST concisely summarize the work actually performed by the assistant and its outcome.
+- `提案` MUST list only recommended next actions when they would help. Do not add routine or generic suggestions; when no recommendation is useful, write `- なし`.
 
 ## Debugging Approach
 

@@ -16,4 +16,7 @@ assert_contains() {
 assert_contains '  ### 指示内容'
 assert_contains '  ### 作業結果'
 assert_contains '  ### 提案'
-assert_contains '- Each section MUST contain one to three concise bullet points. When there is no proposal, write `- なし` under `提案`.'
+assert_contains '- Each section MUST contain one to three concise bullet points.'
+assert_contains '- `指示内容` MUST concisely reconstruct the user'\''s requested outcome so it stands alone. Do not include internal instructions or inferred requests.'
+assert_contains '- `作業結果` MUST concisely summarize the work actually performed by the assistant and its outcome.'
+assert_contains '- `提案` MUST list only recommended next actions when they would help. Do not add routine or generic suggestions; when no recommendation is useful, write `- なし`.'

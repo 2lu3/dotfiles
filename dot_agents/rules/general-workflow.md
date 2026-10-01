@@ -43,7 +43,10 @@ applies_to: [all]
 
   - ...
 
-- Each section MUST contain one to three concise bullet points. When there is no proposal, write `- なし` under `提案`.
+- Each section MUST contain one to three concise bullet points.
+- `指示内容` MUST concisely reconstruct the user's requested outcome so it stands alone. Do not include internal instructions or inferred requests.
+- `作業結果` MUST concisely summarize the work actually performed by the assistant and its outcome.
+- `提案` MUST list only recommended next actions when they would help. Do not add routine or generic suggestions; when no recommendation is useful, write `- なし`.
 
 ## Debugging Approach
 

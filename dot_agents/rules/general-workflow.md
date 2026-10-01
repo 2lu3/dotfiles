@@ -29,7 +29,21 @@ applies_to: [all]
 
 ## Work Recap
 
-- After finishing work, MUST briefly explain what was done in the final response using bullet points
+- After finishing work, MUST end the final response with the following format:
+
+  ### 指示内容
+
+  - ...
+
+  ### 作業結果
+
+  - ...
+
+  ### 提案
+
+  - ...
+
+- Each section MUST contain one to three concise bullet points. When there is no proposal, write `- なし` under `提案`.
 
 ## Debugging Approach
 

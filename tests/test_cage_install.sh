@@ -24,6 +24,6 @@ assert_not_contains() {
 }
 
 assert_contains "$repository_root/run_after_install.sh.tmpl" '        GOBIN="$HOME/.local/bin" mise exec {{ .mise_tools.go | quote }} -- go install github.com/Warashi/cage@latest'
-assert_contains "$repository_root/dot_local/bin/executable_codex.tmpl" 'exec "$mise_command" exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.codex | quote }} -- "$HOME/.local/bin/cage" codex "$@"'
+assert_contains "$repository_root/dot_local/bin/executable_codex.tmpl" 'exec "$mise_command" exec {{ .mise_tools.node | quote }} {{ .mise_tools.ai.codex | quote }} -- cage codex "$@"'
 assert_not_contains "$repository_root/.chezmoidata/features.yaml" '    cage: go:github.com/Warashi/cage@latest'
 assert_not_contains "$repository_root/dot_config/mise/config.toml.tmpl" '"go:github.com/Warashi/cage" = "latest"'

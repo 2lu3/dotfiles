@@ -12,6 +12,12 @@ sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- init --apply 2lu3
 
 ### Sudo権限がない場合の事前Install
 
+#### linuxbrew
+
+```bash
+HOMEBREW_NO_SUDO=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" -- --path "$HOME/.linuxbrew"
+```
+
 #### base
 
 ```bash

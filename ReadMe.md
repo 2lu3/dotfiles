@@ -20,6 +20,8 @@ Homebrew is not installed automatically. Install it before applying this configu
 HOMEBREW_NO_SUDO=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" -- --path "$HOME/.linuxbrew"
 ```
 
+shell 設定は `$HOME/.linuxbrew/bin/brew` も検出します。
+
 #### base
 
 ```bash

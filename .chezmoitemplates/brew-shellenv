@@ -1,4 +1,4 @@
-for brew_binary in "$(command -v brew || true)" /home/linuxbrew/.linuxbrew/bin/brew /opt/homebrew/bin/brew /usr/local/bin/brew; do
+for brew_binary in "$(command -v brew || true)" "$HOME/.linuxbrew/bin/brew" /home/linuxbrew/.linuxbrew/bin/brew /opt/homebrew/bin/brew /usr/local/bin/brew; do
     if [ -x "$brew_binary" ]; then
         eval "$("$brew_binary" shellenv {{ . }})"
         break

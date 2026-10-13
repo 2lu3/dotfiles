@@ -10,6 +10,8 @@ task_tracker: linear
 sh -c "$(curl -fsLS https://get.chezmoi.io/lb)" -- init --apply 2lu3
 ```
 
+Homebrew is not installed automatically. Install it before applying this configuration when the selected OS and features require it; installation stops with an error if `brew` is unavailable.
+
 ### Sudo権限がない場合の事前Install
 
 #### linuxbrew

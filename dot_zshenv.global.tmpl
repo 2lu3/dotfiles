@@ -16,3 +16,17 @@ if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
 {{ end }}
+
+# Keep local commands first after Homebrew, mise, and direnv update PATH.
+_local_bin_first() {
+    if [[ -d "$HOME/.local/bin" ]]; then
+        path=("$HOME/.local/bin" "${(@)path:#$HOME/.local/bin}")
+    fi
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook -d precmd _local_bin_first
+add-zsh-hook -d chpwd _local_bin_first
+add-zsh-hook precmd _local_bin_first
+add-zsh-hook chpwd _local_bin_first
+_local_bin_first

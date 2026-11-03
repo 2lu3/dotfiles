@@ -118,6 +118,8 @@ Neovim は絶対行番号を常時表示します。相対行番号を使いた�
 
 インストール後は、`.zshenv` に `.zshenv.local` を読み込む行を一度だけ追加します。shell 機能を有効にした場合は、`.zshenv.global` と `.zshrc.global` も同様に読み込みます。この処理は macOS と Linux の両方で動作します。
 
+zsh では `~/.local/bin` を PATH の先頭に置き、そこにある `codex` などのコマンドを優先します。Homebrew や mise の初期化後に加え、プロンプト表示前とディレクトリ移動後にもこの順序を保ちます。
+
 ## アップデート方法
 
 ```bash

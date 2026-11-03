@@ -152,3 +152,5 @@ GOBIN="$HOME/.local/bin" mise exec go@1.25 -- go install github.com/Warashi/cage
 以前の npm グローバルパッケージや手動配置のバイナリは自動削除しません。
 
 Linux で Cage の書き込み制限を有効にするには、Landlock ABI 2 以降が必要です。Ubuntu 22.04 の標準カーネル（5.15）は対象外で、Ubuntu 24.04 の標準カーネル（6.8）以降を使用してください。
+
+Codex の起動スクリプトは、`mise which --tool` で取得した Codex 本体の絶対パスを Cage に渡します。`PATH` 上の同じ起動スクリプトを再実行することで、Landlock の制限が繰り返し適用され、上限に達するのを防ぎます。

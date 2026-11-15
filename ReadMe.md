@@ -135,15 +135,13 @@ brew upgrade
 uv tool upgrade --all
 ```
 
-mise のツールは対象を指定して更新します。例えば開発ツールは次のとおりです。
+mise のグローバルツールは、指定したバージョンの範囲内で自動更新されます。手動で更新する場合は次のコマンドを実行します。
 
 ```bash
-mise upgrade go
-mise install node@24
-mise exec node@24 -- mise install npm:neovim@latest npm:@fsouza/prettierd@latest
+mise upgrade --global
 ```
 
-AI CLI も `mise_tools.ai` にある `npm:...@latest` を同様に指定します。Cage は mise 管理の Go を使って更新します。
+Cage は mise 管理の Go を使って更新します。
 
 ```bash
 GOBIN="$HOME/.local/bin" mise exec go@1.25 -- go install github.com/Warashi/cage@latest

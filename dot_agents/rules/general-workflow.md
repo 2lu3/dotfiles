@@ -46,6 +46,7 @@ applies_to: [all]
 - Each section MUST contain one to three concise bullet points.
 - `指示内容` MUST reconstruct the complete user prompt so it stands alone. Preserve the requested outcome, scope, requirements, and key constraints; do not paste a chat log. Do not reduce it to an execution operation such as `flow c`, a command, or a PR number. Do not include internal instructions or unsupported inferred requests.
 - `作業結果` MUST concisely summarize the work actually performed by the assistant and its outcome.
+- `作業結果` MUST provide enough context to understand the current outcome, including earlier work in the conversation when it forms a prerequisite for, is incorporated into, or otherwise directly explains that outcome. Omit earlier work that has no such relationship. For example, when reporting a merge, summarize the changes merged as well as the merge itself.
 - `提案` MUST list only recommended next actions when they would help. Do not add routine or generic suggestions; when no recommendation is useful, write `- なし`.
 
 ## Debugging Approach

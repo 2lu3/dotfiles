@@ -177,9 +177,20 @@ fi
 
 source_directory="$HOME/.agents"
 
+copy_shared_entries() (
+    local source="$1" destination="$2" entry
+    shopt -s dotglob nullglob
+    for entry in "$source"/*; do
+        if [ "$entry" -ef "$destination/${entry##*/}" ]; then
+            continue
+        fi
+        cp -R "$entry" "$destination/"
+    done
+)
+
 for target in codex claude; do
     target_directory="$HOME/.$target"
     mkdir -p "$target_directory/rules" "$target_directory/skills"
-    cp -R "$source_directory/rules/." "$target_directory/rules/"
-    cp -R "$source_directory/skills/." "$target_directory/skills/"
+    copy_shared_entries "$source_directory/rules" "$target_directory/rules"
+    copy_shared_entries "$source_directory/skills" "$target_directory/skills"
 done

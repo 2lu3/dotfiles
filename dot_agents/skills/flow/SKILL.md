@@ -28,7 +28,7 @@ Permission summary:
 An explicit phase invocation authorizes only the operations in that phase and any prerequisite phases that the endpoint requires:
 
 - `p` authorizes planning only when `task` is omitted. With `task`, it also authorizes creating that task, but not implementation or Git delivery.
-- `d` authorizes implementation and local validation. With `task`, it also authorizes the `p` registration prerequisite when the named task does not exist; it does not authorize commit, push, PR creation, or PR merge.
+- `d` authorizes implementation and local validation. With `task`, it also authorizes the `p` registration prerequisite when the named task does not exist. For a GitHub Issue only, it also authorizes the initial commit, push, and creation of one draft PR needed to represent In Progress. It does not otherwise authorize commit, push, or PR creation, and never authorizes PR merge.
 - `c` authorizes its missing `p`/`d` prerequisites when `task` is present, commit, merging the latest `origin/main` into the feature branch, pushing the feature branch, and creating or updating one non-draft PR. It NEVER authorizes merging a PR.
 - `a` authorizes its missing `p`/`d`/`c` prerequisites when `task` is present, including `c`'s push and non-draft PR creation/update permissions, and PR merge. It is the only phase that merges a PR.
 
@@ -79,7 +79,7 @@ If an equivalent task is already registered, do not create a duplicate; report t
 Reach the implementation endpoint.
 
 1. When `task` is present, resolve it and run the `p` registration prerequisite if it does not exist. When `task` is omitted, use an earlier explicitly registered task when one exists; otherwise use no-task mode and the user's explicit request as the source of truth.
-2. For a target task, move it to the tracker's In Progress equivalent before implementation and verify the result. If the tracker has no matching state, report it and stop.
+2. For a target task other than a GitHub Issue, move it to the tracker's In Progress equivalent before implementation and verify the result. If the tracker has no matching state, report it and stop. For a GitHub Issue, represent In Progress with a draft PR before implementation: identify an existing PR for the issue and branch, or create exactly one draft PR linked to the issue. If needed, create an initial commit and push the branch; use an empty commit when there are no task changes to commit, and do not include unrelated changes. Verify the PR is open and draft. If ownership is ambiguous or an existing PR is non-draft, stop and report the state rather than creating a duplicate or changing it back to draft.
 3. Read exactly one `Execution mode: single` or `Execution mode: multi` from the task. Missing mode defaults to `single`; an invalid or ambiguous explicit mode stops the workflow.
 4. For `single`, implement in the current task workspace. For `multi`, act as the parent coordinator: follow the registered decomposition, assign clear ownership, avoid concurrent edits to shared files, integrate results, resolve conflicts, and run the relevant validation as the parent.
 5. Do not broaden the registered scope or invent subtasks. If the plan cannot be decomposed safely, stop and report the blocker.
@@ -87,7 +87,7 @@ Reach the implementation endpoint.
 7. Read the repository README before deciding whether tests are required for the implementation. When the README requires tests, add or update tests that cover the changed behavior and regression cases; merely running existing tests does not count as a test update. When the README does not require tests, do not add, update, or run tests; report that they were skipped and why.
 8. Run the relevant local validation, including the tests added or updated in step 7 when applicable, and report its result.
 
-Do not commit, push, create/update a PR, or merge during `d`. A successful `d` leaves the work ready for `c` and keeps a tracked task In Progress.
+Except for the initial commit, push, and draft PR required for a GitHub Issue above, do not commit, push, or create/update a PR during `d`. Never merge during `d`. A successful `d` leaves the work ready for `c` and represents a tracked task as In Progress.
 
 ## `flow c` / `flow check`
 
@@ -99,7 +99,7 @@ Reach the reviewable non-draft PR endpoint. When `task` is present, run missing 
 4. Push the feature branch. Never force-push.
 5. Query open PRs with `gh api`. Update the one identified PR for the current branch, or create exactly one new PR with `draft: false`. If an existing matching PR is a draft, mark it ready for review through the GitHub GraphQL `markPullRequestReadyForReview` mutation before updating it.
 6. Write the PR title and body in Japanese. The body must contain, in order, `# Summary`, `# Items to Confirm / Review`, and `# User Prompt`. Include the implementation approach, validation, and key decisions. Reuse the registered task's `# User Prompt` when one exists. A tracked task's closing reference belongs at the very end; omit it in no-task mode.
-7. After the PR is created or updated successfully, move the tracked task to the tracker's In Review equivalent and verify it. Do not change task metadata beyond the status transition.
+7. For a GitHub Issue, verify the linked PR is open and non-draft; this represents In Review. For any other tracked task, move it to the tracker's In Review equivalent and verify it. Do not change task metadata beyond the status transition.
 
 `c` NEVER merges a PR. If multiple PRs could match or ownership cannot be determined confidently, stop instead of creating a second PR.
 
@@ -126,6 +126,6 @@ Reach the terminal completed endpoint. When `task` is present, run missing `p`, 
 2. Check required checks, reviews, mergeability, and branch protection through `gh api`. If required checks fail, required reviews are missing, or the PR is not mergeable, stop and report the current state. Never bypass a required check or review.
 3. If the PR is a draft, mark it ready for review through the GitHub GraphQL `markPullRequestReadyForReview` mutation.
 4. Merge through `gh api` with `merge_method: merge`. Never squash-merge, rebase-merge, force-merge, or force-push.
-5. After merge, move the tracked task to the tracker's Done equivalent or verify the tracker's automatic transition. Confirm the final PR and task state. In no-task mode, merge without changing task metadata.
+5. For a GitHub Issue, the merged PR represents Done; verify the PR and its link to the issue. For any other tracked task, move it to the tracker's Done equivalent or verify the tracker's automatic transition. Confirm the final PR and task state. In no-task mode, merge without changing task metadata.
 
 If the PR is already merged, do not merge again; verify the local and tracker state and finish. If any prerequisite cannot be completed safely, stop at that phase and report what remains.
